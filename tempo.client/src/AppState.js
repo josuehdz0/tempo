@@ -9,4 +9,6 @@ export const AppState = reactive({
   savedPlaylists: [],
   /** @type {import('./models/Playlist.js').Playlist[]} */
   playlist: [],
+  /** @type {import('./models/Comment.js').Comment[]} */
+  comment: [],
 })
