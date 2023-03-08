@@ -28,7 +28,9 @@ const routes = [
     component: loadPage('ProfilePage'),
   },
   {
-    path: '/playlist/:playlistId',
+    path: '/playlist',
+    // NOTE need this vvv once we hve playlist IDs
+    // path: '/playlist/:playlistId',
     name: 'PlaylistPage',
     component: loadPage('PlaylistPage'),
   },

@@ -1,27 +1,33 @@
 <template>
   <div class="col-10 col-md-5 mt-4 cardbg">
-    <div class="row text-light py-3 px-1">
-      <div class="col-3">
-        picture
-      </div>
-      <div class="col-7">
-        <h2>
-          {{ playlist?.name }}
-          Playlist Name
-        </h2>
-        <div>
-          By {{ playlist?.creator.name }} Creator
+    <router-link class="" :to="{ name: 'PlaylistPage' }">
+
+
+      <div class="row text-light py-3 px-1">
+        <div class="col-3">
+          picture
+        </div>
+        <div class="col-7">
+          <h2>
+            {{ playlist?.name }}
+            Playlist Name
+          </h2>
+          <div>
+            By {{ playlist?.creator.name }} Creator
+          </div>
+        </div>
+        <div class="col-2 d-flex justify-content-center align-items-center">
+          <i class="mdi mdi-heart heart"></i>
         </div>
       </div>
-      <div class="col-2 d-flex justify-content-center align-items-center">
-        <i class="mdi mdi-heart heart"></i>
-      </div>
-    </div>
+
+    </router-link>
   </div>
 </template>
 
 
 <script>
+import { RouterLink } from "vue-router";
 import { Playlist } from "../models/Playlist";
 
 export default {
@@ -29,8 +35,9 @@ export default {
     playlist: { type: Playlist, required: true }
   },
   setup() {
-    return {}
-  }
+    return {};
+  },
+  components: { RouterLink }
 }
 </script>
 

@@ -12,15 +12,23 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-      </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
+      <div class="row justify-content-between">
+        <div class="col-3 d-flex align-items-center">
+          <ul class="navbar-nav  ">
+            <li>
+              <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase">
+                About
+              </router-link>
+            </li>
+          </ul>
+        </div>
+        <div class="col-3">
+          <!-- LOGIN COMPONENT HERE -->
+          <Login />
+
+
+        </div>
+      </div>
     </div>
   </nav>
 </template>
