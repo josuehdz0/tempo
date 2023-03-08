@@ -1,5 +1,5 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center ">
 
   </div>
 </template>
@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.tempobg {
+  background-color: #9DBF9e;
+}
+
 .home {
   display: grid;
   height: 80vh;

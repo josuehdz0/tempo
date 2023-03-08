@@ -2,11 +2,29 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="tempoblobs ">
+
     <router-view />
+
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+  <footer class="bg-light text-dark d-flex justify-content-evenly align-items-center py-4">
+    <div>
+      <b>
+        HOME
+      </b>
+    </div>
+    <div>
+      <b>
+        PROFILE
+      </b>
+    </div>
+    <div>
+      <b>
+        CREATE
+      </b>
+    </div>
+
+
   </footer>
 </template>
 
@@ -27,8 +45,20 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-:root{
+:root {
   --main-height: calc(100vh - 32px - 64px);
+}
+
+.tempobg {
+  background-color: #9DBF9e;
+}
+
+.tempoblobs {
+  background-image: url("tempoblobs.png");
+  background-size: cover;
+  background-position: center;
+  background-color: #9DBF9e;
+  // object-fit: cover;
 }
 
 
