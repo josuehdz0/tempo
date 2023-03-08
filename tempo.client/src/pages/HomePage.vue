@@ -3,7 +3,7 @@
     <div class="row justify-content-center ">
 
       <!-- NOTE This is where the playlistcard Component goes -->
-      <div class="col-10 col-md-5 mt-4 cardbg">
+      <!-- <div class="col-10 col-md-5 mt-4 cardbg">
         <div class="row text-light py-3 px-1">
           <div class="col-3">
             picture
@@ -20,7 +20,8 @@
             <i class="mdi mdi-heart heart"></i>
           </div>
         </div>
-      </div>
+      </div> -->
+      <PlaylistCard />
 
 
 
@@ -31,10 +32,14 @@
 </template>
 
 <script>
+
+import PlaylistCard from "../components/PlaylistCard.vue";
+
 export default {
   setup() {
     return {}
-  }
+  },
+  components: { PlaylistCard }
 }
 </script>
 
