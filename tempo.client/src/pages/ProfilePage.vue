@@ -1,6 +1,6 @@
 <template>
   <div class="ProfilePage">
-
+    <h1>WELCOME TO THE PROFILE PAGE</h1>
 
   </div>
 </template>

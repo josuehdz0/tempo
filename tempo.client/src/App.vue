@@ -17,11 +17,13 @@
       </div>
     </router-link>
 
-    <div>
-      <b>
-        PROFILE
-      </b>
-    </div>
+    <router-link class="navbar-brand d-flex" :to="{ name: 'Profile' }">
+      <div>
+        <b>
+          PROFILE
+        </b>
+      </div>
+    </router-link>
     <div>
       <b>
         CREATE

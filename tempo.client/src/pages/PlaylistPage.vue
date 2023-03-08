@@ -1,6 +1,6 @@
 <template>
   <div class="PlaylistPage">
-
+    <h1>WELCOME TO THE PLAYLIST PAGE</h1>
 
   </div>
 </template>
