@@ -7,9 +7,10 @@
       <div class="col-7">
         <h2>
           {{ playlist?.name }}
+          Playlist Name
         </h2>
         <div>
-          By {{ playlist?.creator.name }}
+          By {{ playlist?.creator.name }} Creator
         </div>
       </div>
       <div class="col-2 d-flex justify-content-center align-items-center">
