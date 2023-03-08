@@ -34,4 +34,15 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.cardbg {
+  background-color: #2b414169;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.heart {
+  color: #F48668;
+  font-size: 4vh;
+}
+</style>
