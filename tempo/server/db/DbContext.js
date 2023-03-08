@@ -6,8 +6,8 @@ import { CommentSchema } from "../models/Comment";
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
-  Playlist = mongoose.model('Playlist', PlaylistSchema);
-  Comment = mongoose.model('Comment', CommentSchema);
+  Playlists = mongoose.model('Playlist', PlaylistSchema);
+  Comments = mongoose.model('Comment', CommentSchema);
 }
 
 export const dbContext = new DbContext()

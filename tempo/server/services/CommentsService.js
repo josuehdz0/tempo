@@ -1,4 +1,7 @@
 class CommentsService {
+  getCommentByPlaylist(playlistId) {
+
+  }
 
 }
 
