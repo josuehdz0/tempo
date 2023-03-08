@@ -26,19 +26,17 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: loadPage('ProfilePage'),
-    beforeEnter: authGuard
   },
   {
     path: '/playlist/:playlistId',
     name: 'PlaylistDetails',
     component: loadPage('PlaylistPage'),
-    beforeEnter: authGuard
   },
   {
     path: '/create',
     name: 'CreatePlaylist',
     component: loadPage('CreatePage'),
-    beforeEnter: authGuard
+    // beforeEnter: authGuard
   },
 ]
 

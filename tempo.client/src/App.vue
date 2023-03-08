@@ -24,11 +24,13 @@
         </b>
       </div>
     </router-link>
-    <div>
-      <b>
-        CREATE
-      </b>
-    </div>
+    <router-link class="navbar-brand d-flex" :to="{ name: 'CreatePlaylist' }">
+      <div>
+        <b>
+          CREATE
+        </b>
+      </div>
+    </router-link>
 
 
   </footer>
