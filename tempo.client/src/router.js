@@ -29,7 +29,7 @@ const routes = [
   },
   {
     path: '/playlist/:playlistId',
-    name: 'PlaylistDetails',
+    name: 'PlaylistPage',
     component: loadPage('PlaylistPage'),
   },
   {
