@@ -1,5 +1,5 @@
 <template>
-  <div class="col-10 col-md-5 mt-4 cardbg">
+  <router-link class="" :to="{ name: 'PlaylistPage' }">
     <div class="row text-light py-3 px-1">
       <div class="col-3">
         picture
@@ -17,11 +17,13 @@
         <i class="mdi mdi-heart heart"></i>
       </div>
     </div>
-  </div>
+
+  </router-link>
 </template>
 
 
 <script>
+import { RouterLink } from "vue-router";
 import { Playlist } from "../models/Playlist";
 
 export default {
@@ -29,19 +31,14 @@ export default {
     playlist: { type: Playlist, required: true }
   },
   setup() {
-    return {}
-  }
+    return {};
+  },
+  components: { RouterLink }
 }
 </script>
 
 
 <style lang="scss" scoped>
-.cardbg {
-  background-color: #2b414169;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
 .heart {
   color: #F48668;
   font-size: 4vh;

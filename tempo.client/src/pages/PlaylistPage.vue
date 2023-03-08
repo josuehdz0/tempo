@@ -1,6 +1,62 @@
 <template>
-  <div class="PlaylistPage">
-    <h1>WELCOME TO THE PLAYLIST PAGE</h1>
+  <div class="row justify-content-center">
+
+    <!-- NOTE Playlist Info -->
+    <div class="col-10 col-md-5 my-5 bigcardbg">
+
+      <div class="row text-light py-3 px-1">
+        <div class="col-6">
+          picture
+        </div>
+        <div class="col-6">
+          <h2>
+            {{ playlist?.name }}
+            Playlist Name
+          </h2>
+          <div>
+            By {{ playlist?.creator.name }} Creator
+          </div>
+          <div>
+            Runtime: (time)
+          </div>
+          <div>
+            Tempo:(BPM)
+          </div>
+          <div class="text-end">
+            <i class="mdi mdi-heart heart"></i>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+  <div class="row justify-content-center">
+
+
+
+    <!-- NOTE Song Card goes here -->
+    <div class="col-10 col-md-5 mt-4 songcardbg">
+      <div class="row text-light py-3 px-1">
+        <div class="col-3">
+          picture
+        </div>
+        <div class="col-7">
+          <h5>
+            Song Name
+          </h5>
+          <div>
+            By Artist
+          </div>
+        </div>
+        <div class="col-2 d-flex justify-content-center align-items-center">
+          <i class="mdi mdi-spotify spotify"></i>
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -15,4 +71,26 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.bigcardbg {
+  background-color: #2b4141e1;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.heart {
+  color: #F48668;
+  font-size: 4vh;
+}
+
+.spotify {
+
+  font-size: 7vh;
+}
+
+.songcardbg {
+  background-color: #2b414169;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+</style>
