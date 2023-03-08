@@ -1,9 +1,10 @@
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center ">
+      <div class="col-10 col-md-5 mt-4 cardbg">
 
-      <!-- NOTE This is where the playlistcard Component goes -->
-      <!-- <div class="col-10 col-md-5 mt-4 cardbg">
+        <!-- NOTE This is where the playlistcard Component goes -->
+        <!-- <div class="col-10 col-md-5 mt-4 cardbg">
         <div class="row text-light py-3 px-1">
           <div class="col-3">
             picture
@@ -21,12 +22,12 @@
           </div>
         </div>
       </div> -->
-      <PlaylistCard />
+        <PlaylistCard />
 
 
 
 
-
+      </div>
     </div>
   </div>
 </template>
@@ -43,4 +44,10 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.cardbg {
+  background-color: #2b414169;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+</style>
