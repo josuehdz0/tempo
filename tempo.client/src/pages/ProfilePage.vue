@@ -27,12 +27,17 @@
     </div>
     <div class="row mt-4">
       <div class="col-12 d-flex justify-content-evenly">
-        <div class="btn text-dark">
+        <div class="btn text-dark filter-btn">
           Saved Playlists
         </div>
-        <div class="btn text-dark">
+        <div class="btn text-dark filter-btn">
           My Playlists
         </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-11 cardbg">
+        <PlaylistCard />
       </div>
     </div>
   </div>
@@ -40,10 +45,13 @@
 
 
 <script>
+import PlaylistCard from "../components/PlaylistCard.vue";
+
 export default {
   setup() {
-    return {}
-  }
+    return {};
+  },
+  components: { PlaylistCard }
 }
 </script>
 
@@ -53,6 +61,10 @@ export default {
   background-color: #2b414169;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.filter-btn {
+  font-size: 15pt;
 }
 
 .profile-img {}
