@@ -27,7 +27,13 @@ const routes = [
     name: 'Profile',
     component: loadPage('ProfilePage'),
     beforeEnter: authGuard
-  }
+  },
+  {
+    path: '/playlist',
+    name: 'Playlist',
+    component: loadPage('PlaylistPage'),
+    beforeEnter: authGuard
+  },
 ]
 
 export const router = createRouter({
