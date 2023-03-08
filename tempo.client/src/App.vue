@@ -8,11 +8,15 @@
 
   </main>
   <footer class="bg-light text-dark d-flex justify-content-evenly align-items-center py-4">
-    <div>
-      <b>
-        HOME
-      </b>
-    </div>
+
+    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+      <div>
+        <b>
+          HOME
+        </b>
+      </div>
+    </router-link>
+
     <div>
       <b>
         PROFILE
