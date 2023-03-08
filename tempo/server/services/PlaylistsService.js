@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext.js"
+import { BadRequest } from "../utils/Errors.js"
 
 class PlaylistsService {
   async createPlaylist(playlistData) {
@@ -12,8 +13,11 @@ class PlaylistsService {
     return playlists
   }
 
-  getPlaylistById(playlistId) {
-
+  async getPlaylistById(playlistId) {
+    const playlist = await dbContext.Playlists.findById(playlistId).populate('creator')
+    if (!playlist) {
+      throw new BadRequest('playlist not found')
+    }
   }
 
 
