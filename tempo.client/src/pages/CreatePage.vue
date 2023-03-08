@@ -12,6 +12,7 @@
         <div class="col-10">
           <label for="genre" class="form-label">Genre</label>
           <select class="form-select" id="genre" name="genre">
+            <option value="random">Random</option>
             <option value="rock">Rock</option>
             <option value="country">Country</option>
             <option value="edm">EDM</option>
