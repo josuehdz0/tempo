@@ -29,8 +29,8 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/playlist',
-    name: 'Playlist',
+    path: '/playlist/:playlistId',
+    name: 'PlaylistDetails',
     component: loadPage('PlaylistPage'),
     beforeEnter: authGuard
   },
