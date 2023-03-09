@@ -5,6 +5,7 @@ import { playlistsService } from "./PlaylistsService.js"
 class CommentsService {
   async postComment(postData) {
     const playlist = await playlistsService.getPlaylistById(postData.playlistId)
+    // @ts-ignore
     if (!playlist) {
       throw new BadRequest('bad request from comment service')
     }
