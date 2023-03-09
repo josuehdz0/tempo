@@ -26,9 +26,7 @@
 
           <div class="row">
             <div class="col-8 text-center">
-              <button class="btn btn-outline-dark my-2">
-                Link to <i class="mdi mdi-spotify"></i>
-              </button>
+              <SpotifyLogin />
             </div>
             <div class="col-4">
               <!-- LOGIN COMPONENT HERE -->
