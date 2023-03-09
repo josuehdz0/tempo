@@ -1,5 +1,9 @@
 import Axios from 'axios'
-export const api = Axios.create({
-    baseURL: '',
-    timeout: 8000
+import { dbContext } from '../db/DbContext'
+export const spotifyApi = Axios.create({
+    baseURL: 'https://api.spotify.com/v1',
+    timeout: 8000,
+    // headers:{
+    //     Authorization: dbContext.Account.findById
+    // }
 })
