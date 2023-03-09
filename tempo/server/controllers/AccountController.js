@@ -18,7 +18,7 @@ export class AccountController extends BaseController {
       logger.log(account, 'this is the account')
       const accountData = req.body
       logger.log(accountData, 'this is the account data')
-      const updatedAccount = await accountService.updateAccount(account, accountData)
+      const updatedAccount = await accountService.updateAccount(req.userInfo, accountData)
       return res.send(updatedAccount)
 
     } catch (error) {
