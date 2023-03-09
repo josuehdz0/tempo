@@ -51,9 +51,9 @@
 
 
         <div class="text-center">
-          <button class="btn btn-outline-dark m-2">
-            Link to <i class="mdi mdi-spotify"></i>
-          </button>
+
+          <SpotifyLogin />
+
         </div>
         <div class="d-flex">
           <!-- LOGIN COMPONENT HERE -->
@@ -69,11 +69,12 @@
 
 <script>
 import Login from './Login.vue'
+import SpotifyLogin from "./SpotifyLogin.vue";
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+  components: { Login, SpotifyLogin }
 }
 </script>
 
