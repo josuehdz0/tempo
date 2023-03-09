@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main class="tempoblobs ">
@@ -7,7 +7,7 @@
     <router-view />
 
   </main>
-  <footer class="bg-light text-dark d-flex justify-content-evenly align-items-center py-4">
+  <footer class="bg-light text-dark d-flex justify-content-evenly align-items-center py-4 sticky-bottom">
 
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div>
