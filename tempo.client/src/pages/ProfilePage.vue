@@ -4,7 +4,7 @@
       <!-- NOTE Profile Details card -->
       <div class="col-10 col-md-5 bigcardbg">
         <div class="row">
-          <div class="col-6 p-1 d-flex justify-content-center p-4">
+          <div class="col-6 d-flex justify-content-center  align-items-center p-3">
             <img :src="account.picture" :alt="account.name" class="profile-img ">
           </div>
           <div class="col-6 p-3  align-items-center text-light">
@@ -85,11 +85,18 @@
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
+import { AuthService } from '../services/AuthService'
 
 export default {
   setup() {
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin })
+      }
     };
   },
   components: { PlaylistCard }
@@ -116,5 +123,13 @@ export default {
 
 .profile-img {
   border-radius: 10px;
+  max-width: 16vh;
+  max-height: 16vh;
+}
+
+img {
+  // max-width: 100px;
+  // max-width: 100px;
+  object-fit: cover;
 }
 </style>
