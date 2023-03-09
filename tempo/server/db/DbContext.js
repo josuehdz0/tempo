@@ -8,7 +8,6 @@ class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
   Playlists = mongoose.model('Playlist', PlaylistSchema);
-  Track = mongoose.model('Track', TrackSchema);
   Comments = mongoose.model('Comment', CommentSchema);
 }
 
