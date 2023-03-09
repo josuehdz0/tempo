@@ -1,6 +1,7 @@
 <template>
-  <div class="container-fluid">
+  <div v-if="account.id" class="container-fluid">
     <div class="row justify-content-center mt-4">
+      <!-- NOTE Profile Details card -->
       <div class="col-10 col-md-5 bigcardbg">
         <div class="row">
           <div class="col-6 p-1 d-flex justify-content-center p-4">
@@ -34,6 +35,7 @@
         </div>
       </div>
     </div>
+    <!-- NOTE Buttons for saved and liked playlists -->
     <div class="row mt-4">
       <div class="col-12 d-flex justify-content-evenly text-light">
         <div class="btn text-light filter-btn">
@@ -50,10 +52,30 @@
         </div>
       </div>
     </div>
+    <!-- NOTE Playlists -->
     <div class="row justify-content-center">
       <div class="col-10 cardbg">
         <PlaylistCard />
       </div>
+    </div>
+  </div>
+
+  <div v-else class="container-fluid">
+    <div class="row justify-content-center mt-4">
+      <div class="col-10 col-md-4 m-4 ">
+        <h3 class="text-center">
+          Login to see your Profile
+        </h3>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-light m-3">
+            <h3 @click="login">
+              Login here
+            </h3>
+          </button>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
