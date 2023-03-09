@@ -11,7 +11,7 @@
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon "></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navbarText">
       <div class="row justify-content-between d-md-none">
         <div class="col-3 d-flex align-items-center">
           <ul class="navbar-nav  ">
@@ -22,19 +22,19 @@
             </li>
           </ul>
         </div>
-        <div class="col-6">
 
-          <div class="row">
-            <div class="col-8 text-center">
-              <SpotifyLogin />
-            </div>
-            <div class="col-4">
-              <!-- LOGIN COMPONENT HERE -->
-              <Login />
-            </div>
-          </div>
 
+
+        <div class="col-4 text-center my-2">
+          <SpotifyLogin />
         </div>
+        <div class="col-2 d-flex ">
+          <!-- LOGIN COMPONENT HERE -->
+          <Login />
+        </div>
+
+
+
 
       </div>
       <div class="d-none d-md-flex justify-content-end">
