@@ -12,6 +12,7 @@
       <span class="navbar-toggler-icon "></span>
     </button>
     <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navbarText">
+      <!-- NOTE Navebar for mobile is here -->
       <div class="row justify-content-between d-md-none">
         <div class="col-3 d-flex align-items-center">
           <ul class="navbar-nav  ">
@@ -25,10 +26,10 @@
 
 
 
-        <div class="col-4 text-center my-2">
+        <div v-if="account.id" class="col-4 text-center my-2">
           <SpotifyLogin />
         </div>
-        <div class="col-2 d-flex ">
+        <div class="col-3 text-center d-flex justify-content-center">
           <!-- LOGIN COMPONENT HERE -->
           <Login />
         </div>
@@ -37,6 +38,8 @@
 
 
       </div>
+
+      <!-- NOTE Desktop Nav is here -->
       <div class="d-none d-md-flex justify-content-end">
 
         <button class="btn">
@@ -48,7 +51,7 @@
 
 
 
-        <div class="text-center">
+        <div v-if="account.id" class="text-center">
 
           <SpotifyLogin />
 
@@ -66,11 +69,15 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
 import Login from './Login.vue'
 import SpotifyLogin from "./SpotifyLogin.vue";
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account),
+    }
   },
   components: { Login, SpotifyLogin }
 }
