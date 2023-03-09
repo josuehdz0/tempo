@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 py-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 py-3 sticky-top">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <i class="mdi mdi-metronome"></i>
       <b>
