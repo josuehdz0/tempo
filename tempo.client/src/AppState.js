@@ -11,4 +11,5 @@ export const AppState = reactive({
   playlist: [],
   /** @type {import('./models/Comment.js').Comment[]} */
   comment: [],
+  client_id: '319433e8f4a84da190d7994e53a254fc',
 })
