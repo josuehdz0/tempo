@@ -26,9 +26,10 @@
 
 
 
-        <div v-if="account.id" class="col-4 text-center my-2" aria-label="Link to Spotify">
+        <div v-if="account.id" class="col-6 text-center my-2" aria-label="Link to Spotify">
           <SpotifyLogin />
         </div>
+
         <div class="col-3 text-center d-flex justify-content-center">
           <!-- LOGIN COMPONENT HERE -->
           <Login />
