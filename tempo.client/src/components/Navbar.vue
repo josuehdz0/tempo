@@ -39,9 +39,9 @@
         </div>
 
       </div>
-      <div class="d-none d-md-block">
+      <div class="d-none d-md-flex justify-content-end">
 
-        <button>
+        <button class="btn">
           <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase">
             About
           </router-link>
@@ -51,11 +51,11 @@
 
 
         <div class="text-center">
-          <button class="btn btn-outline-dark my-2">
+          <button class="btn btn-outline-dark m-2">
             Link to <i class="mdi mdi-spotify"></i>
           </button>
         </div>
-        <div class="">
+        <div class="d-flex">
           <!-- LOGIN COMPONENT HERE -->
           <Login />
         </div>
