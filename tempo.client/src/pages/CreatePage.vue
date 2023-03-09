@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <form>
+    <form v-if="account.id">
       <div class="row justify-content-center mt-5">
         <div class="col-10">
           <label for="playlist-name" class="form-label">Playlist Name</label>
@@ -44,14 +44,41 @@
         </div>
       </div>
     </form>
+    <div v-else class="row justify-content-center">
+      <div class="col-10 col-md-4 m-4 ">
+        <h3>
+          Login and Link account to Spotify to Create New playlists
+        </h3>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-light m-3">
+            <h3 @click="login">
+              Login here
+            </h3>
+          </button>
+
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
+import { AuthService } from '../services/AuthService'
+
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin })
+      }
+    }
   }
 }
 </script>

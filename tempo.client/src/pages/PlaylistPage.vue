@@ -58,7 +58,7 @@
     </div>
 
     <!-- NOTE Comment form will go here -->
-    <div class="row justify-content-center">
+    <div v-if="account.id" class="row justify-content-center">
       <div class="col-10 col-md-5 m-4 songcardbg">
         <div class="form-floating mt-4 mx-2">
           <textarea required class="form-control" placeholder="Leave a comment here" id="body" style="height: 100px"
@@ -69,7 +69,15 @@
           <button type="submit" class="btn btn-outline-light my-3 ">Post Comment</button>
         </div>
       </div>
-
+    </div>
+    <div v-else class="row justify-content-center">
+      <div class="col-10 col-md-4 m-4 text-center">
+        <button class="btn btn-outline-light">
+          <h3 @click="login">
+            Login to post a comment
+          </h3>
+        </button>
+      </div>
     </div>
 
     <!-- NOTE Comments will populate here -->
@@ -219,9 +227,22 @@
 
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
+import { AuthService } from '../services/AuthService'
+
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin })
+      }
+
+    }
   }
 }
 </script>

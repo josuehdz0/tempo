@@ -28,7 +28,7 @@
             <!-- NOTE coverimage -->
             <div class="mb-3">
               <label for="coverImg" class="form-label">coverImg</label>
-              <input required type="text" v-model="editable.coverImg" class="form-control" id="coverImg"
+              <input type="text" v-model="editable.coverImg" class="form-control" id="coverImg"
                 :placeholder="account.coverImg" name="coverImg">
             </div>
 
@@ -55,7 +55,7 @@ import { logger } from "../utils/Logger.js"
 import Pop from "../utils/Pop.js"
 export default {
   setup() {
-    const editable = ref({})
+    const editable = ref({ ...AppState.account })
     return {
       editable,
       account: computed(() => AppState.account),
