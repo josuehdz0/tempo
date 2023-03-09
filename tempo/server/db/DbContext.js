@@ -3,10 +3,12 @@ import { AccountSchema } from '../models/Account'
 import { ValueSchema } from '../models/Value'
 import { PlaylistSchema } from '../models/Playlist'
 import { CommentSchema } from "../models/Comment";
+import { TrackSchema } from '../models/Track';
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
   Playlists = mongoose.model('Playlist', PlaylistSchema);
+  Track = mongoose.model('Track', TrackSchema);
   Comments = mongoose.model('Comment', CommentSchema);
 }
 
