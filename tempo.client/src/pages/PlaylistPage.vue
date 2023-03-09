@@ -34,11 +34,10 @@
     </div>
 
   </div>
+
+  <!-- NOTE Song Card goes here -->
   <div class="row justify-content-center">
 
-
-
-    <!-- NOTE Song Card goes here -->
     <div class="col-10 col-md-5 mt-4 songcardbg">
       <div class="row text-light py-3 px-1">
         <div class="col-3">
@@ -56,6 +55,22 @@
           <i class="mdi mdi-spotify spotify"></i>
         </div>
       </div>
+    </div>
+
+  </div>
+
+  <!-- NOTE Comment form will go here -->
+  <div class="row  justify-content-center">
+    <div class="col-10 col-md-5 m-4 songcardbg">
+      <div class="form-floating mt-4 mx-2">
+        <textarea required class="form-control" placeholder="Leave a comment here" id="body" style="height: 100px"
+          name="body"></textarea>
+        <label for="floatingTextarea2" class="ps-4">Comment here!</label>
+      </div>
+      <div class=" d-flex justify-content-md-end mx-2">
+        <button type="submit" class="btn btn-outline-light my-3 ">Post Comment</button>
+      </div>
+
     </div>
 
   </div>
@@ -86,6 +101,10 @@ export default {
 .spotify {
 
   font-size: 7vh;
+}
+
+.ourbtn {
+  background: #6290C3;
 }
 
 .songcardbg {
