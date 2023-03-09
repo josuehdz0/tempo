@@ -6,11 +6,11 @@
           <div class="col-6 p-1 d-flex justify-content-center p-4">
             <img :src="account.picture" :alt="account.name" class="profile-img ">
           </div>
-          <div class="col-6 p-2  align-items-center text-light">
+          <div class="col-6 p-3  align-items-center text-light">
             <div>
-              <h5 class="text-center">
-                Scotty
-              </h5>
+              <h2 class="">
+                {{ account.name }}
+              </h2>
             </div>
             <div>
               <b>
