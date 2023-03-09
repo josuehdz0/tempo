@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center mt-4">
-      <div class="col-10 bigcardbg">
+      <div class="col-10 col-md-5 bigcardbg">
         <div class="row">
           <div class="col-6 p-1 d-flex justify-content-center p-4">
             <img :src="account.picture" :alt="account.name" class="profile-img ">
