@@ -65,7 +65,7 @@
       <div class="form-floating mt-4 mx-2">
         <textarea required class="form-control" placeholder="Leave a comment here" id="body" style="height: 100px"
           name="body"></textarea>
-        <label for="floatingTextarea2" class="ps-4">Comment here!</label>
+        <label for="floatingTextarea2" class="ps-4 text-secondary">What do you think about this playlist?</label>
       </div>
       <div class=" d-flex justify-content-md-end mx-2">
         <button type="submit" class="btn btn-outline-light my-3 ">Post Comment</button>
