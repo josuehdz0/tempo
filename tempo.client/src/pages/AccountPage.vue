@@ -51,6 +51,7 @@
 import { computed, ref } from 'vue'
 import { AppState } from '../AppState'
 import { profilesService } from "../services/ProfilesService.js"
+import { logger } from "../utils/Logger.js"
 import Pop from "../utils/Pop.js"
 export default {
   setup() {
@@ -62,7 +63,7 @@ export default {
 
       async handleSubmit() {
         try {
-
+          logger.log(editable.value, 'form data')
           await profilesService.editProfile(editable.value)
           editable.value = {}
         } catch (error) {
