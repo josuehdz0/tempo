@@ -36,9 +36,11 @@ export default {
                     }
                     )
                     const data = await res.json()
-                    // logger.log('callback',payload)
+                    logger.log(data)
+                    logger.log('callback',payload)
                     // NOTE this is where you are gonna want to store the access token to the Account
-                    // AppState.account.accessToken = payload
+                    // AppState.account.spotify = data
+                    // AppState.account.spotify.access_token = payload
                 }
             }
         }

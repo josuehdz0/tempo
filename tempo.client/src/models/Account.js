@@ -5,6 +5,8 @@ export class Profile {
     this.picture = data.picture
     this.favoriteGenre = data.favoriteGenre
     this.averageTempo = data.averageTempo
+    this.coverImg = data.coverImg
+
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 py-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 py-3 sticky-top">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <i class="mdi mdi-metronome"></i>
       <b>
@@ -11,7 +11,8 @@
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon "></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navbarText">
+      <!-- NOTE Navebar for mobile is here -->
       <div class="row justify-content-between d-md-none">
         <div class="col-3 d-flex align-items-center">
           <ul class="navbar-nav  ">
@@ -22,21 +23,23 @@
             </li>
           </ul>
         </div>
-        <div class="col-6">
 
-          <div class="row">
-            <div class="col-8 text-center">
-              <SpotifyLogin />
-            </div>
-            <div class="col-4">
-              <!-- LOGIN COMPONENT HERE -->
-              <Login />
-            </div>
-          </div>
 
+
+        <div v-if="account.id" class="col-4 text-center my-2">
+          <SpotifyLogin />
+        </div>
+        <div class="col-3 text-center d-flex justify-content-center">
+          <!-- LOGIN COMPONENT HERE -->
+          <Login />
         </div>
 
+
+
+
       </div>
+
+      <!-- NOTE Desktop Nav is here -->
       <div class="d-none d-md-flex justify-content-end">
 
         <button class="btn">
@@ -48,7 +51,7 @@
 
 
 
-        <div class="text-center">
+        <div v-if="account.id" class="text-center">
 
           <SpotifyLogin />
 
@@ -66,11 +69,15 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
 import Login from './Login.vue'
 import SpotifyLogin from "./SpotifyLogin.vue";
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account),
+    }
   },
   components: { Login, SpotifyLogin }
 }
