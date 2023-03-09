@@ -26,7 +26,7 @@
 
 
 
-        <div v-if="account.id" class="col-4 text-center my-2">
+        <div v-if="account.id" class="col-4 text-center my-2" aria-label="Link to Spotify">
           <SpotifyLogin />
         </div>
         <div class="col-3 text-center d-flex justify-content-center">
@@ -51,7 +51,7 @@
 
 
 
-        <div v-if="account.id" class="text-center">
+        <div v-if="account.id" class="text-center" aria-label="Link to Spotify">
 
           <SpotifyLogin />
 
