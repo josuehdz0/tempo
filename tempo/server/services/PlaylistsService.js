@@ -8,27 +8,23 @@ class PlaylistsService {
     if (playlistData.tempo < 50 || playlistData.tempo > 209) {
       throw new BadRequest('Tempo value is out of range');
     }
+    let tracks = playlistData.tracks.map(data => new TrackModel(data))
+    tracks.forEach(e => {
+      if(e.id.lenth > 23){
+        throw new BadRequest('Invalid track id')
+      }
+    });
     const playlist = await dbContext.Playlists.create({
       name: playlistData.name,
       tempo: playlistData.tempo,
       genre: playlistData.genre,
       runtime: playlistData.runtime,
       creatorId: playlistData.creatorId,
-      tracks: this.convertToTrackModels(playlistData.tracks) // convert tracks to TrackModels
+      tracks: tracks
     });
     await playlist.populate('creator');
     return playlist;
   }
-
-  convertToTrackModels(trackData) {
-    return trackData.map(data => new TrackModel(data));
-  }
-
-  // async createPlaylist(playlistData) {
-  //   const playlist = await dbContext.Playlists.create(playlistData)
-  //   await playlist.populate('creator')
-  //   return playlist
-  // }
 
   async getAllPlaylists() {
     const playlists = await dbContext.Playlists.find()
