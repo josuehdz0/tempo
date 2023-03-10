@@ -143,7 +143,7 @@
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10">
-          <label for="pace" class="form-label">Pace: {{ (editable.tempo - 250) / (-10) }} minutes/mile
+          <label for="pace" class="form-label">Pace: {{ convertToTime((editable.tempo - 250) / (-10)) }} /mile
           </label>
           <div>
             <input v-model="editable.tempo" type="range" class="pace-range" min="100" max="200" step="5" list="values">
@@ -200,12 +200,27 @@ import { logger } from "../utils/Logger";
 import { api } from "../services/AxiosService";
 
 
+
 export default {
   setup() {
+
+
     const editable = ref({})
     return {
       editable,
       account: computed(() => AppState.account),
+
+      convertToTime(decimalNum) {
+        // Separate the integer and decimal parts
+        const minutes = Math.floor(decimalNum);
+        const seconds = Math.round((decimalNum - minutes) * 60);
+
+        // Format the result as minute:second string
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+        const timeString = `${minutes}'${formattedSeconds}"`;
+
+        return timeString;
+      },
 
       async login() {
         AuthService.loginWithPopup()
