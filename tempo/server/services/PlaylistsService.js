@@ -22,32 +22,33 @@ class PlaylistsService {
       if(e.id.length != 22){
         throw new BadRequest('Invalid track id')
       }
-      totalRuntime += e.duration_seconds
+      totalRuntime += Number(e.duration_seconds)
     });
 
     const playlist = await dbContext.Playlists.create({
       name: playlistData.name,
       tempo: playlistData.tempo,
       genre: playlistData.genre,
-      runtime: totalRuntime,
+      runtime: Number(totalRuntime),
       creatorId: playlistData.creatorId,
       tracks: tracks
     });
-    await playlist.populate('creator');
+    await playlist.populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images');
     return playlist;
   }
 
   async getAllPlaylists() {
     const playlists = await dbContext.Playlists.find()
-      .populate('creator')
+      .populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
     return playlists
   }
 
   async getPlaylistById(playlistId) {
-    const playlist = await dbContext.Playlists.findById(playlistId).populate('creator')
+    const playlist = await dbContext.Playlists.findById(playlistId).populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
     if (!playlist) {
       throw new BadRequest('playlist not found')
     }
+    return playlist
   }
 }
 

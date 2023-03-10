@@ -10,7 +10,7 @@ class CommentsService {
       throw new BadRequest('bad request from comment service')
     }
     const comment = await dbContext.Comments.create(postData)
-    await comment.populate('creator playlist')
+    await (await comment.populate('playlist')).populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
     return comment
   }
   async getCommentByPlaylist(playlistId) {
@@ -19,7 +19,7 @@ class CommentsService {
     if (!playlist) {
       throw new BadRequest('could not find comments for this playlist')
     }
-    const comments = await dbContext.Comments.find({ playlistId }).populate('creator playlist')
+    const comments = await dbContext.Comments.find({ playlistId }).populate('playlist').populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
     return comments
   }
 
