@@ -24,7 +24,8 @@ class SpotifyService{
                         tracksInfo: {
                             genre: tracksData.seeds[0].id,
                             tempo: tempo,
-                            totalRuntime: (`${Math.floor((totalTime / (1000 * 60 * 60)) % 24)}:${Math.floor((totalTime / (1000 * 60)) % 60)}:${Math.floor((totalTime / 1000) % 60)}`)
+                            totalRuntime: (`${Math.floor((totalTime / (1000 * 60 * 60)) % 24)}:${Math.floor((totalTime / (1000 * 60)) % 60)}:${Math.floor((totalTime / 1000) % 60)}`),
+                            totalRuntime_ms: totalTime
                         }
                     }
         return tracks
