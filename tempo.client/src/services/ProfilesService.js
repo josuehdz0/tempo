@@ -14,9 +14,9 @@ class ProfilesService {
 
 
   async editProfile(profileData) {
-    logger.log(profileData, 'this is the form data')
+    logger.log(profileData, 'this is the data')
     const res = await api.put('/account', profileData)
-    logger.log(res.data, 'edit?')
+    logger.log(res.data, 'Results?')
     AppState.account = res.data
   }
 

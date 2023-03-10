@@ -51,9 +51,9 @@ export default {
         logger.error(error)
       }
       }
-    onMounted(() => {
-      apple()
-    })
+    // onMounted(() => {
+    //   apple()
+    // })
     
     return {
       

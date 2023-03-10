@@ -1,5 +1,6 @@
 import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
+import { profilesService } from "./ProfilesService"
 
 class SpotifyService {
 
@@ -21,6 +22,8 @@ class SpotifyService {
                 const data = await res.json()
                 AppState.account.spotify = data
                 AppState.account.spotify.access_token = access_token
+                const account = AppState.account
+                profilesService.editProfile(account)
             }
         }, 500)
     }
