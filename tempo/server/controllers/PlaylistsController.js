@@ -11,11 +11,22 @@ export class PlaylistsController extends BaseController {
       .get('/:playlistId', this.getPlaylistById)
       .get('/:playlistId/comments', this.getCommentByPlaylist)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      // .put
+      .put('/:playlistId', this.editPlaylistById)
       .post('', this.createPlaylist)
       .delete('/:playlistId', this.deletePlaylistById)
   }
 
+  async editPlaylistById(req, res, next) {
+    try {
+      const playlistId = req.params.playlistId;
+      const playlistData = req.body;
+      const updatedPlaylist = await playlistsService.editPlaylistById(playlistId, playlistData);
+      return res.send(updatedPlaylist);
+    } catch (error) {
+      next(error);
+    }
+  }
+  
   async deletePlaylistById(req, res, next) {
     try {
       const playlistId = req.params.playlistId

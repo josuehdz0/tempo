@@ -12,6 +12,17 @@ class PlaylistsService {
     return deletedPlaylist;
   }
   
+  async editPlaylistById(playlistId, playlistData) {
+    const playlist = await dbContext.Playlists.findById(playlistId);
+    if (!playlist) {
+      throw new BadRequest('playlist not found');
+    }
+    playlist.name = playlistData.name;
+    await playlist.save();
+    await playlist.populate('creator');
+    return playlist;
+  }
+  
   async createPlaylist(playlistData) {
     if (playlistData.tempo < 54 || playlistData.tempo > 209) {
       throw new BadRequest('Tempo value is out of range');
