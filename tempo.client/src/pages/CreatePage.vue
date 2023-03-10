@@ -1,17 +1,17 @@
 <template>
   <div class="container-fluid">
-    <form v-if="account.id">
+    <form @submit.prevent="createPlaylist" v-if="account.id">
       <div class="row justify-content-center mt-5">
         <div class="col-10">
           <label for="playlist-name" class="form-label">Playlist Name</label>
-          <input type="text" class="form-control" name="playlist-name" id="playlist-name"
+          <input v-model="editable.name" type="text" class="form-control" name="playlist-name" id="playlist-name"
             placeholder="Name your Playlist">
         </div>
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10">
           <label for="genre" class="form-label">Genre</label>
-          <select class="form-select" id="genre" name="genre">
+          <select v-model="editable.genre" class="form-select" id="genre" name="genre">
             <option value="acoustic">Acoustic</option>
             <option value="afrobeat">Afrobeat</option>
             <option value="alt-rock">Alt Rock</option>
@@ -145,7 +145,7 @@
         <div class="col-10">
           <label for="pace" class="form-label">Pace (per mile)</label>
           <div>
-            <input type="range" class="pace-range" min="5" max="30" step="1" list="values">
+            <input v-model="editable.tempo" type="range" class="pace-range" min="70" max="200" step="1" list="values">
             <!-- <datalist id="values">
               <option value="5" label="5">5</option>
               <option value="10" label="10">10</option>
@@ -159,9 +159,9 @@
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10 d-flex justify-content-between">
-          <button class="btn btn-outline-dark">Tracks</button>
+          <button type="submit" class="btn btn-outline-dark">Tracks</button>
           <!-- <button class="btn btn-outline-dark">Create</button> -->
-          <button class="btn btn-outline-dark" @click="apple">Feeling Lucky</button>
+          <button class="btn btn-outline-dark">Feeling Lucky</button>
         </div>
       </div>
     </form>
@@ -185,7 +185,7 @@
 
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { AppState } from "../AppState.js";
 import { AuthService } from '../services/AuthService'
 import { logger } from "../utils/Logger";
@@ -194,18 +194,22 @@ import { api } from "../services/AxiosService";
 
 export default {
   setup() {
+    const editable = ref({})
     return {
+      editable,
       account: computed(() => AppState.account),
+
       async login() {
         AuthService.loginWithPopup()
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
       },
-      async apple() {
+
+      async createPlaylist() {
         try {
           logger.log('hi')
-          const res = await api.get('/api/spotify/tracks/country/140')
+          const res = await api.get(`/api/spotify/tracks/${editable.value.genre}/${editable.value.tempo}`)
           logger.log(res)
         }
         catch (error) {
