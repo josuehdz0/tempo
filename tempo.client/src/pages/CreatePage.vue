@@ -208,7 +208,7 @@ export default {
 
       async createPlaylist() {
         try {
-          logger.log('hi')
+          logger.log(editable.value, 'form Data')
           const res = await api.get(`/api/spotify/tracks/${editable.value.genre}/${editable.value.tempo}`)
           logger.log(res)
         }
