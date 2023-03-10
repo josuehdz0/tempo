@@ -10,7 +10,7 @@ class PlaylistsService {
     }
     let tracks = playlistData.tracks.map(data => new TrackModel(data))
     tracks.forEach(e => {
-      if(e.id.lenth > 23){
+      if(e.id.lenth != 23){
         throw new BadRequest('Invalid track id')
       }
     });
