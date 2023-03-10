@@ -198,6 +198,7 @@ import { AppState } from "../AppState.js";
 import { AuthService } from '../services/AuthService'
 import { logger } from "../utils/Logger";
 import { api } from "../services/AxiosService";
+import { playlistsService } from "../services/PlaylistsService.js";
 
 
 
@@ -232,8 +233,9 @@ export default {
       async createPlaylist() {
         try {
           logger.log(editable.value, 'form Data')
-          const res = await api.get(`/api/spotify/tracks/${editable.value.genre}/${editable.value.tempo}`)
-          logger.log(res)
+          const res = await playlistsService.createPlaylist(editable.value)
+
+          logger.log(res, 'create playlist in controller')
         }
         catch (error) {
           logger.error(error)
