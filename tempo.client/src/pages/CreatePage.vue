@@ -40,7 +40,8 @@
       <div class="row justify-content-center mt-5">
         <div class="col-10 d-flex justify-content-between">
           <button class="btn btn-outline-dark">Tracks</button>
-          <button class="btn btn-outline-dark">Create</button>
+          <!-- <button class="btn btn-outline-dark">Create</button> -->
+          <button class="btn btn-outline-dark" @click="apple">Feeling Lucky</button>
         </div>
       </div>
     </form>
@@ -67,6 +68,9 @@
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import { AuthService } from '../services/AuthService'
+import { logger } from "../utils/Logger";
+import { api } from "../services/AxiosService";
+
 
 export default {
   setup() {
@@ -77,6 +81,16 @@ export default {
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
+      },
+      async apple() {
+        try {
+          logger.log('hi')
+          const res = await api.get('/api/spotify/tracks/country/140')
+          logger.log(res)
+        }
+        catch (error) {
+          logger.error(error)
+        }
       }
     }
   }
