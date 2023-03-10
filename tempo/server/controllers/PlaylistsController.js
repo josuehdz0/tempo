@@ -45,7 +45,7 @@ export class PlaylistsController extends BaseController {
   async createPlaylist(req, res, next) {
     try {
       const playlistData = req.body
-      playlistData.creatorId = req.userInfo.creatorId
+      playlistData.creatorId = req.userInfo.id
       const playlist = await playlistsService.createPlaylist(playlistData)
       return res.send(playlist)
     } catch (error) {
