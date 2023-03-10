@@ -8,17 +8,17 @@ export class SpotifyController extends BaseController {
     constructor(){
         super('api/spotify')
         this.router
-        // .use(Auth0Provider.getAuthorizedUserInfo)
+        .use(Auth0Provider.getAuthorizedUserInfo)
         .get('/tracks/:genre/:tempo', this.getTracks)
         
         
     }
     async getTracks(req, res, next) {
         try {
-            // const accountId = req.userInfo.id
+            const accountId = req.userInfo.id
             const genre = req.params.genre
             const tempo = req.params.tempo
-            const tracks = await spotifyService.getTracks(genre, tempo)
+            const tracks = await spotifyService.getTracks(accountId, genre, tempo)
             return res.send(tracks)
         } catch (error) {
             next(error)

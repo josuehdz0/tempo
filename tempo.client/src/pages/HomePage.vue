@@ -1,4 +1,5 @@
 <template>
+  <button @click="apple">get 10 songs</button>
   <div class="container-fluid">
     <div class="row justify-content-center ">
       <div class="col-10 col-md-5 mt-4 cardbg">
@@ -22,7 +23,8 @@
           </div>
         </div>
       </div> -->
-        <!-- <PlaylistCard /> -->
+        <PlaylistCard />
+        
 
 
 
@@ -41,7 +43,9 @@ import { logger } from "../utils/Logger";
 
 export default {
   setup() {
-    async function apple(){
+    
+    return {
+      async apple(){
       try {
         logger.log('hi')
         const res = await api.get('/api/spotify/tracks/country/140')
@@ -51,12 +55,6 @@ export default {
         logger.error(error)
       }
       }
-    // onMounted(() => {
-    //   apple()
-    // })
-    
-    return {
-      
       
     }
   },

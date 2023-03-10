@@ -4,9 +4,8 @@ export class TrackModel{
         this.url = data.external_urls.spotify
         this.name = data.name
         this.popularity = data.popularity
-        this.duration = data.popularity
-        this.genre = data.seeds[0].type
-        this.artistName = data.Artist[0].external_urls.spotify
+        this.duration_seconds = ((data.duration_ms / 1000).toFixed(0))
+        this.artistName = data.artists[0].external_urls.spotify
         this.albumImg = data.album.images[0].url
     }
 }
