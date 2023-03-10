@@ -4,8 +4,16 @@ import { TrackModel } from "../models/TrackModel.js"
 
 class PlaylistsService {
 
+  async deletePlaylistById(playlistId) {
+    const deletedPlaylist = await dbContext.Playlists.findByIdAndDelete(playlistId);
+    if (!deletedPlaylist) {
+      throw new BadRequest('playlist not found');
+    }
+    return deletedPlaylist;
+  }
+  
   async createPlaylist(playlistData) {
-    if (playlistData.tempo < 59 || playlistData.tempo > 209) {
+    if (playlistData.tempo < 54 || playlistData.tempo > 209) {
       throw new BadRequest('Tempo value is out of range');
     }
     let tracks = playlistData.tracks.map(data => new TrackModel(data))
