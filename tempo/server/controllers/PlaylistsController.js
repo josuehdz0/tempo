@@ -13,8 +13,19 @@ export class PlaylistsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       // .put
       .post('', this.createPlaylist)
-    // .delete
+      .delete('/:playlistId', this.deletePlaylistById)
   }
+
+  async deletePlaylistById(req, res, next) {
+    try {
+      const playlistId = req.params.playlistId
+      const deletedPlaylist = await playlistsService.deletePlaylistById(playlistId)
+      return res.send(deletedPlaylist)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async getAllPlaylists(req, res, next) {
     try {
       const playlists = await playlistsService.getAllPlaylists()
