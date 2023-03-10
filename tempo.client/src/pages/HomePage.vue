@@ -34,11 +34,31 @@
 
 <script>
 
+import { onMounted } from "vue";
 import PlaylistCard from "../components/PlaylistCard.vue";
+import { api } from "../services/AxiosService";
+import { logger } from "../utils/Logger";
 
 export default {
   setup() {
-    return {}
+    async function apple(){
+      try {
+        logger.log('hi')
+        const res = await api.get('/api/spotify/tracks/country/140')
+        logger.log(res)
+      }
+      catch(error) {
+        logger.error(error)
+      }
+      }
+    onMounted(() => {
+      apple()
+    })
+    
+    return {
+      
+      
+    }
   },
   components: { PlaylistCard }
 }
