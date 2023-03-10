@@ -12,7 +12,7 @@ export class CommentsController extends BaseController {
   async postComment(req, res, next) {
     try {
       const postData = req.body
-      postData.creatorId = req.userInfor.creatorId
+      postData.creatorId = req.userInfo.id
       const comment = await commentsService.postComment(postData)
       return res.send(comment)
 
