@@ -146,14 +146,13 @@
           <label for="pace" class="form-label">Pace (per mile): {{ editable.tempo }}</label>
           <div>
             <input v-model="editable.tempo" type="range" class="pace-range" min="70" max="200" step="1" list="values">
-            <!-- <datalist id="values">
-              <option value="5" label="5">5</option>
-              <option value="10" label="10">10</option>
-              <option value="15" label="15">15</option>
-              <option value="20" label="20">20</option>
-              <option value="25" label="25">25</option>
-              <option value="30" label="30">30</option>
-            </datalist> -->
+            <datalist id="values">
+              <option value="50" label="20">20 </option>
+              <option value="100" label="15">15</option>
+              <option value="150" label="10">10</option>
+              <option value="200" label="5">5</option>
+
+            </datalist>
           </div>
         </div>
       </div>
@@ -227,11 +226,11 @@ export default {
   width: 100%;
 }
 
-// datalist {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   writing-mode: vertical-lr;
-//   width: 75vw;
-// }
+datalist {
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-between;
+  // writing-mode: vertical-lr;
+  width: 75vw;
+}
 </style>
