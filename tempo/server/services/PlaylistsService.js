@@ -19,7 +19,7 @@ class PlaylistsService {
       name: playlistData.name,
       tempo: playlistData.tempo,
       genre: playlistData.genre,
-      runtime: playlistData.runtime,
+      // runtime: playlistData.runtime,
       creatorId: playlistData.creatorId,
       tracks: tracks
     });
@@ -32,7 +32,7 @@ class PlaylistsService {
       .populate('creator')
     return playlists
   }
-  
+
   async getPlaylistById(playlistId) {
     const playlist = await dbContext.Playlists.findById(playlistId).populate('creator')
     if (!playlist) {
