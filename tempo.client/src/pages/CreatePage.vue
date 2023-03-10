@@ -143,7 +143,7 @@
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10">
-          <label for="pace" class="form-label">Pace (per mile)</label>
+          <label for="pace" class="form-label">Pace (per mile): {{ editable.tempo }}</label>
           <div>
             <input v-model="editable.tempo" type="range" class="pace-range" min="70" max="200" step="1" list="values">
             <!-- <datalist id="values">
