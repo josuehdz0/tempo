@@ -143,7 +143,7 @@
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10">
-          <label for="pace" class="form-label">Pace: {{ convertToTime((editable.tempo - 250) / (-10)) }} /mile
+          <label for="pace" class="form-label">Pace: {{ convertToTime((editable.tempo - 250) / (-10)) }}/mile
           </label>
           <div>
             <input v-model="editable.tempo" type="range" class="pace-range" min="100" max="200" step="5" list="values">
