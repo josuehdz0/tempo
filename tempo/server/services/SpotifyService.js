@@ -18,8 +18,15 @@ class SpotifyService{
                 headers: {Authorization:`Bearer ${Account.spotify.access_token}`}
             })
         const tracksData = req.data
+        let totalTime = 0
+        tracksData.tracks.forEach(e => totalTime += e.duration_ms)
         const tracks = {tracks: tracksData.tracks.map(e => new TrackModel(e)),
-                        genre: tracksData.seeds[0].id}
+                        tracksInfo: {
+                            genre: tracksData.seeds[0].id,
+                            tempo: tempo,
+                            totalRuntime: (`${Math.floor((totalTime / (1000 * 60 * 60)) % 24)}:${Math.floor((totalTime / (1000 * 60)) % 60)}:${Math.floor((totalTime / 1000) % 60)}`)
+                        }
+                    }
         return tracks
     }
 
