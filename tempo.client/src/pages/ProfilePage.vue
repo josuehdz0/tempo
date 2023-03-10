@@ -36,8 +36,8 @@
       </div>
     </div>
     <!-- NOTE Buttons for saved and liked playlists -->
-    <div class="row mt-4">
-      <div class="col-12 d-flex justify-content-evenly text-light">
+    <div class="row mt-4 justify-content-center">
+      <div class="col-12 col-md-5 d-flex justify-content-evenly text-light">
         <div class="btn text-light filter-btn">
           <h3>
 
@@ -54,7 +54,7 @@
     </div>
     <!-- NOTE Playlists -->
     <div class="row justify-content-center">
-      <div class="col-10 cardbg">
+      <div class="col-10 col-md-5 cardbg">
         <PlaylistCard />
       </div>
     </div>
