@@ -13,7 +13,7 @@ class SpotifyService{
             const req = await spotifyApi.get('/recommendations',
             {params: 
                 {seed_artists:'', seed_genres:genre, seed_tracks: '',
-                limit: 10, max_tempo:tempo, min_tempo: tempo -1,
+                limit: 10, max_tempo:tempo, min_tempo: tempo -10,
                 min_popularity: 35},
                 headers: {Authorization:`Bearer ${Account.spotify.access_token}`}
             })
