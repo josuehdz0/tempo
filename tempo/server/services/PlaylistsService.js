@@ -5,6 +5,9 @@ import { TrackModel } from "../models/TrackModel.js"
 class PlaylistsService {
 
   async createPlaylist(playlistData) {
+    if (playlistData.tempo < 50 || playlistData.tempo > 209) {
+      throw new BadRequest('Tempo value is out of range');
+    }
     const playlist = await dbContext.Playlists.create({
       name: playlistData.name,
       tempo: playlistData.tempo,
