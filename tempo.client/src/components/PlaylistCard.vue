@@ -6,8 +6,9 @@
       </div>
       <div class="col-7">
         <h2>
-
+          {{ playlist }}
           Playlist Name
+
         </h2>
         <div>
           By Creator
@@ -23,15 +24,20 @@
 
 
 <script>
+import { computed } from "vue";
 import { RouterLink } from "vue-router";
-import { Playlist } from "../models/Playlist";
+import { AppState } from "../AppState.js";
+import { Playlist } from "../models/Playlist.js";
 
 export default {
   props: {
     playlist: { type: Playlist, required: true }
   },
+
   setup() {
-    return {};
+    return {
+      // playlists: computed(() => AppState.playlists),
+    };
   },
   components: { RouterLink }
 }
