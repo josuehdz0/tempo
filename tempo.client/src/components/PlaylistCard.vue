@@ -6,7 +6,7 @@
       </div>
       <div class="col-7">
         <h2>
-          {{ playlist }}
+          <!-- {{ playlist.name }} -->
           Playlist Name
 
         </h2>
