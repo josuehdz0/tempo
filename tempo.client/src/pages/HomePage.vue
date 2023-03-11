@@ -38,10 +38,23 @@
 import { onMounted } from "vue";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { api } from "../services/AxiosService";
+import { playlistsService } from "../services/PlaylistsService.js";
 import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop.js";
 
 export default {
   setup() {
+    async function getAllPlaylists() {
+      try {
+        await playlistsService.getAllPlaylists();
+      } catch (error) {
+        Pop.error(error, 'Getting all Playlists')
+      }
+    }
+
+    onMounted(() => {
+      getAllPlaylists();
+    })
 
     return {
       async apple() {

@@ -20,6 +20,14 @@ class PlaylistsService {
     AppState.playlist = newPlaylist.data
     return
   }
+
+  async getAllPlaylists(){
+    const res = await api.get('api/playlists')
+    logger.log('Here are the playlists', res.data)
+
+    const playlists = res.data.map(p => new Playlist(p))
+    AppState.playlists = playlists
+  }
 }
 
 export const playlistsService = new PlaylistsService()

@@ -6,11 +6,11 @@
       </div>
       <div class="col-7">
         <h2>
-          {{ playlist?.name }}
+
           Playlist Name
         </h2>
         <div>
-          By {{ playlist?.creator.name }} Creator
+          By Creator
         </div>
       </div>
       <div class="col-2 d-flex justify-content-center align-items-center">
