@@ -240,7 +240,20 @@ export default {
         catch (error) {
           logger.error(error)
         }
-      }
+      },
+
+      // NOTE Use this for testing if spotify is getting tracks
+      async apple() {
+        try {
+          logger.log('hi')
+          const res = await api.get('/api/spotify/tracks/country/140')
+          logger.log(res)
+        }
+        catch (error) {
+          logger.error(error)
+        }
+      },
+
     }
   }
 }
