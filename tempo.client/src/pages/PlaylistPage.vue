@@ -5,11 +5,27 @@
     <div class="row justify-content-center">
       <div class="col-10 col-md-5 my-5 bigcardbg">
 
-        <div class="row text-light py-3 px-1">
-          <div class="col-6">
-            picture
+        <div class="row text-light ">
+
+          <div class="col-6 ">
+            <div class="row">
+              <div class="col-6 p-0">
+                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid">
+              </div>
+              <div class="col-6 p-0">
+                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid ">
+              </div>
+              <div class="col-6 p-0">
+                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid ">
+              </div>
+              <div class="col-6 p-0">
+                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid ">
+              </div>
+
+            </div>
+
           </div>
-          <div class="col-6">
+          <div class="col-6 p-2">
             <h2>
               {{ playlist?.name }}
 
