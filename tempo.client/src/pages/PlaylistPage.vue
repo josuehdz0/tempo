@@ -21,10 +21,9 @@
               <div class="col-6 p-0">
                 <img :src="playlist?.tracks[3].albumImg" alt="" class="img-fluid smallalbumcover">
               </div>
-
             </div>
-
           </div>
+
           <div class="col-6 p-2">
             <h2>
               {{ playlist?.name }}
