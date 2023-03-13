@@ -24,7 +24,7 @@
         </div>
       </div> -->
 
-        <PlaylistCard />
+        <PlaylistCard :playlist="p" />
 
 
 
