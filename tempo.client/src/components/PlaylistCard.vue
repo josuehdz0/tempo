@@ -3,6 +3,7 @@
     <div class="row text-light py-3 px-1">
       <div class="col-3">
         picture
+        <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid eventimg rounded">
       </div>
       <div class="col-7">
         <h2>
