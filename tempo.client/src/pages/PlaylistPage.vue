@@ -12,13 +12,13 @@
           <div class="col-6">
             <h2>
               {{ playlist?.name }}
-              Playlist Name
+
             </h2>
             <div>
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
             <div>
-              Runtime: {{ playlist.runtime }} ms
+              Runtime: {{ playlist.runtime / 60 }} minutes
             </div>
             <div>
               Tempo:{{ playlist.tempo }} bpm
