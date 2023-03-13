@@ -1,10 +1,11 @@
 <template>
   <div class="container-fluid">
-    <div class="row justify-content-center ">
-      <div class="col-10 col-md-5 mt-4 cardbg">
+    <div class="row justify-content-center justify-content-md-evenly">
+      <div v-for="p in playlists" :key="p.id" class="col-10 col-md-5 mt-4 cardbg">
 
         <!-- NOTE This is where the playlistcard Component goes -->
         <!-- <div class="col-10 col-md-5 mt-4 cardbg">
+          
         <div class="row text-light py-3 px-1">
           <div class="col-3">
             picture
@@ -22,7 +23,8 @@
           </div>
         </div>
       </div> -->
-        <PlaylistCard />
+
+        <PlaylistCard :playlist="p" />
 
 
 
@@ -35,25 +37,40 @@
 
 <script>
 
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
+import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { api } from "../services/AxiosService";
+import { playlistsService } from "../services/PlaylistsService.js";
 import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop.js";
 
 export default {
   setup() {
+    async function getAllPlaylists() {
+      try {
+        await playlistsService.getAllPlaylists();
+      } catch (error) {
+        Pop.error(error, 'Getting all Playlists')
+      }
+    }
+
+    onMounted(() => {
+      getAllPlaylists();
+    })
 
     return {
-      async apple() {
-        try {
-          logger.log('hi')
-          const res = await api.get('/api/spotify/tracks/country/140')
-          logger.log(res)
-        }
-        catch (error) {
-          logger.error(error)
-        }
-      }
+      playlists: computed(() => AppState.playlists),
+      // async apple() {
+      //   try {
+      //     logger.log('hi')
+      //     const res = await api.get('/api/spotify/tracks/country/140')
+      //     logger.log(res)
+      //   }
+      //   catch (error) {
+      //     logger.error(error)
+      //   }
+      // }
 
     }
   },

@@ -6,11 +6,11 @@
       </div>
       <div class="col-7">
         <h2>
-          {{ playlist?.name }}
-          Playlist Name
+          {{ playlist.name }}
+
         </h2>
         <div>
-          By {{ playlist?.creator.name }} Creator
+          {{ playlist.creator.spotify.display_name }}
         </div>
       </div>
       <div class="col-2 d-flex justify-content-center align-items-center">
@@ -23,15 +23,20 @@
 
 
 <script>
+import { computed } from "vue";
 import { RouterLink } from "vue-router";
-import { Playlist } from "../models/Playlist";
+import { AppState } from "../AppState.js";
+import { Playlist } from "../models/Playlist.js";
 
 export default {
   props: {
     playlist: { type: Playlist, required: true }
   },
+
   setup() {
-    return {};
+    return {
+      // playlists: computed(() => AppState.playlists),
+    };
   },
   components: { RouterLink }
 }
