@@ -14,7 +14,7 @@ class SpotifyService{
             {params: 
                 {seed_artists:'', seed_genres:genre, seed_tracks: '',
                 limit: 10, max_tempo:tempo, min_tempo: tempo -5,
-                min_popularity: 35},
+                min_popularity: 1},
                 headers: {Authorization:`Bearer ${Account.spotify.access_token}`}
             })
         const tracksData = req.data
