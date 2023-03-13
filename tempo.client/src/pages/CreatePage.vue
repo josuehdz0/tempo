@@ -209,6 +209,8 @@ export default {
 
 
     const editable = ref({})
+    editable.value.tempo = editable?.value.tempo || 150
+
     return {
       editable,
       account: computed(() => AppState.account),
