@@ -1,16 +1,16 @@
 <template>
-  <router-link class="" :to="{ name: 'PlaylistPage' }">
+  <router-link class="" :to="{ name: 'PlaylistPage', params: { playlistId: playlist.id } }">
     <div class="row text-light py-3 px-1">
       <div class="col-3">
         picture
       </div>
       <div class="col-7">
         <h2>
-          {{ playlist.name }}
+          {{ playlist?.name }}
 
         </h2>
         <div>
-          {{ playlist.creator.spotify.display_name }}
+          {{ playlist?.creator.spotify.display_name }}
         </div>
       </div>
       <div class="col-2 d-flex justify-content-center align-items-center">
