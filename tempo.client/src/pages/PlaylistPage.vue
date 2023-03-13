@@ -18,10 +18,10 @@
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
             <div>
-              Runtime: {{ convertToTime(playlist.runtime / 60) }}
+              Runtime: {{ convertToTime(playlist?.runtime / 60) }}
             </div>
             <div>
-              Tempo:{{ playlist.tempo }} bpm
+              Tempo:{{ playlist?.tempo }} bpm
             </div>
             <div class="text-end">
               <i class="mdi mdi-heart heart"></i>
