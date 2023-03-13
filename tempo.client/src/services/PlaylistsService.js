@@ -5,12 +5,14 @@ import { api } from "./AxiosService.js"
 
 class PlaylistsService {
   async createPlaylist(playlistForm) {
+    debugger
     const res = await api.get(`/api/spotify/tracks/${playlistForm.genre}/${playlistForm.tempo}`)
     logger.log(res.data, 'res data on create playlist service')
     let newPlaylist = new Playlist(res.data)
     newPlaylist.name = playlistForm.name
 
-    newPlaylist = await api.post('/api/playlists', newPlaylist)
+    logger.log('newPlaylist playlistsservice line 13', newPlaylist)
+    await api.post('/api/playlists', newPlaylist)
 
 
     logger.log(newPlaylist, 'this is the playlist object from the api POST request')
@@ -21,7 +23,7 @@ class PlaylistsService {
     return
   }
 
-  async getAllPlaylists(){
+  async getAllPlaylists() {
     const res = await api.get('api/playlists')
     logger.log('Here are the playlists', res.data)
 
@@ -29,7 +31,7 @@ class PlaylistsService {
     AppState.playlists = playlists
   }
 
-  async getPlaylistById(playlistId){
+  async getPlaylistById(playlistId) {
     AppState.playlist = null
     const res = await api.get('api/playlists/' + playlistId)
     logger.log(res.data, "this is the single playlist ID")
