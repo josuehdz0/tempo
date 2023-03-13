@@ -12,16 +12,16 @@
           <div class="col-6">
             <h2>
               {{ playlist?.name }}
-              Playlist Name
+
             </h2>
             <div>
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
             <div>
-              Runtime: {{ playlist.runtime }} ms
+              Runtime: {{ convertToTime(playlist?.runtime / 60) }}
             </div>
             <div>
-              Tempo:{{ playlist.tempo }} bpm
+              Tempo:{{ playlist?.tempo }} bpm
             </div>
             <div class="text-end">
               <i class="mdi mdi-heart heart"></i>
@@ -262,6 +262,18 @@ export default {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
 
+
+      convertToTime(decimalNum) {
+        // Separate the integer and decimal parts
+        const minutes = Math.floor(decimalNum);
+        const seconds = Math.round((decimalNum - minutes) * 60);
+
+        // Format the result as minute:second string
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+        const timeString = `${minutes}m ${formattedSeconds}s`;
+
+        return timeString;
+      },
 
       async login() {
         AuthService.loginWithPopup()
