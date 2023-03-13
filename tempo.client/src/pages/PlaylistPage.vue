@@ -10,13 +10,13 @@
           <div class="col-6 ">
             <div class="row">
               <div class="col-6 p-0">
-                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid">
+                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid topleftphoto">
               </div>
               <div class="col-6 p-0">
                 <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid ">
               </div>
               <div class="col-6 p-0">
-                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid ">
+                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid bottomleftphoto">
               </div>
               <div class="col-6 p-0">
                 <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid ">
@@ -309,6 +309,14 @@ export default {
   background-color: #2b4141e1;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.topleftphoto {
+  border-radius: 10px 0px 0px 0px;
+}
+
+.bottomleftphoto {
+  border-radius: 0px 0px 0px 10px;
 }
 
 .heart {
