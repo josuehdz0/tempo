@@ -337,7 +337,7 @@ export default {
 
 .smallalbumcover {
   height: 12vh;
-  width: 12vh;
+  min-width: 12vh;
   object-fit: cover;
 }
 
