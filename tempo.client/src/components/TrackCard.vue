@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-1 d-flex justify-content-center align-items-center pe-4">
-        <i class="mdi mdi-spotify spotify"></i>
+        <a :href="track.url"><i class="mdi mdi-spotify spotify"></i></a>
       </div>
     </div>
   </div>
@@ -46,5 +46,10 @@ export default {
   background-color: #2b414169;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 </style>
