@@ -8,18 +8,18 @@
         <div class="row text-light ">
 
           <div class="col-6 ">
-            <div class="row">
+            <div class="row justify-content">
               <div class="col-6 p-0">
-                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid topleftphoto">
+                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid topleftphoto smallalbumcover">
               </div>
               <div class="col-6 p-0">
-                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid ">
+                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid smallalbumcover">
               </div>
               <div class="col-6 p-0">
-                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid bottomleftphoto">
+                <img :src="playlist?.tracks[2].albumImg" alt="" class="img-fluid bottomleftphoto smallalbumcover">
               </div>
               <div class="col-6 p-0">
-                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid ">
+                <img :src="playlist?.tracks[3].albumImg" alt="" class="img-fluid smallalbumcover">
               </div>
 
             </div>
@@ -329,6 +329,12 @@ export default {
   font-size: 7vh;
 }
 
+.smallalbumcover {
+  height: 12vh;
+  width: 12vh;
+  object-fit: cover;
+}
+
 .myfont {
   font-size: large;
 }
@@ -345,5 +351,21 @@ export default {
   background-color: #2b414169;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (min-width: 480px) {
+  .smallalbumcover {
+    height: 14vh;
+    width: 14vh;
+    object-fit: cover;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .smallalbumcover {
+    height: 19vh;
+    width: 19vh;
+    object-fit: cover;
+  }
 }
 </style>
