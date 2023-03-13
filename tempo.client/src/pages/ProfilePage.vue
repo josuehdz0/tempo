@@ -58,7 +58,7 @@
 
         <!-- FIXME need to add prop and vfor to this card -->
 
-        <PlaylistCard />
+        <!-- <PlaylistCard /> -->
       </div>
     </div>
   </div>

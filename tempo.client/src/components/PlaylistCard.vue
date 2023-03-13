@@ -1,5 +1,5 @@
 <template>
-  <router-link class="" :to="{ name: 'PlaylistPage', params: { playlistId: playlist.id } }">
+  <router-link class="" :to="{ name: 'PlaylistPage', params: { playlistId: playlist?.id } }">
     <div class="row text-light py-3 px-1">
       <div class="col-3">
         <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded">
