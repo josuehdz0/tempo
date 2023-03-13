@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row justify-content-center ">
+    <div class="row justify-content-center justify-content-md-evenly">
       <div v-for="p in playlists" :key="p.id" class="col-10 col-md-5 mt-4 cardbg">
 
         <!-- NOTE This is where the playlistcard Component goes -->
