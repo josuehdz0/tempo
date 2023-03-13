@@ -18,7 +18,7 @@
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
             <div>
-              Runtime: {{ playlist.runtime / 60 }} minutes
+              Runtime: {{ convertToTime(playlist.runtime / 60) }}
             </div>
             <div>
               Tempo:{{ playlist.tempo }} bpm
@@ -262,6 +262,18 @@ export default {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
 
+
+      convertToTime(decimalNum) {
+        // Separate the integer and decimal parts
+        const minutes = Math.floor(decimalNum);
+        const seconds = Math.round((decimalNum - minutes) * 60);
+
+        // Format the result as minute:second string
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+        const timeString = `${minutes}m ${formattedSeconds}s`;
+
+        return timeString;
+      },
 
       async login() {
         AuthService.loginWithPopup()
