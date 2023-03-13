@@ -15,13 +15,13 @@
               Playlist Name
             </h2>
             <div>
-              By {{ playlist?.creator?.name }} Creator
+              By {{ playlist?.creator?.spotify.display_name }}
             </div>
             <div>
-              Runtime: (time)
+              Runtime: {{ playlist.runtime }} ms
             </div>
             <div>
-              Tempo:(BPM)
+              Tempo:{{ playlist.tempo }} bpm
             </div>
             <div class="text-end">
               <i class="mdi mdi-heart heart"></i>
