@@ -1,5 +1,5 @@
 <template>
-  <router-link class="" :to="{ name: 'PlaylistPage' }">
+  <router-link class="" :to="{ name: 'PlaylistPage', params: { playlistId: playlist.id } }">
     <div class="row text-light py-3 px-1">
       <div class="col-3">
         picture

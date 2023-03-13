@@ -15,7 +15,7 @@
               Playlist Name
             </h2>
             <div>
-              By {{ playlist?.creator.name }} Creator
+              By {{ playlist?.creator?.name }} Creator
             </div>
             <div>
               Runtime: (time)
@@ -227,14 +227,42 @@
 
 
 <script>
-import { computed } from "vue";
+import { computed, watchEffect } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { AppState } from "../AppState.js";
+import { router } from "../router";
 import { AuthService } from '../services/AuthService'
+import { playlistsService } from "../services/PlaylistsService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
 
 export default {
   setup() {
+
+    const route = useRoute()
+    const router = useRouter();
+
+    async function getPlaylistById() {
+      try {
+        const playlistId = route.params.playlistId
+        await playlistsService.getPlaylistById(playlistId)
+      } catch (error) {
+        Pop.error(error, "Getting playlist by ID ERROR");
+        router.push("/")
+      }
+    }
+
+    watchEffect(() => {
+      if (route.params.playlistId) {
+        getPlaylistById()
+      }
+    })
+
     return {
       account: computed(() => AppState.account),
+      playlist: computed(() => AppState.playlist),
+
+
       async login() {
         AuthService.loginWithPopup()
       },
