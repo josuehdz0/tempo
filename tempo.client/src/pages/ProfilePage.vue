@@ -55,6 +55,9 @@
     <!-- NOTE Playlists -->
     <div class="row justify-content-center">
       <div class="col-10 col-md-5 cardbg">
+
+        <!-- FIXME need to add prop and vfor to this card -->
+
         <PlaylistCard />
       </div>
     </div>
