@@ -22,10 +22,10 @@
 
 
           <div class="col-6 p-2">
-            <h2>
+            <h3>
               {{ playlist?.name }}
 
-            </h2>
+            </h3>
             <div>
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
@@ -336,8 +336,8 @@ export default {
 }
 
 .smallalbumcover {
-  height: 12vh;
-  min-width: 12vh;
+  height: 13vh;
+  min-width: 13vh;
   object-fit: cover;
 }
 

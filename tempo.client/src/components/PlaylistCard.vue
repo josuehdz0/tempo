@@ -1,19 +1,21 @@
 <template>
   <router-link class="" :to="{ name: 'PlaylistPage', params: { playlistId: playlist?.id } }">
     <div class="row text-light py-3 px-1">
-      <div class="col-3">
-        <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded">
+      <div class="col-4 p-0 d-flex justify-content-center">
+
+        <img :src="playlistPhotoUrl" class="img-fluid rounded playlistphoto" alt="">
+        <!-- <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded"> -->
       </div>
-      <div class="col-7">
-        <h2>
+      <div class="col-6 ps-0">
+        <h4>
           {{ playlist?.name }}
 
-        </h2>
+        </h4>
         <div>
           {{ playlist?.creator.spotify.display_name }}
         </div>
       </div>
-      <div class="col-2 d-flex justify-content-center align-items-center">
+      <div class="col-1 d-flex justify-content-center align-items-center">
         <i class="mdi mdi-heart heart"></i>
       </div>
     </div>
@@ -33,6 +35,13 @@ export default {
     playlist: { type: Playlist, required: true }
   },
 
+  computed: {
+    playlistPhotoUrl() {
+      const genre = this.playlist?.genre || '';
+      return `https://source.unsplash.com/random/?${genre},music`;
+    },
+  },
+
   setup() {
     return {
       // playlists: computed(() => AppState.playlists),
@@ -47,5 +56,11 @@ export default {
 .heart {
   color: #F48668;
   font-size: 4vh;
+}
+
+.playlistphoto {
+  height: 10vh;
+  width: 10vh;
+  object-fit: cover;
 }
 </style>
