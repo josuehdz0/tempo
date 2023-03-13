@@ -7,22 +7,19 @@
 
         <div class="row text-light ">
 
-          <div class="col-6 ">
+
+          <div class="col-6">
             <div class="row justify-content">
-              <div class="col-6 p-0">
-                <img :src="playlist?.tracks[0].albumImg" alt="" class="img-fluid topleftphoto smallalbumcover">
-              </div>
-              <div class="col-6 p-0">
-                <img :src="playlist?.tracks[1].albumImg" alt="" class="img-fluid smallalbumcover">
-              </div>
-              <div class="col-6 p-0">
-                <img :src="playlist?.tracks[2].albumImg" alt="" class="img-fluid bottomleftphoto smallalbumcover">
-              </div>
-              <div class="col-6 p-0">
-                <img :src="playlist?.tracks[3].albumImg" alt="" class="img-fluid smallalbumcover">
+              <!-- Loop through the tracks in the playlist -->
+              <div v-for="(track, index) in playlist.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
+                :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
+                <img :src="track.albumImg" alt="" class="img-fluid smallalbumcover"
+                  :class="index === 0 ? 'topleftphoto' : index === 2 ? 'bottomleftphoto' : ''">
               </div>
             </div>
           </div>
+
+
 
           <div class="col-6 p-2">
             <h2>
@@ -50,8 +47,11 @@
       </div>
     </div>
 
-    <!-- NOTE Song Card goes here -->
-    <div class="row justify-content-center">
+    <!-- NOTE Track Card goes here -->
+
+    <!-- NOTE TrackCard template -->
+    <!-- <div class="row justify-content-center">
+
       <div class="col-10 col-md-5 mt-4 songcardbg">
         <div class="row text-light py-3 px-1">
           <div class="col-3">
@@ -70,6 +70,11 @@
           </div>
         </div>
       </div>
+    </div> -->
+
+    <div v-for="t in tracks" :key="t.id" class="row justify-content-center">
+      <TrackCard :track="t" />
+
     </div>
 
     <!-- NOTE Comment form will go here -->
@@ -243,6 +248,7 @@
 
 <script>
 import { computed, watchEffect } from "vue";
+import TrackCard from "../components/TrackCard.vue";
 import { useRoute, useRouter } from "vue-router";
 import { AppState } from "../AppState.js";
 import { router } from "../router";
@@ -276,6 +282,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
+      tracks: computed(() => AppState.playlist.tracks),
 
 
       convertToTime(decimalNum) {
