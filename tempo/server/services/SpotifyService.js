@@ -21,7 +21,6 @@ class SpotifyService{
                 {
                     seed_artists:'', 
                     seed_genres:genre, 
-                    // seed_tracks:'',
                     seed_tracks:'4cOdK2wGLETKBW3PvgPWqT',
                     limit:10, 
                     max_tempo:tempo, 
@@ -40,7 +39,7 @@ class SpotifyService{
         tracksData.tracks.forEach(e => totalTime += e.duration_ms)
         const tracks = {tracks: tracksData.tracks.map(e => new TrackModel(e)),
                         tracksInfo: {
-                            genre: tracksData.seeds[0].id,
+                            genre: tracksData.seeds[1].id,
                             tempo: tempo,
                             totalRuntime: (`${Math.floor((totalTime / (1000 * 60 * 60)) % 24)}:${Math.floor((totalTime / (1000 * 60)) % 60)}:${Math.floor((totalTime / 1000) % 60)}`),
                             totalRuntime_ms: totalTime
