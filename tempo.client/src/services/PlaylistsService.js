@@ -31,6 +31,7 @@ class PlaylistsService {
     AppState.playlists = playlists
   }
 
+  
   async getPlaylistById(playlistId) {
     AppState.playlist = null
     const res = await api.get('api/playlists/' + playlistId)

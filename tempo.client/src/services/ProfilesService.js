@@ -11,6 +11,10 @@ class ProfilesService {
     AppState.profile = new Profile(res.data)
   }
 
+  async getMyPlaylists(){
+    const res = await api.get('api/profile/')
+  }
+
 
 
   async editProfile(profileData) {

@@ -237,9 +237,8 @@ export default {
       async createPlaylist() {
         try {
           logger.log(editable.value, 'form Data')
-          const res = await playlistsService.createPlaylist(editable.value)
+          await playlistsService.createPlaylist(editable.value)
 
-          logger.log(res, 'create playlist in controller')
         }
         catch (error) {
           logger.error(error)
