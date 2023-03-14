@@ -11,12 +11,11 @@ class ProfilesService {
     AppState.profile = new Profile(res.data)
   }
 
-  // async getMyPlaylists(){
-  //   logger.log(AppState.account.id)
-  //   const res = await api.get(`api/${AppState.account.id}/playlists`)
-  //   logger.log("[MY PLAYLISTS]", res.data)
-  // }
 
+  async getPlaylistsByCreatorId(creatorId){
+    const res = await api.get(`api/profiles/${creatorId}/playlists`)
+    logger.log('[PLAYLISTS BY CREATOR ID]', res.data)
+  }
 
 
   async editProfile(profileData) {

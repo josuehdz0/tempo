@@ -37,11 +37,6 @@ class PlaylistsService {
     AppState.playlists = playlists
   }
 
-  async getPlaylistsByQuery(query){
-    const res = await api.get('api/playlists', {params: query})
-    logger.log("[PLAYLISTS BY CREATOR ID]", res.data)
-  }
-
 
   async getPlaylistById(playlistId) {
     AppState.playlist = null

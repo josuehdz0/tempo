@@ -99,25 +99,17 @@ export default {
 
     const route = useRoute()
 
-    // async function getMyPlaylists() {
-    //   try {
-    //     await profilesService.getMyPlaylists()
-    //   } catch (error) {
-    //     Pop.error("[GET MY PLAYLISTS]", error)
-    //   }
-    // }
 
     async function getPlaylistsByCreatorId() {
       try {
-        const profileId = route.params.profileId
-        await playlistsService.getPlaylistsByQuery({ creatorId: profileId })
+        await profilesService.getPlaylistsByCreatorId(route.params.profileId)
       } catch (error) {
         Pop.error("[GET PLAYLISTS BY CREATOR ID]", error.message)
       }
     }
 
     onMounted(() => {
-      // getMyPlaylists();
+
       getPlaylistsByCreatorId()
     })
 
