@@ -5,6 +5,9 @@ import { TrackModel } from "../models/TrackModel.js"
 class PlaylistsService {
   async getMyPlaylists(profileId) {
     const myPlaylists = await dbContext.Playlists.find({ profileId }).populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
+    if(!myPlaylists){
+      throw new BadRequest("No playlists")
+    }
     return myPlaylists
   }
 
