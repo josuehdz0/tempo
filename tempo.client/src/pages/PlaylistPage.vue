@@ -256,6 +256,7 @@ import { AuthService } from '../services/AuthService'
 import { playlistsService } from "../services/PlaylistsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
+import { savedPlaylistsService } from "../services/SavedPlaylistsService";
 
 export default {
   setup() {
@@ -283,6 +284,16 @@ export default {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
       tracks: computed(() => AppState.playlist.tracks),
+      savedPlaylists: computed(() => AppState.savedPlaylists),
+      foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
+
+      async savePlaylist() {
+        try {
+          await savedPlaylistsService.savePlaylist({ playlistId: route.params.playlistId })
+        } catch (error) {
+          Pop.error("[SAVE PLAYLIST]", error.message)
+        }
+      },
 
 
       convertToTime(decimalNum) {
