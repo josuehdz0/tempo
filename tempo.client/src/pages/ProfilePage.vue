@@ -86,6 +86,7 @@
 
 <script>
 import { computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { AuthService } from '../services/AuthService'
@@ -95,6 +96,9 @@ import Pop from "../utils/Pop";
 
 export default {
   setup() {
+
+    const route = useRoute()
+
     async function getMyPlaylists() {
       try {
         await profilesService.getMyPlaylists()
@@ -103,8 +107,18 @@ export default {
       }
     }
 
+    async function getPlaylistsByCreatorId() {
+      try {
+        const profileId = route.params.profileId
+        await playlistsService.getPlaylistsByQuery({ creatorId: profileId })
+      } catch (error) {
+        Pop.error("[GET PLAYLISTS BY CREATOR ID]", error.message)
+      }
+    }
+
     onMounted(() => {
-      getMyPlaylists();
+      // getMyPlaylists();
+      getPlaylistsByCreatorId()
     })
 
     return {
