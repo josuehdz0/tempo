@@ -16,10 +16,14 @@
         </div>
       </div>
       <div class="col-1 d-flex justify-content-center align-items-center">
-        <i class="mdi mdi-heart heart"></i>
+        <button v-if="!foundSaved" @click="savePlaylist()" class="btn">
+          <i class="mdi mdi-heart-outline heart"></i>
+        </button>
+        <button v-else="">
+          <i class="mdi mdi-heart heart"></i>
+        </button>
       </div>
     </div>
-
   </router-link>
 </template>
 
