@@ -89,9 +89,24 @@ import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { AuthService } from '../services/AuthService'
+import { playlistsService } from "../services/PlaylistsService";
+import { profilesService } from "../services/ProfilesService";
+import Pop from "../utils/Pop";
 
 export default {
   setup() {
+    async function getMyPlaylists() {
+      try {
+        await profilesService.getMyPlaylists()
+      } catch (error) {
+        Pop.error("[GET MY PLAYLISTS]", error.message)
+      }
+    }
+
+    onMounted(() => {
+      getMyPlaylists();
+    })
+
     return {
       account: computed(() => AppState.account),
       async login() {
