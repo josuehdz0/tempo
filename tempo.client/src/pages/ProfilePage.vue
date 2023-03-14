@@ -85,7 +85,7 @@
 
 
 <script>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { AuthService } from '../services/AuthService'
