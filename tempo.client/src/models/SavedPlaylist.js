@@ -7,4 +7,4 @@ export class SavedPlaylist {
     this.playlist = data.playlist
     this.accountId = data.accountId
   }
-}
+}``

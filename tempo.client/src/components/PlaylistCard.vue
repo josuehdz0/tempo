@@ -29,6 +29,9 @@ import { computed } from "vue";
 import { RouterLink } from "vue-router";
 import { AppState } from "../AppState.js";
 import { Playlist } from "../models/Playlist.js";
+import { playlistsService } from "../services/PlaylistsService.js";
+import { logger } from "../utils/Logger.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   props: {
@@ -45,6 +48,22 @@ export default {
   setup() {
     return {
       // playlists: computed(() => AppState.playlists),
+
+      async deletePlaylist() {
+        const playlistId = props.playlist.id
+        logger.log('playlist Id we will delete', playlistId)
+        const yes = await Pop.confirm('Are sure you sure you want to delete this playlist?')
+        if (!yes) {
+          return
+        }
+        try {
+          await playlistsService.deletePlaylist(playlistId)
+        } catch (error) {
+          Pop.error(Error, 'Removing Playlist')
+        }
+      }
+
+
     };
   },
   components: { RouterLink }

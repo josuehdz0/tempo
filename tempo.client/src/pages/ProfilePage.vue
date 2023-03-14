@@ -41,12 +41,12 @@
         <div class="btn text-light filter-btn">
           <h3>
 
-            Saved Playlists
+            My Playlists
           </h3>
         </div>
         <div class="btn text-light filter-btn">
           <h3>
-            My Playlists
+            Saved Playlists
 
           </h3>
         </div>
@@ -89,9 +89,24 @@ import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { AuthService } from '../services/AuthService'
+import { playlistsService } from "../services/PlaylistsService";
+import { profilesService } from "../services/ProfilesService";
+import Pop from "../utils/Pop";
 
 export default {
   setup() {
+    async function getMyPlaylists() {
+      try {
+        await profilesService.getMyPlaylists()
+      } catch (error) {
+        Pop.error("[GET MY PLAYLISTS]", error.message)
+      }
+    }
+
+    onMounted(() => {
+      getMyPlaylists();
+    })
+
     return {
       account: computed(() => AppState.account),
       async login() {
