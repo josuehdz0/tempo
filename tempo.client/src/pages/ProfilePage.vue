@@ -41,12 +41,12 @@
         <div class="btn text-light filter-btn">
           <h3>
 
-            Saved Playlists
+            My Playlists
           </h3>
         </div>
         <div class="btn text-light filter-btn">
           <h3>
-            My Playlists
+            Saved Playlists
 
           </h3>
         </div>
