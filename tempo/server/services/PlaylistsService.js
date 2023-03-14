@@ -19,10 +19,13 @@ class PlaylistsService {
     return deletedPlaylist;
   }
 
-  async editPlaylistById(playlistId, playlistData) {
+  async editPlaylistById(playlistId, playlistData, userId) {
     const playlist = await dbContext.Playlists.findById(playlistId);
     if (!playlist) {
       throw new BadRequest('playlist not found');
+    }
+    if(playlist.creatorId != userId){
+      throw new UnAuthorized("You are not the creator of this playlist")
     }
     playlist.name = playlistData.name;
     await playlist.save();

@@ -21,7 +21,8 @@ export class PlaylistsController extends BaseController {
     try {
       const playlistId = req.params.playlistId;
       const playlistData = req.body;
-      const updatedPlaylist = await playlistsService.editPlaylistById(playlistId, playlistData);
+      const userId = req.userInfo.id
+      const updatedPlaylist = await playlistsService.editPlaylistById(playlistId, playlistData, userId);
       return res.send(updatedPlaylist);
     } catch (error) {
       next(error);
