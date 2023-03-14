@@ -1,12 +1,25 @@
 <template>
   <router-link class="" :to="{ name: 'PlaylistPage', params: { playlistId: playlist?.id } }">
-    <div class="row text-light py-3 px-1">
-      <div class="col-4 p-0 d-flex justify-content-center">
-
-        <img :src="playlistPhotoUrl" class="img-fluid rounded playlistphoto" alt="">
-        <!-- <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded"> -->
+    <div class="row text-light ">
+      <div class="col-4">
+        <div class="row ">
+          <!-- Loop through the tracks in the playlist -->
+          <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
+            :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
+            <img :src="track.albumImg" alt="" class="img-fluid smallalbumcover"
+              :class="index === 0 ? 'topleftphoto' : index === 2 ? 'bottomleftphoto' : ''">
+          </div>
+        </div>
       </div>
-      <div class="col-6 ps-0">
+
+
+      <!-- <div class="col-4 p-0 d-flex justify-content-center">
+        NOTE photos from unsplash
+        <img :src="playlistPhotoUrl" class="img-fluid rounded playlistphoto" alt="">
+        NOTE single photo from playlist
+        <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded">
+      </div> -->
+      <div class="col-6 ps-3 pt-3">
         <h4>
           {{ playlist?.name }}
 
@@ -15,7 +28,7 @@
           {{ playlist?.creator.spotify.display_name }}
         </div>
       </div>
-      <div class="col-1 d-flex justify-content-center align-items-center">
+      <div class="col-2 d-flex justify-content-center align-items-center">
         <button v-if="!foundSaved" @click="savePlaylist()" class="btn">
           <i class="mdi mdi-heart-outline heart"></i>
         </button>
@@ -86,4 +99,34 @@ export default {
   width: 10vh;
   object-fit: cover;
 }
+
+.smallalbumcover {
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.topleftphoto {
+  border-radius: 10px 0px 0px 0px;
+}
+
+.bottomleftphoto {
+  border-radius: 0px 0px 0px 10px;
+}
+
+// @media screen and (min-width: 480px) {
+//   .smallalbumcover {
+//     height: 14vh;
+//     width: 14vh;
+//     object-fit: cover;
+//   }
+// }
+
+// @media screen and (min-width: 1440px) {
+//   .smallalbumcover {
+//     height: 19vh;
+//     width: 19vh;
+//     object-fit: cover;
+//   }
+// }
 </style>
