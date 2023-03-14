@@ -287,7 +287,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
-      tracks: computed(() => AppState.playlist.tracks),
+      tracks: computed(() => AppState.playlist?.tracks),
       savedPlaylists: computed(() => AppState.savedPlaylists),
       foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
 
