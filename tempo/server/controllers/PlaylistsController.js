@@ -11,9 +11,19 @@ export class PlaylistsController extends BaseController {
       .get('/:playlistId', this.getPlaylistById)
       .get('/:playlistId/comments', this.getCommentByPlaylist)
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('/:profileId', this.getMyPlaylists)
       .put('/:playlistId', this.editPlaylistById)
       .post('', this.createPlaylist)
       .delete('/:playlistId', this.deletePlaylistById)
+  }
+  async getMyPlaylists(req, res, next) {
+    try {
+      const profileId = req.params.profileId
+      const myPlaylists = await playlistsService.getMyPlaylists(profileId)
+      return res.send(myPlaylists)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async editPlaylistById(req, res, next) {
@@ -26,7 +36,7 @@ export class PlaylistsController extends BaseController {
       next(error);
     }
   }
-  
+
   async deletePlaylistById(req, res, next) {
     try {
       const playlistId = req.params.playlistId

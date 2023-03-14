@@ -11,7 +11,7 @@
           <div class="col-6">
             <div class="row justify-content">
               <!-- Loop through the tracks in the playlist -->
-              <div v-for="(track, index) in playlist.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
+              <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
                 :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
                 <img :src="track.albumImg" alt="" class="img-fluid smallalbumcover"
                   :class="index === 0 ? 'topleftphoto' : index === 2 ? 'bottomleftphoto' : ''">
@@ -22,10 +22,10 @@
 
 
           <div class="col-6 p-2">
-            <h2>
+            <h3>
               {{ playlist?.name }}
 
-            </h2>
+            </h3>
             <div>
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
@@ -33,11 +33,15 @@
               Runtime: {{ convertToTime(playlist?.runtime / 60) }}
             </div>
             <div>
-              Tempo:{{ playlist?.tempo }} bpm
+              Tempo: {{ playlist?.tempo }} bpm
             </div>
             <div class="text-end">
-              <i class="mdi mdi-heart heart"></i>
-
+              <button v-if="!foundSaved" @click="savePlaylist()" class="btn">
+                <i class="mdi mdi-heart-outline heart"></i>
+              </button>
+              <button v-else="">
+                <i class="mdi mdi-heart heart"></i>
+              </button>
             </div>
           </div>
 
@@ -256,6 +260,7 @@ import { AuthService } from '../services/AuthService'
 import { playlistsService } from "../services/PlaylistsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
+import { savedPlaylistsService } from "../services/SavedPlaylistsService";
 
 export default {
   setup() {
@@ -282,7 +287,17 @@ export default {
     return {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
-      tracks: computed(() => AppState.playlist.tracks),
+      tracks: computed(() => AppState.playlist?.tracks),
+      savedPlaylists: computed(() => AppState.savedPlaylists),
+      foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
+
+      async savePlaylist() {
+        try {
+          await savedPlaylistsService.savePlaylist({ playlistId: route.params.playlistId })
+        } catch (error) {
+          Pop.error("[SAVE PLAYLIST]", error.message)
+        }
+      },
 
 
       convertToTime(decimalNum) {
@@ -336,8 +351,8 @@ export default {
 }
 
 .smallalbumcover {
-  height: 12vh;
-  width: 12vh;
+  height: 13vh;
+  min-width: 13vh;
   object-fit: cover;
 }
 
