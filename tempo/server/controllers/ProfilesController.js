@@ -11,7 +11,7 @@ export class ProfilesController extends BaseController {
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/spotify', this.getMyPlaylists)
+      .get('/:id/playlists', this.getMyPlaylists)
   }
 
   async getMyPlaylists(req, res, next) {

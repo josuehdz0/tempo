@@ -4,7 +4,7 @@ import { TrackModel } from "../models/TrackModel.js"
 
 class PlaylistsService {
   async getMyPlaylists(creatorId) {
-    const myPlaylists = await dbContext.Playlists.find({ creatorId })
+    const myPlaylists = await dbContext.Playlists.find()
     if(!myPlaylists){
       throw new BadRequest("No playlists")
     }
