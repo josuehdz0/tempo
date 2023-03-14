@@ -99,7 +99,7 @@ export default {
       try {
         await profilesService.getMyPlaylists()
       } catch (error) {
-        Pop.error("[GET MY PLAYLISTS]", error.message)
+        Pop.error("[GET MY PLAYLISTS]", error)
       }
     }
 

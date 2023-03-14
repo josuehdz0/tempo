@@ -12,7 +12,8 @@ class ProfilesService {
   }
 
   async getMyPlaylists(){
-    const res = await api.get('api/profile/')
+    const res = await api.get('api/profiles/spotify')
+    logger.log("[MY PLAYLISTS]", res.data)
   }
 
 
