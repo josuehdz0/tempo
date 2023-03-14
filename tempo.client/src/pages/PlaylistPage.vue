@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
       <div class="col-10 col-md-5 my-5 bigcardbg">
 
-        <div class="row text-light ">
+        <div class="row text-light justify-content-between ">
 
 
           <div class="col-6">
-            <div class="row justify-content">
+            <div class="row ">
               <!-- Loop through the tracks in the playlist -->
               <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
                 :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
@@ -22,21 +22,21 @@
 
 
           <div class="col-6 p-2">
-            <h3>
+            <h4>
               {{ playlist?.name }}
 
-            </h3>
+            </h4>
             <div>
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
             <div>
-              Runtime: {{ convertToTime(playlist?.runtime / 60) }}
-            </div>
-            <div>
               Tempo: {{ playlist?.tempo }} bpm
             </div>
-            <div class="text-end">
-              <button v-if="!foundSaved" @click="savePlaylist()" class="btn">
+            <div>
+              Runtime: {{ convertToTime(playlist?.runtime / 60) }}
+            </div>
+            <div class="text-end ">
+              <button v-if="!foundSaved" @click="savePlaylist()" class="btn p-0">
                 <i class="mdi mdi-heart-outline heart"></i>
               </button>
               <button v-else="">
@@ -351,9 +351,13 @@ export default {
 }
 
 .smallalbumcover {
-  height: 13vh;
-  min-width: 13vh;
+  height: auto;
+
   object-fit: cover;
+}
+
+.rowheight {
+  height: auto;
 }
 
 .myfont {
