@@ -11,7 +11,7 @@
           <div class="col-6">
             <div class="row justify-content">
               <!-- Loop through the tracks in the playlist -->
-              <div v-for="(track, index) in playlist.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
+              <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
                 :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
                 <img :src="track.albumImg" alt="" class="img-fluid smallalbumcover"
                   :class="index === 0 ? 'topleftphoto' : index === 2 ? 'bottomleftphoto' : ''">
@@ -36,7 +36,7 @@
               Tempo: {{ playlist?.tempo }} bpm
             </div>
             <div class="text-end">
-              <button v-if="!foundSaved" @click="savePlaylist()">
+              <button v-if="!foundSaved" @click="savePlaylist()" class="btn">
                 <i class="mdi mdi-heart-outline heart"></i>
               </button>
               <button v-else="">
