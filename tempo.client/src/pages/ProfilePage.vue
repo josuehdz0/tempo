@@ -103,6 +103,7 @@ export default {
 
     async function getPlaylistsByCreatorId() {
       try {
+
         logger.log("[PROFILE ID]", route.params.profileId)
         await profilesService.getPlaylistsByCreatorId(route.params.profileId)
       } catch (error) {

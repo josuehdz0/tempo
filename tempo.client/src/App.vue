@@ -17,7 +17,9 @@
       </div>
     </router-link>
 
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Profile' }">
+    <router-link class="navbar-brand d-flex" :to="{
+      name: 'Profile', params: { profileId: account?.id }
+    }">
       <div>
         <b>
           PROFILE
@@ -44,7 +46,8 @@ import Navbar from './components/Navbar.vue'
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      account: computed(() => AppState.account)
     }
   },
   components: { Navbar }
