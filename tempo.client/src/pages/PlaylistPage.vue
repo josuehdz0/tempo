@@ -22,10 +22,10 @@
 
 
           <div class="col-6 p-2">
-            <h2>
+            <h3>
               {{ playlist?.name }}
 
-            </h2>
+            </h3>
             <div>
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
@@ -36,8 +36,12 @@
               Tempo: {{ playlist?.tempo }} bpm
             </div>
             <div class="text-end">
-              <i class="mdi mdi-heart heart"></i>
-
+              <button v-if="!foundSaved" @click="savePlaylist()">
+                <i class="mdi mdi-heart-outline heart"></i>
+              </button>
+              <button v-else="">
+                <i class="mdi mdi-heart heart"></i>
+              </button>
             </div>
           </div>
 
@@ -256,6 +260,7 @@ import { AuthService } from '../services/AuthService'
 import { playlistsService } from "../services/PlaylistsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
+import { savedPlaylistsService } from "../services/SavedPlaylistsService";
 
 export default {
   setup() {
@@ -283,6 +288,16 @@ export default {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
       tracks: computed(() => AppState.playlist.tracks),
+      savedPlaylists: computed(() => AppState.savedPlaylists),
+      foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
+
+      async savePlaylist() {
+        try {
+          await savedPlaylistsService.savePlaylist({ playlistId: route.params.playlistId })
+        } catch (error) {
+          Pop.error("[SAVE PLAYLIST]", error.message)
+        }
+      },
 
 
       convertToTime(decimalNum) {
@@ -336,8 +351,8 @@ export default {
 }
 
 .smallalbumcover {
-  height: 12vh;
-  width: 12vh;
+  height: 13vh;
+  min-width: 13vh;
   object-fit: cover;
 }
 
