@@ -28,7 +28,7 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: loadPage('ProfilePage'),
-    beforeEnter: authGuard
+    beforeEnter: authSettled
   },
   {
     path: '/playlists/:playlistId',
