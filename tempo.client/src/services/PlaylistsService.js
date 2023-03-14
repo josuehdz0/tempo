@@ -37,6 +37,17 @@ class PlaylistsService {
     logger.log(res.data, "this is the single playlist ID")
     AppState.playlist = new Playlist(res.data)
   }
+
+  async deletePlaylist(playlistId){
+    const res = await api.delete('api/playlists/'+ playlistId)
+    logger.log(res.data, 'playlistId we are deleting')
+    let i = AppState.playlists.findIndex(p => p.id == playlistId)
+    if (i != -1){
+      AppState.playlists.splice(i,1)
+    }
+  }
+
+
 }
 
 export const playlistsService = new PlaylistsService()
