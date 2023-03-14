@@ -1,7 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider"
 import { spotifyService } from "../services/SpotifyService.js"
 import BaseController from "../utils/BaseController"
-import { logger } from "../utils/Logger.js"
+// import { BadRequest } from "../utils/Errors"
 
 
 export class SpotifyController extends BaseController {
@@ -19,7 +19,6 @@ export class SpotifyController extends BaseController {
             const genre = req.params.genre
             const tempo = req.params.tempo
             const tracks = await spotifyService.getTracks(accountId, genre, tempo)
-            logger.log(tracks)
             return res.send(tracks)
         } catch (error) {
             next(error)

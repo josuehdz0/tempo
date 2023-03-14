@@ -6,7 +6,7 @@ import { api } from "./AxiosService.js"
 class PlaylistsService {
   async createPlaylist(playlistForm) {
     // debugger
-    const res = await api.get(`/api/spotify/tracks/${playlistForm.genre}/${playlistForm?.tempo}`)
+    const res = await api.get(`/api/spotify/tracks/${playlistForm.genre}/${playlistForm.tempo}`)
     logger.log(res.data, 'res data on create playlist service')
     let newPlaylist = new Playlist(res.data)
     newPlaylist.name = playlistForm.name
