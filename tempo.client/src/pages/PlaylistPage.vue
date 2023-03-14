@@ -264,63 +264,55 @@ import { savedPlaylistsService } from "../services/SavedPlaylistsService";
 
 export default {
   setup() {
-
-    const route = useRoute()
+    const route = useRoute();
     const router = useRouter();
-
     async function getPlaylistById() {
       try {
-        const playlistId = route.params.playlistId
-        await playlistsService.getPlaylistById(playlistId)
-      } catch (error) {
+        const playlistId = route.params.playlistId;
+        await playlistsService.getPlaylistById(playlistId);
+      }
+      catch (error) {
         Pop.error(error, "Getting playlist by ID ERROR");
-        router.push("/")
+        router.push("/");
       }
     }
-
     watchEffect(() => {
       if (route.params.playlistId) {
-        getPlaylistById()
+        getPlaylistById();
       }
-    })
-
+    });
     return {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
       tracks: computed(() => AppState.playlist?.tracks),
       savedPlaylists: computed(() => AppState.savedPlaylists),
       foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
-
       async savePlaylist() {
         try {
-          await savedPlaylistsService.savePlaylist({ playlistId: route.params.playlistId })
-        } catch (error) {
-          Pop.error("[SAVE PLAYLIST]", error.message)
+          await savedPlaylistsService.savePlaylist({ playlistId: route.params.playlistId });
+        }
+        catch (error) {
+          Pop.error("[SAVE PLAYLIST]", error.message);
         }
       },
-
-
       convertToTime(decimalNum) {
         // Separate the integer and decimal parts
         const minutes = Math.floor(decimalNum);
         const seconds = Math.round((decimalNum - minutes) * 60);
-
         // Format the result as minute:second string
         const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
         const timeString = `${minutes}m ${formattedSeconds}s`;
-
         return timeString;
       },
-
       async login() {
-        AuthService.loginWithPopup()
+        AuthService.loginWithPopup();
       },
       async logout() {
-        AuthService.logout({ returnTo: window.location.origin })
+        AuthService.logout({ returnTo: window.location.origin });
       }
-
-    }
-  }
+    };
+  },
+  components: { TrackCard }
 }
 </script>
 
