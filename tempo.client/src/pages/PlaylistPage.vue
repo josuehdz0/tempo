@@ -344,7 +344,7 @@ export default {
 
 .smallalbumcover {
   height: auto;
-
+  aspect-ratio: 1/1;
   object-fit: cover;
 }
 
