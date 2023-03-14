@@ -36,8 +36,12 @@
               Tempo: {{ playlist?.tempo }} bpm
             </div>
             <div class="text-end">
-              <i class="mdi mdi-heart heart"></i>
-
+              <button v-if="!foundSaved" @click="savePlaylist()">
+                <i class="mdi mdi-heart-outline heart"></i>
+              </button>
+              <button v-else="">
+                <i class="mdi mdi-heart heart"></i>
+              </button>
             </div>
           </div>
 
