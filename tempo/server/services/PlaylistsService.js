@@ -3,8 +3,8 @@ import { BadRequest, UnAuthorized } from "../utils/Errors.js"
 import { TrackModel } from "../models/TrackModel.js"
 
 class PlaylistsService {
-  async getMyPlaylists(profileId) {
-    const myPlaylists = await dbContext.Playlists.find({ creatorId: profileId }).populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
+  async getMyPlaylists(creatorId) {
+    const myPlaylists = await dbContext.Playlists.find({ creatorId })
     if(!myPlaylists){
       throw new BadRequest("No playlists")
     }
