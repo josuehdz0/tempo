@@ -19,7 +19,7 @@
         NOTE single photo from playlist
         <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded">
       </div> -->
-      <div class="col-6 ps-2 pt-2">
+      <div class="col-6 ps-3 pt-3">
         <h4>
           {{ playlist?.name }}
 
