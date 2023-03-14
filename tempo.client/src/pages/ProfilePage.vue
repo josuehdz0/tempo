@@ -99,13 +99,13 @@ export default {
 
     const route = useRoute()
 
-    async function getMyPlaylists() {
-      try {
-        await profilesService.getMyPlaylists()
-      } catch (error) {
-        Pop.error("[GET MY PLAYLISTS]", error)
-      }
-    }
+    // async function getMyPlaylists() {
+    //   try {
+    //     await profilesService.getMyPlaylists()
+    //   } catch (error) {
+    //     Pop.error("[GET MY PLAYLISTS]", error)
+    //   }
+    // }
 
     async function getPlaylistsByCreatorId() {
       try {
