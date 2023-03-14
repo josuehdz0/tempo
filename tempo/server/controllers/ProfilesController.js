@@ -1,5 +1,8 @@
 import { profileService } from '../services/ProfileService.js'
 import BaseController from '../utils/BaseController'
+import { Auth0Provider } from "@bcwdev/auth0provider";
+import { playlistsService } from "../services/PlaylistsService.js";
+
 
 export class ProfilesController extends BaseController {
   constructor() {
@@ -7,6 +10,18 @@ export class ProfilesController extends BaseController {
     this.router
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
+      .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('/:profileId', this.getMyPlaylists)
+  }
+
+  async getMyPlaylists(req, res, next) {
+    try {
+      const profileId = req.userInfo.id
+      const myPlaylists = await playlistsService.getMyPlaylists(profileId)
+      return res.send(myPlaylists)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getProfiles(req, res, next) {
