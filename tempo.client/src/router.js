@@ -30,7 +30,7 @@ const routes = [
     component: loadPage('ProfilePage'),
   },
   {
-    path: '/playlist',
+    path: '/playlists/:playlistId',
     // NOTE need this vvv once we hve playlist IDs
     // path: '/playlist/:playlistId',
     name: 'PlaylistPage',

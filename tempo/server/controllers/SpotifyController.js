@@ -1,7 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider"
 import { spotifyService } from "../services/SpotifyService.js"
 import BaseController from "../utils/BaseController"
-import { logger } from "../utils/Logger.js"
+// import { BadRequest } from "../utils/Errors"
 
 
 export class SpotifyController extends BaseController {

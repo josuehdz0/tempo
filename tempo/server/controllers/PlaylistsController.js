@@ -16,6 +16,7 @@ export class PlaylistsController extends BaseController {
       .delete('/:playlistId', this.deletePlaylistById)
   }
 
+
   async editPlaylistById(req, res, next) {
     try {
       const playlistId = req.params.playlistId;
@@ -26,7 +27,7 @@ export class PlaylistsController extends BaseController {
       next(error);
     }
   }
-  
+
   async deletePlaylistById(req, res, next) {
     try {
       const playlistId = req.params.playlistId

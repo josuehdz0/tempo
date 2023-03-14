@@ -5,5 +5,6 @@ export class SavedPlaylist {
     this.creatorId = data.creatorId
     this.creator = data.creator
     this.playlist = data.playlist
+    this.accountId = data.accountId
   }
-}
+}``

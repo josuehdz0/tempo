@@ -3,6 +3,10 @@ import { BadRequest, UnAuthorized } from "../utils/Errors.js"
 import { TrackModel } from "../models/TrackModel.js"
 
 class PlaylistsService {
+  async getMyPlaylists(profileId) {
+    const myPlaylists = await dbContext.Playlists.find({ profileId }).populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
+    return myPlaylists
+  }
 
   async deletePlaylistById(playlistId, userId) {
     const deletedPlaylist = await dbContext.Playlists.findByIdAndDelete(playlistId);
@@ -14,7 +18,7 @@ class PlaylistsService {
     }
     return deletedPlaylist;
   }
-  
+
   async editPlaylistById(playlistId, playlistData) {
     const playlist = await dbContext.Playlists.findById(playlistId);
     if (!playlist) {
@@ -25,7 +29,7 @@ class PlaylistsService {
     await playlist.populate('creator');
     return playlist;
   }
-  
+
   async createPlaylist(playlistData) {
     if (playlistData.tempo < 54 || playlistData.tempo > 209) {
       throw new BadRequest('Tempo value is out of range');
@@ -33,7 +37,7 @@ class PlaylistsService {
     let tracks = playlistData.tracks.map(data => new TrackModel(data))
     let totalRuntime = 0
     tracks.forEach(e => {
-      if(e.id.length != 22){
+      if (e.id.length != 22) {
         throw new BadRequest('Invalid track id')
       }
       totalRuntime += Number(e.duration_seconds)

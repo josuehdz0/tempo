@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <form @submit.prevent="createPlaylist" v-if="account.id">
+    <form @submit.prevent="feelingLucky" v-if="account.id">
       <div class="row justify-content-center mt-5">
         <div class="col-10">
           <label for="playlist-name" class="form-label">Playlist Name</label>
@@ -143,8 +143,10 @@
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10">
-          <label for="pace" class="form-label">Pace: {{ convertToTime((editable.tempo - 250) / (-10)) }}/mile
+          <label v-if="editable.tempo" for="pace" class="form-label">Pace: {{ convertToTime((editable.tempo - 250) /
+            (-10)) }}/mile
           </label>
+          <label v-else="" for="pace" class="form-label">Pace: 10'00" /mile</label>
           <div>
             <input v-model="editable.tempo" type="range" class="pace-range" min="100" max="200" step="5" list="values">
             <datalist id="values">
@@ -198,6 +200,7 @@ import { AppState } from "../AppState.js";
 import { AuthService } from '../services/AuthService'
 import { logger } from "../utils/Logger";
 import { api } from "../services/AxiosService";
+import { playlistsService } from "../services/PlaylistsService.js";
 
 
 
@@ -206,6 +209,8 @@ export default {
 
 
     const editable = ref({})
+    editable.value.tempo = editable?.value.tempo || 150
+
     return {
       editable,
       account: computed(() => AppState.account),
@@ -229,16 +234,29 @@ export default {
         AuthService.logout({ returnTo: window.location.origin })
       },
 
-      async createPlaylist() {
+      async feelingLucky() {
         try {
           logger.log(editable.value, 'form Data')
-          const res = await api.get(`/api/spotify/tracks/${editable.value.genre}/${editable.value.tempo}`)
+          await playlistsService.createPlaylist(editable.value)
+
+        }
+        catch (error) {
+          logger.error(error)
+        }
+      },
+
+      // NOTE Use this for testing if spotify is getting tracks
+      async apple() {
+        try {
+          logger.log('hi')
+          const res = await api.get('/api/spotify/tracks/country/140')
           logger.log(res)
         }
         catch (error) {
           logger.error(error)
         }
-      }
+      },
+
     }
   }
 }

@@ -1,12 +1,15 @@
 export class Playlist {
-  constructor(data){
+  constructor(data) {
     this.id = data.id
     this.name = data.name
-    this.tempo = data.tempo
-    this.genre = data.genre
-    this.totalTracks = data.totalTracks
+    this.tracks = data.tracks
     this.runtime = data.runtime
     this.creatorId = data.creatorId
     this.creator = data.creator
+    this.tempo = data.tracksInfo ? 
+    data.tracksInfo.tempo : data.tempo
+    
+    this.genre = data.tracksInfo ?
+    data.tracksInfo.genre : data.genre
   }
 }
