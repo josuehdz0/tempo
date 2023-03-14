@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <form @submit.prevent="createPlaylist" v-if="account.id">
+    <form @submit.prevent="feelingLucky" v-if="account.id">
       <div class="row justify-content-center mt-5">
         <div class="col-10">
           <label for="playlist-name" class="form-label">Playlist Name</label>
@@ -234,7 +234,7 @@ export default {
         AuthService.logout({ returnTo: window.location.origin })
       },
 
-      async createPlaylist() {
+      async feelingLucky() {
         try {
           logger.log(editable.value, 'form Data')
           await playlistsService.createPlaylist(editable.value)

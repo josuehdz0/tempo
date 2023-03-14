@@ -8,18 +8,24 @@ class PlaylistsService {
     // debugger
     const res = await api.get(`/api/spotify/tracks/${playlistForm.genre}/${playlistForm?.tempo}`)
     logger.log(res.data, 'res data on create playlist service')
-    let newPlaylist = new Playlist(res.data)
-    newPlaylist.name = playlistForm.name
+    playlistForm.tracks = res.data.tracks
+    playlistForm.runtime = res.data.tracksInfo.totalRuntime
+    logger.log('playlistForm with tracks and runtime', playlistForm)
 
-    logger.log('newPlaylist playlistsservice line 13', newPlaylist)
-    await api.post('/api/playlists', newPlaylist)
+    const res2 = await api.post('/api/playlists', playlistForm)
+    const newPlaylist = new Playlist(res2.data)
+
+    // newPlaylist.name = playlistForm.name
+
+    logger.log('newPlaylist playlistsservice line 20', newPlaylist)
+    // await api.post('/api/playlists', newPlaylist)
 
 
-    logger.log(newPlaylist, 'this is the playlist object from the api POST request')
+    // logger.log(newPlaylist, 'this is the playlist object from the api POST request')
 
 
-    AppState.playlists.unshift(newPlaylist.data)
-    AppState.playlist = newPlaylist.data
+    AppState.playlists.unshift(newPlaylist)
+    AppState.playlist = newPlaylist
     return
   }
 
@@ -31,7 +37,7 @@ class PlaylistsService {
     AppState.playlists = playlists
   }
 
-  
+
   async getPlaylistById(playlistId) {
     AppState.playlist = null
     const res = await api.get('api/playlists/' + playlistId)
@@ -39,16 +45,14 @@ class PlaylistsService {
     AppState.playlist = new Playlist(res.data)
   }
 
-  async deletePlaylist(playlistId){
-    const res = await api.delete('api/playlists/'+ playlistId)
+  async deletePlaylist(playlistId) {
+    const res = await api.delete('api/playlists/' + playlistId)
     logger.log(res.data, 'playlistId we are deleting')
     let i = AppState.playlists.findIndex(p => p.id == playlistId)
-    if (i != -1){
-      AppState.playlists.splice(i,1)
+    if (i != -1) {
+      AppState.playlists.splice(i, 1)
     }
   }
-
-
 }
 
 export const playlistsService = new PlaylistsService()
