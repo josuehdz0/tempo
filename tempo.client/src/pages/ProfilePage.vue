@@ -92,6 +92,7 @@ import PlaylistCard from "../components/PlaylistCard.vue";
 import { AuthService } from '../services/AuthService'
 import { playlistsService } from "../services/PlaylistsService";
 import { profilesService } from "../services/ProfilesService";
+import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 
 export default {
@@ -102,6 +103,7 @@ export default {
 
     async function getPlaylistsByCreatorId() {
       try {
+        logger.log("[PROFILE ID]", route.params.profileId)
         await profilesService.getPlaylistsByCreatorId(route.params.profileId)
       } catch (error) {
         Pop.error("[GET PLAYLISTS BY CREATOR ID]", error.message)
