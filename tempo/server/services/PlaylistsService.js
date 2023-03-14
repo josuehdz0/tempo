@@ -1,13 +1,16 @@
 import { dbContext } from "../db/DbContext.js"
-import { BadRequest } from "../utils/Errors.js"
+import { BadRequest, UnAuthorized } from "../utils/Errors.js"
 import { TrackModel } from "../models/TrackModel.js"
 
 class PlaylistsService {
 
-  async deletePlaylistById(playlistId) {
+  async deletePlaylistById(playlistId, userId) {
     const deletedPlaylist = await dbContext.Playlists.findByIdAndDelete(playlistId);
     if (!deletedPlaylist) {
       throw new BadRequest('playlist not found');
+    }
+    if(deletedPlaylist.creatorId != userId){
+      throw new UnAuthorized("You are not the creator of this playlist")
     }
     return deletedPlaylist;
   }

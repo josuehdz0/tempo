@@ -30,7 +30,8 @@ export class PlaylistsController extends BaseController {
   async deletePlaylistById(req, res, next) {
     try {
       const playlistId = req.params.playlistId
-      const deletedPlaylist = await playlistsService.deletePlaylistById(playlistId)
+      const userId = req.userInfo.id
+      const deletedPlaylist = await playlistsService.deletePlaylistById(playlistId, userId)
       return res.send(deletedPlaylist)
     } catch (error) {
       next(error)
