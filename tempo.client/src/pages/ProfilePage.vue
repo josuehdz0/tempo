@@ -1,5 +1,5 @@
 <template>
-  <div v-if="account.id" class="container-fluid">
+  <div class="container-fluid">
     <div class="row justify-content-center mt-4">
       <!-- NOTE Profile Details card -->
       <div class="col-10 col-md-5 bigcardbg">
@@ -63,7 +63,10 @@
     </div>
   </div>
 
-  <div v-else class="container-fluid">
+
+  <!-- NOTE this else should be here. Profile page accesable to everyone even if logged out. -->
+
+  <!-- <div v-else class="container-fluid">
     <div class="row justify-content-center mt-4">
       <div class="col-10 col-md-4 m-4 ">
         <h3 class="text-center">
@@ -75,12 +78,10 @@
               Login here
             </h3>
           </button>
-
         </div>
       </div>
-
     </div>
-  </div>
+  </div> -->
 </template>
 
 
@@ -97,8 +98,19 @@ import Pop from "../utils/Pop";
 
 export default {
   setup() {
-
     const route = useRoute()
+
+    async function getProfileById() {
+      try {
+        const profileId = route.params.profileId;
+        logger.log('here is the profile id', profileId);
+        await profilesService.getProfileById(profileId);
+      }
+      catch (error) {
+        logger.error(error);
+        Pop.error(error.message);
+      }
+    }
 
 
     async function getPlaylistsByCreatorId() {
@@ -112,12 +124,20 @@ export default {
     }
 
     onMounted(() => {
-
+      getProfileById()
       getPlaylistsByCreatorId()
-    })
+    });
+
+    onUnmounted(() => {
+      profilesService.clearProfile()
+      playlistsService.clearPlaylists()
+    });
+
+
 
     return {
       account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
       async login() {
         AuthService.loginWithPopup()
       },

@@ -53,6 +53,10 @@ class PlaylistsService {
       AppState.playlists.splice(i, 1)
     }
   }
+
+  clearPlaylists(){
+    AppState.playlists = []
+  }
 }
 
 export const playlistsService = new PlaylistsService()

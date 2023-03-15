@@ -26,7 +26,7 @@
               {{ playlist?.name }}
 
             </h4>
-            <div>
+            <div @click="goToProfileByCreatorId()">
               By {{ playlist?.creator?.spotify.display_name }}
             </div>
             <div>
@@ -266,6 +266,9 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
+
+
+
     async function getPlaylistById() {
       try {
         const playlistId = route.params.playlistId;
@@ -287,6 +290,12 @@ export default {
       tracks: computed(() => AppState.playlist?.tracks),
       savedPlaylists: computed(() => AppState.savedPlaylists),
       foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
+
+      goToProfileByCreatorId() {
+        const creatorId = AppState.playlist.creatorId
+        router.push({ name: 'Profile', params: { profileId: creatorId } })
+      },
+
       async savePlaylist() {
         try {
           await savedPlaylistsService.savePlaylist({ playlistId: route.params.playlistId });
