@@ -86,7 +86,7 @@
 
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
