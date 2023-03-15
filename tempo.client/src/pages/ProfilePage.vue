@@ -54,7 +54,7 @@
     </div>
     <!-- NOTE Playlists -->
     <div class="row justify-content-center">
-      <div v-for="p in playlists" class="col-10 col-md-5 cardbg">
+      <div v-for="p in playlists" :key="p.id" class="col-10 col-md-5 mt-4 cardbg">
 
         <!-- FIXME need to add prop and vfor to this card -->
 

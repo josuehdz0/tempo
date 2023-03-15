@@ -37,7 +37,7 @@
 
 <script>
 
-import { onMounted, computed } from "vue";
+import { onMounted, onUnmounted, computed } from "vue";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { api } from "../services/AxiosService";
@@ -57,7 +57,13 @@ export default {
 
     onMounted(() => {
       getAllPlaylists();
+    });
+
+    onUnmounted(() => {
+      playlistsService.clearPlaylists()
     })
+
+
 
     return {
       playlists: computed(() => AppState.playlists),
