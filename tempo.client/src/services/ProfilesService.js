@@ -13,11 +13,12 @@ class ProfilesService {
   }
 
 
-  async getPlaylistsByCreatorId(creatorId){
+  async getPlaylistsByCreatorId(creatorId) {
     const res = await api.get(`api/profiles/${creatorId}/playlists`)
     logger.log('[PLAYLISTS BY CREATOR ID, serve]', res.data)
     // logger.log(creatorId,"creatorId in service")
-    AppState.playlists = res.data.map(p => new Playlist(p))
+    const playlists = res.data.map(p => new Playlist(p))
+    AppState.playlists = playlists
   }
 
 
@@ -28,7 +29,7 @@ class ProfilesService {
     AppState.account = res.data
   }
 
-  async getProfileById(profileId){
+  async getProfileById(profileId) {
     const res = await api.get('api/profiles/' + profileId)
     logger.log('getting profile from service', res.data)
     AppState.profile = new Profile(res.data)
