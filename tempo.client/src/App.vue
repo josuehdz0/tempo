@@ -17,15 +17,18 @@
       </div>
     </router-link>
 
-    <router-link class="navbar-brand d-flex" :to="{
+    <!-- <router-link class="navbar-brand d-flex" :to="{
       name: 'Profile', params: { profileId: account?.id }
-    }">
-      <div>
-        <b>
-          PROFILE
-        </b>
-      </div>
-    </router-link>
+    }"> -->
+
+    <div @click="getMyProfile()">
+      <b>
+        MY PROFILE
+      </b>
+    </div>
+    <!-- </router-link> -->
+
+
     <router-link class="navbar-brand d-flex" :to="{ name: 'CreatePlaylist' }">
       <div>
         <b>
@@ -39,7 +42,10 @@
 </template>
 
 <script>
+
+
 import { computed } from 'vue'
+import { router } from '../src/router.js'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 
@@ -47,7 +53,12 @@ export default {
   setup() {
     return {
       appState: computed(() => AppState),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+
+      getMyProfile() {
+        const account = AppState.account
+        router.push({ name: 'Profile', params: { profileId: account.id } })
+      }
     }
   },
   components: { Navbar }
