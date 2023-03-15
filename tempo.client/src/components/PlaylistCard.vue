@@ -28,7 +28,15 @@
           {{ playlist?.creator?.spotify.display_name }}
         </div>
       </div>
-      <div class="col-2 d-flex justify-content-center align-items-center">
+
+
+      <div v-if="account.id == playlist?.creatorId" class="col-2 d-flex justify-content-center align-items-center">
+        <button class="btn">
+          <i class="mdi mdi-pencil-outline trash"></i>
+        </button>
+      </div>
+
+      <div v-else class="col-2 d-flex justify-content-center align-items-center">
         <button v-if="!foundSaved" @click="savePlaylist()" class="btn">
           <i class="mdi mdi-heart-outline heart"></i>
         </button>
@@ -36,6 +44,8 @@
           <i class="mdi mdi-heart heart"></i>
         </button>
       </div>
+
+
     </div>
   </router-link>
 </template>
@@ -64,6 +74,7 @@ export default {
 
   setup() {
     return {
+      account: computed(() => AppState.account),
       // playlists: computed(() => AppState.playlists),
 
       async deletePlaylist() {
@@ -91,6 +102,11 @@ export default {
 <style lang="scss" scoped>
 .heart {
   color: #F48668;
+  font-size: 4vh;
+}
+
+.trash {
+  color: #ffffffd1;
   font-size: 4vh;
 }
 

@@ -9,7 +9,7 @@
           {{ track.name }}
         </h5>
         <div>
-          By Artist
+          <!-- By Artist -->
         </div>
       </div>
       <div class="col-1 d-flex justify-content-center align-items-center pe-4">
