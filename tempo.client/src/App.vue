@@ -21,10 +21,15 @@
       name: 'Profile', params: { profileId: account?.id }
     }"> -->
 
-    <div @click="getMyProfile()">
+    <div v-if="account.id" @click="getMyProfile()">
       <b>
         MY PROFILE
       </b>
+    </div>
+    <div v-else>
+
+      <Login />
+
     </div>
     <!-- </router-link> -->
 
