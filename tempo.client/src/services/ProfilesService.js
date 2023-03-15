@@ -25,6 +25,12 @@ class ProfilesService {
     AppState.account = res.data
   }
 
+  async getProfileById(profileId){
+    const res = await api.get('api/profiles/' + profileId)
+    logger.log('getting profile from service', res.data)
+    AppState.profile = new Profile(res.data)
+  }
+
   clearProfile() {
     AppState.profile = null
   }
