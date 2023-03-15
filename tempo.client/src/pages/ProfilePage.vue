@@ -54,11 +54,11 @@
     </div>
     <!-- NOTE Playlists -->
     <div class="row justify-content-center">
-      <div class="col-10 col-md-5 cardbg">
+      <div v-for="p in playlists" class="col-10 col-md-5 cardbg">
 
         <!-- FIXME need to add prop and vfor to this card -->
 
-        <!-- <PlaylistCard /> -->
+        <PlaylistCard :playlist="p" />
       </div>
     </div>
   </div>
@@ -141,6 +141,8 @@ export default {
     return {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
+      playlists: computed(() => AppState.playlists),
+
       async login() {
         AuthService.loginWithPopup()
       },

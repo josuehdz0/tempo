@@ -25,7 +25,7 @@
 
         </h4>
         <div>
-          {{ playlist?.creator.spotify.display_name }}
+          {{ playlist?.creator?.spotify.display_name }}
         </div>
       </div>
       <div class="col-2 d-flex justify-content-center align-items-center">
