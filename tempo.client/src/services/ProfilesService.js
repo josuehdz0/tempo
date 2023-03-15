@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Profile } from "../models/Account.js"
+import { Playlist } from "../models/Playlist.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
@@ -14,7 +15,9 @@ class ProfilesService {
 
   async getPlaylistsByCreatorId(creatorId){
     const res = await api.get(`api/profiles/${creatorId}/playlists`)
-    logger.log('[PLAYLISTS BY CREATOR ID]', res.data)
+    logger.log('[PLAYLISTS BY CREATOR ID, serve]', res.data)
+    // logger.log(creatorId,"creatorId in service")
+    AppState.playlists = res.data.map(p => new Playlist(p))
   }
 
 

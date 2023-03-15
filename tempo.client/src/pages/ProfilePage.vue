@@ -46,7 +46,7 @@
         </div>
         <div class="btn text-light filter-btn">
           <h3>
-            Saved Playlists
+            Liked Playlists
 
           </h3>
         </div>
@@ -103,7 +103,7 @@ export default {
     async function getProfileById() {
       try {
         const profileId = route.params.profileId;
-        logger.log('here is the profile id', profileId);
+        // logger.log('here is the profile id', profileId);
         await profilesService.getProfileById(profileId);
       }
       catch (error) {
@@ -115,7 +115,6 @@ export default {
 
     async function getPlaylistsByCreatorId() {
       try {
-
         logger.log("[PROFILE ID]", route.params.profileId)
         await profilesService.getPlaylistsByCreatorId(route.params.profileId)
       } catch (error) {
