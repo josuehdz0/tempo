@@ -5,12 +5,12 @@
       <div class="col-10 col-md-5 bigcardbg">
         <div class="row">
           <div class="col-6 d-flex justify-content-center  align-items-center p-3">
-            <img :src="profile.picture" :alt="profile.name" class="profile-img ">
+            <img :src="profile?.picture" :alt="profile?.name" class="profile-img ">
           </div>
           <div class="col-6 p-3  align-items-center text-light">
             <div>
               <h2 class="">
-                {{ profile.name }}
+                {{ profile?.name }}
               </h2>
             </div>
             <div>
@@ -86,7 +86,7 @@
 
 
 <script>
-import { computed, onMounted, onUnmounted } from "vue";
+import { computed, onMounted, onUnmounted, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
@@ -123,15 +123,19 @@ export default {
       }
     }
 
-    onMounted(() => {
-      getProfileById()
-      getPlaylistsByCreatorId()
+
+    watchEffect(() => {
+      if (route) {
+        getProfileById()
+        getPlaylistsByCreatorId()
+      }
     });
 
     onUnmounted(() => {
       profilesService.clearProfile()
       playlistsService.clearPlaylists()
     });
+
 
 
 
