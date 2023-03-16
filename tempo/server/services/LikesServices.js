@@ -11,7 +11,7 @@ class LikesService{
             return "liked"
         }else{
             playlistsLike.remove()
-            return `Unliked ${playlistsLike}`
+            return `Unliked`
         }      
     }
 }
