@@ -10,4 +10,4 @@ class LikedPlaylistsService {
 
 }
 
-export const likePlaylistsService = new likedPlaylistsService()
+export const likedPlaylistsService = new LikedPlaylistsService()
