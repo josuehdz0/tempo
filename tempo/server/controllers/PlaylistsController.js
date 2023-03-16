@@ -1,5 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import { commentsService } from "../services/CommentsService.js";
+import { likesService } from "../services/LikesServices.js";
 import { playlistsService } from "../services/PlaylistsService.js";
 import BaseController from "../utils/BaseController";
 
@@ -14,8 +15,8 @@ export class PlaylistsController extends BaseController {
       .put('/:playlistId', this.editPlaylistById)
       .post('', this.createPlaylist)
       .delete('/:playlistId', this.deletePlaylistById)
+      .put('/:playlistId/likes', this.likePlaylist)
   }
-
 
   async editPlaylistById(req, res, next) {
     try {
@@ -78,7 +79,18 @@ export class PlaylistsController extends BaseController {
     }
   }
 
-
+  async likePlaylist(req, res, next) {
+    
+    try {
+      const playlistId = req.params.playlistId
+      const userId = req.userInfo.id
+      const message = await likesService.LikeUnlike(playlistId, userId)
+      return res.send(message)
+    } catch (error) {
+      next(error)
+    }
+    
+  }
 
 
 }
