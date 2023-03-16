@@ -299,6 +299,7 @@ export default {
 
       async likePlaylist(playlistId) {
         try {
+          logger.log('liking playlist')
           await likedPlaylistsService.likePlaylist(playlistId);
         }
         catch (error) {

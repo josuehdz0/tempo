@@ -1,53 +1,51 @@
 <template>
-  <router-link class="" :to="{ name: 'PlaylistPage', params: { playlistId: playlist?.id } }">
-    <div class="row text-light ">
-      <div class="col-4">
-        <div class="row ">
-          <!-- Loop through the tracks in the playlist -->
-          <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
-            :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
-            <img :src="track.albumImg" alt="" class="img-fluid smallalbumcover"
-              :class="index === 0 ? 'topleftphoto' : index === 2 ? 'bottomleftphoto' : ''">
-          </div>
+  <div @click="goToPlaylistById(playlist?.id)" class="row text-light ">
+    <div class="col-4">
+      <div class="row ">
+        <!-- Loop through the tracks in the playlist -->
+        <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
+          :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
+          <img :src="track.albumImg" alt="" class="img-fluid smallalbumcover"
+            :class="index === 0 ? 'topleftphoto' : index === 2 ? 'bottomleftphoto' : ''">
         </div>
       </div>
+    </div>
 
 
-      <!-- <div class="col-4 p-0 d-flex justify-content-center">
+    <!-- <div class="col-4 p-0 d-flex justify-content-center">
         NOTE photos from unsplash
         <img :src="playlistPhotoUrl" class="img-fluid rounded playlistphoto" alt="">
         NOTE single photo from playlist
         <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded">
       </div> -->
-      <div class="col-6 ps-3 pt-3">
-        <h4>
-          {{ playlist?.name }}
+    <div class="col-6 ps-3 pt-3">
+      <h4>
+        {{ playlist?.name }}
 
-        </h4>
-        <div>
-          {{ playlist?.creator?.spotify.display_name }}
-        </div>
+      </h4>
+      <div>
+        {{ playlist?.creator?.spotify.display_name }}
       </div>
-
-
-      <div v-if="account.id == playlist?.creatorId" class="col-2 d-flex justify-content-center align-items-center">
-        <button class="btn">
-          <i class="mdi mdi-pencil-outline trash"></i>
-        </button>
-      </div>
-
-      <div v-else class="col-2 d-flex justify-content-center align-items-center">
-        <button v-if="!foundLiked" @click="likePlaylist(this.playlist.id)" class="btn">
-          <i class="mdi mdi-heart-outline heart"></i>
-        </button>
-        <button v-else="">
-          <i class="mdi mdi-heart heart"></i>
-        </button>
-      </div>
-
-
     </div>
-  </router-link>
+
+
+    <div v-if="account.id == playlist?.creatorId" class="col-2 d-flex justify-content-center align-items-center">
+      <button class="btn">
+        <i class="mdi mdi-pencil-outline trash"></i>
+      </button>
+    </div>
+
+    <div v-else class="col-2 d-flex justify-content-center align-items-center">
+      <button v-if="!foundLiked" @click.stop="likePlaylist(this.playlist.id)" class="btn">
+        <i class="mdi mdi-heart-outline heart"></i>
+      </button>
+      <button v-else="">
+        <i class="mdi mdi-heart heart"></i>
+      </button>
+    </div>
+
+
+  </div>
 </template>
 
 
@@ -56,6 +54,7 @@ import { computed } from "vue";
 import { RouterLink } from "vue-router";
 import { AppState } from "../AppState.js";
 import { Playlist } from "../models/Playlist.js";
+import { router } from "../router.js";
 import { playlistsService } from "../services/PlaylistsService.js";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
@@ -89,7 +88,13 @@ export default {
         } catch (error) {
           Pop.error(Error, 'Removing Playlist')
         }
-      }
+      },
+
+      async goToPlaylistById(playlistId) {
+        // const playlist = AppState.playlist
+        logger.log(playlistId)
+        router.push({ name: 'PlaylistPage', params: { playlistId: playlistId } })
+      },
 
 
     };
