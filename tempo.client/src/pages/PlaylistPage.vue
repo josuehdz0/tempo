@@ -244,7 +244,7 @@ import { AuthService } from '../services/AuthService'
 import { playlistsService } from "../services/PlaylistsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
-import { savedPlaylistsService } from "../services/SavedPlaylistsService";
+import { likedPlaylistsService } from "../services/LikedPlaylistsService";
 
 export default {
   setup() {
@@ -294,9 +294,9 @@ export default {
         router.push({ name: 'Profile', params: { profileId: creatorId } })
       },
 
-      async savePlaylist() {
+      async likePlaylist() {
         try {
-          await savedPlaylistsService.savePlaylist({ playlistId: route.params.playlistId });
+          await likedPlaylistsService.likePlaylist({ playlistId: route.params.playlistId });
         }
         catch (error) {
           Pop.error("[SAVE PLAYLIST]", error.message);
