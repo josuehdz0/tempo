@@ -1,6 +1,6 @@
 <template>
-  <div @click="goToPlaylistById(playlist?.id)" class="row text-light ">
-    <div class="col-4">
+  <div class="row text-light ">
+    <div @click="goToPlaylistById(playlist?.id)" class="col-4">
       <div class="row ">
         <!-- Loop through the tracks in the playlist -->
         <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
@@ -18,7 +18,7 @@
         NOTE single photo from playlist
         <img :src="playlist?.tracks[0]?.albumImg" alt="" class="img-fluid rounded">
       </div> -->
-    <div class="col-6 ps-3 pt-3">
+    <div @click="goToPlaylistById(playlist?.id)" class="col-6 ps-3 pt-3">
       <h4>
         {{ playlist?.name }}
 
@@ -36,7 +36,7 @@
     </div>
 
     <div v-else class="col-2 d-flex justify-content-center align-items-center">
-      <button v-if="!foundLiked" @click.stop="likePlaylist(this.playlist.id)" class="btn">
+      <button v-if="!foundLiked" @click="likePlaylist(playlist?.id)" class="btn">
         <i class="mdi mdi-heart-outline heart"></i>
       </button>
       <button v-else="">
@@ -55,6 +55,7 @@ import { RouterLink } from "vue-router";
 import { AppState } from "../AppState.js";
 import { Playlist } from "../models/Playlist.js";
 import { router } from "../router.js";
+import { likedPlaylistsService } from "../services/LikedPlaylistsService.js";
 import { playlistsService } from "../services/PlaylistsService.js";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
@@ -87,6 +88,15 @@ export default {
           await playlistsService.deletePlaylist(playlistId)
         } catch (error) {
           Pop.error(Error, 'Removing Playlist')
+        }
+      },
+      async likePlaylist(playlistId) {
+        try {
+          logger.log('liking playlist', playlistId)
+          await likedPlaylistsService.likePlaylist(playlistId);
+        }
+        catch (error) {
+          Pop.error("[SAVE PLAYLIST]", error.message);
         }
       },
 

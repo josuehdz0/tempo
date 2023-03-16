@@ -3,8 +3,9 @@ import { api } from "./AxiosService"
 
 class LikedPlaylistsService {
 
-  async likePlaylist(playlistData){
-    const res = await api.post('api/likedPlaylists', playlistData)
+  async likePlaylist(playlistId) {
+    //FIXME - CHANGE POST PATH AFTER RICHY BUILDS IT
+    const res = await api.post(`api/posts/${playlistId}/like`)
     logger.log("[LIKING PLAYLIST]", res.data)
   }
 
