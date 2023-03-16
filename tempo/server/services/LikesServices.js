@@ -4,16 +4,16 @@ import { dbContext } from "../db/DbContext"
 class LikesService{
 
     async LikeUnlike(playlistId, userId) {
-        const playlistsLikes = dbContext.Likes.find({creatorId: userId, playlistId: playlistId})
-        if(!playlistsLikes){
-            const like = dbContext.Likes.create({creatorId: userId, playlistId: playlistId})
-            return "liked" + like
-        }
-        
-        const unlike = dbContext.Likes.findOneAndDelete({playlistId: playlistId, creatorId: userId})
-        return "unliked" + unlike
-    }
+        const playlistsLike = await dbContext.Likes.findOne({creatorId: userId, playlistId: playlistId})
 
+        if(!playlistsLike){
+            dbContext.Likes.create({creatorId: userId, playlistId: playlistId})
+            return "liked"
+        }else{
+            playlistsLike.remove()
+            return `Unliked ${playlistsLike}`
+        }      
+    }
 }
 
 export const likesService = new LikesService()
