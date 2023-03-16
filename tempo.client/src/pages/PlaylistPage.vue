@@ -35,11 +35,18 @@
             <div>
               Runtime: {{ convertToTime(playlist?.runtime / 60) }}
             </div>
-            <div class="text-end ">
+
+            <div v-if="account.id == playlist?.creatorId" class="text-end ">
+              <button @click="deletePlaylist()" class="btn p-0">
+                <i class="mdi mdi-trash-can heart"></i>
+              </button>
+            </div>
+
+            <div v-else class="text-end ">
               <button v-if="!foundSaved" @click="savePlaylist()" class="btn p-0">
                 <i class="mdi mdi-heart-outline heart"></i>
               </button>
-              <button v-else="">
+              <button v-else>
                 <i class="mdi mdi-heart heart"></i>
               </button>
             </div>
@@ -52,29 +59,6 @@
     </div>
 
     <!-- NOTE Track Card goes here -->
-
-    <!-- NOTE TrackCard template -->
-    <!-- <div class="row justify-content-center">
-
-      <div class="col-10 col-md-5 mt-4 songcardbg">
-        <div class="row text-light py-3 px-1">
-          <div class="col-3">
-            picture
-          </div>
-          <div class="col-7">
-            <h5>
-              Song Name
-            </h5>
-            <div>
-              By Artist
-            </div>
-          </div>
-          <div class="col-2 d-flex justify-content-center align-items-center">
-            <i class="mdi mdi-spotify spotify"></i>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <div v-for="t in tracks" :key="t.id" class="row justify-content-center">
       <TrackCard :track="t" />
@@ -290,6 +274,20 @@ export default {
       tracks: computed(() => AppState.playlist?.tracks),
       savedPlaylists: computed(() => AppState.savedPlaylists),
       foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
+
+      async deletePlaylist() {
+        const playlistId = AppState.playlist.id
+        logger.log('playlist Id we will delete', playlistId)
+        const yes = await Pop.confirm('Are sure you sure you want to delete this playlist?')
+        if (!yes) {
+          return
+        }
+        try {
+          await playlistsService.deletePlaylist(playlistId)
+        } catch (error) {
+          Pop.error(Error, 'Removing Playlist')
+        }
+      },
 
       goToProfileByCreatorId() {
         const creatorId = AppState.playlist.creatorId
