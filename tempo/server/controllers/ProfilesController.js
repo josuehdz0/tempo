@@ -11,13 +11,13 @@ export class ProfilesController extends BaseController {
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/spotify', this.getMyPlaylists)
+      .get('/:id/playlists', this.getPlaylistsByProfile)
   }
 
-  async getMyPlaylists(req, res, next) {
+  async getPlaylistsByProfile(req, res, next) {
     try {
-      const profileId = req.userInfo.id
-      const myPlaylists = await playlistsService.getMyPlaylists(profileId)
+      const profileId = req.params.id
+      const myPlaylists = await playlistsService.getPlaylistsByProfile(profileId)
       return res.send(myPlaylists)
     } catch (error) {
       next(error)

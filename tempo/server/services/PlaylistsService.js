@@ -3,9 +3,9 @@ import { BadRequest, UnAuthorized } from "../utils/Errors.js"
 import { TrackModel } from "../models/TrackModel.js"
 
 class PlaylistsService {
-  async getMyPlaylists(creatorId) {
+  async getPlaylistsByProfile(creatorId) {
     const myPlaylists = await dbContext.Playlists.find({ creatorId })
-    if(!myPlaylists){
+    if (!myPlaylists) {
       throw new BadRequest("No playlists")
     }
     return myPlaylists
@@ -16,7 +16,7 @@ class PlaylistsService {
     if (!deletedPlaylist) {
       throw new BadRequest('playlist not found');
     }
-    if(deletedPlaylist.creatorId != userId){
+    if (deletedPlaylist.creatorId != userId) {
       throw new UnAuthorized("You are not the creator of this playlist")
     }
     return deletedPlaylist;
@@ -27,7 +27,7 @@ class PlaylistsService {
     if (!playlist) {
       throw new BadRequest('playlist not found');
     }
-    if(playlist.creatorId != userId){
+    if (playlist.creatorId != userId) {
       throw new UnAuthorized("You are not the creator of this playlist")
     }
     playlist.name = playlistData.name;

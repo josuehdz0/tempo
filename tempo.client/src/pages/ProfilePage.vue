@@ -1,16 +1,16 @@
 <template>
-  <div v-if="account.id" class="container-fluid">
+  <div class="container-fluid">
     <div class="row justify-content-center mt-4">
       <!-- NOTE Profile Details card -->
       <div class="col-10 col-md-5 bigcardbg">
         <div class="row">
           <div class="col-6 d-flex justify-content-center  align-items-center p-3">
-            <img :src="account.picture" :alt="account.name" class="profile-img ">
+            <img :src="profile?.picture" :alt="profile?.name" class="profile-img ">
           </div>
           <div class="col-6 p-3  align-items-center text-light">
             <div>
               <h2 class="">
-                {{ account.name }}
+                {{ profile?.name }}
               </h2>
             </div>
             <div>
@@ -46,7 +46,7 @@
         </div>
         <div class="btn text-light filter-btn">
           <h3>
-            Saved Playlists
+            Liked Playlists
 
           </h3>
         </div>
@@ -54,16 +54,19 @@
     </div>
     <!-- NOTE Playlists -->
     <div class="row justify-content-center">
-      <div class="col-10 col-md-5 cardbg">
+      <div v-for="p in playlists.slice().reverse()" :key="p.id" class="col-10 col-md-5 mt-4 cardbg">
 
         <!-- FIXME need to add prop and vfor to this card -->
 
-        <!-- <PlaylistCard /> -->
+        <PlaylistCard :playlist="p" />
       </div>
     </div>
   </div>
 
-  <div v-else class="container-fluid">
+
+  <!-- NOTE this else should be here. Profile page accesable to everyone even if logged out. -->
+
+  <!-- <div v-else class="container-fluid">
     <div class="row justify-content-center mt-4">
       <div class="col-10 col-md-4 m-4 ">
         <h3 class="text-center">
@@ -75,40 +78,71 @@
               Login here
             </h3>
           </button>
-
         </div>
       </div>
-
     </div>
-  </div>
+  </div> -->
 </template>
 
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, onUnmounted, watchEffect } from "vue";
+import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import PlaylistCard from "../components/PlaylistCard.vue";
 import { AuthService } from '../services/AuthService'
 import { playlistsService } from "../services/PlaylistsService";
 import { profilesService } from "../services/ProfilesService";
+import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 
 export default {
   setup() {
-    async function getMyPlaylists() {
+    const route = useRoute()
+
+    async function getProfileById() {
       try {
-        await profilesService.getMyPlaylists()
-      } catch (error) {
-        Pop.error("[GET MY PLAYLISTS]", error)
+        const profileId = route.params.profileId;
+        // logger.log('here is the profile id', profileId);
+        await profilesService.getProfileById(profileId);
+      }
+      catch (error) {
+        logger.error(error);
+        Pop.error(error.message);
       }
     }
 
-    onMounted(() => {
-      getMyPlaylists();
-    })
+
+    async function getPlaylistsByCreatorId() {
+      try {
+        logger.log("[PROFILE ID]", route.params.profileId)
+        await profilesService.getPlaylistsByCreatorId(route.params.profileId)
+      } catch (error) {
+        Pop.error("[GET PLAYLISTS BY CREATOR ID]", error.message)
+      }
+    }
+
+
+    watchEffect(() => {
+      if (route) {
+        getProfileById()
+        getPlaylistsByCreatorId()
+      }
+    });
+
+    onUnmounted(() => {
+      profilesService.clearProfile()
+      playlistsService.clearPlaylists()
+    });
+
+
+
 
     return {
       account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
+      playlists: computed(() => AppState.playlists),
+
       async login() {
         AuthService.loginWithPopup()
       },

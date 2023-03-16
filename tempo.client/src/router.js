@@ -25,10 +25,17 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/profile',
+    path: '/profiles/:profileId',
     name: 'Profile',
     component: loadPage('ProfilePage'),
+    beforeEnter: authSettled
   },
+  // {
+  //   path: '/profiles',
+  //   name: 'Profile',
+  //   component: loadPage('ProfilePage'),
+  //   beforeEnter: authSettled
+  // },
   {
     path: '/playlists/:playlistId',
     // NOTE need this vvv once we hve playlist IDs

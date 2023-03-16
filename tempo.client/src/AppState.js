@@ -5,6 +5,8 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
+   /** @type {import('./models/Account.js').Profile|null} */
+   profile: null,
   /** @type {import('./models/Playlist.js').Playlist[]} */
   myPlaylists: [],
   /** @type {import('./models/SavedPlaylist.js').SavedPlaylist[]} */
