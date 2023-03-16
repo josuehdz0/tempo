@@ -16,3 +16,9 @@ PlaylistSchema.virtual('creator', {
   foreignField: '_id',
   justOne: true
 })
+
+PlaylistSchema.virtual('likes', {
+  ref: 'Likes',
+  localField: '_id',
+  foreignField: 'playlistId',
+})
