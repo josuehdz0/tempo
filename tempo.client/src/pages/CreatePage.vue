@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <form @submit.prevent="feelingLucky" v-if="account.id">
+    <form @submit.prevent="feelingLucky" @error="loginToSpotify()" v-if="account.id">
       <div class="row justify-content-center mt-5">
         <div class="col-10">
           <label for="playlist-name" class="form-label">Playlist Name</label>
