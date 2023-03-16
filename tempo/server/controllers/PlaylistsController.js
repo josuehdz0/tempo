@@ -15,7 +15,8 @@ export class PlaylistsController extends BaseController {
       .put('/:playlistId', this.editPlaylistById)
       .post('', this.createPlaylist)
       .delete('/:playlistId', this.deletePlaylistById)
-      .delete('/:playlistId/likes', this.likePlaylist)
+      // THE METHOD TO LIKE AND UNLIKE A PLAYLIST VVVVVV
+      .delete('/:playlistId/likes', this.likePlaylist) 
   }
 
   async editPlaylistById(req, res, next) {
