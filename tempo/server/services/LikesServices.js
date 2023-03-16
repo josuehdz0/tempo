@@ -1,7 +1,15 @@
 import { dbContext } from "../db/DbContext"
+import { BadRequest } from "../utils/Errors"
 
 
 class LikesService{
+    async getAllPlaylistsLikes(playlistId) {
+        const likes = await dbContext.Likes.find(playlistId)
+        if(!likes){
+            return []
+        }
+        return likes
+    }
 
     async LikeUnlike(playlistId, userId) {
         const playlistsLike = await dbContext.Likes.findOne({creatorId: userId, playlistId: playlistId})

@@ -11,12 +11,22 @@ export class PlaylistsController extends BaseController {
       .get('', this.getAllPlaylists)
       .get('/:playlistId', this.getPlaylistById)
       .get('/:playlistId/comments', this.getCommentByPlaylist)
+      .get('/:playlistId/likes', this.getAllPlaylistsLikes)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .put('/:playlistId', this.editPlaylistById)
       .post('', this.createPlaylist)
       .delete('/:playlistId', this.deletePlaylistById)
       // THE METHOD TO LIKE AND UNLIKE A PLAYLIST VVVVVV
-      .delete('/:playlistId/likes', this.likePlaylist) 
+      .delete('/:playlistId/likes', this.likePlaylist)
+  }
+  async getAllPlaylistsLikes(req, res, next) {
+    try {
+      const playlistId = req.params.playlistId
+      const playlistsLikes = await likesService.getAllPlaylistsLikes(playlistId)
+      return res.send(playlistsLikes)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async editPlaylistById(req, res, next) {
@@ -81,7 +91,7 @@ export class PlaylistsController extends BaseController {
   }
 
   async likePlaylist(req, res, next) {
-    
+
     try {
       const playlistId = req.params.playlistId
       const userId = req.userInfo.id
@@ -90,7 +100,7 @@ export class PlaylistsController extends BaseController {
     } catch (error) {
       next(error)
     }
-    
+
   }
 
 
