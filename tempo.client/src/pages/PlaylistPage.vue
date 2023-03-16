@@ -43,7 +43,7 @@
             </div>
 
             <div v-else class="text-end ">
-              <button v-if="!foundSaved" @click="savePlaylist()" class="btn p-0">
+              <button v-if="!foundLiked" @click="likePlaylist(playlist.id)" class="btn p-0">
                 <i class="mdi mdi-heart-outline heart"></i>
               </button>
               <button v-else>
@@ -272,8 +272,8 @@ export default {
       account: computed(() => AppState.account),
       playlist: computed(() => AppState.playlist),
       tracks: computed(() => AppState.playlist?.tracks),
-      savedPlaylists: computed(() => AppState.savedPlaylists),
-      foundSaved: computed(() => AppState.savedPlaylists.find(s => s.accountId == AppState.account.id)),
+      likedPlaylists: computed(() => AppState.likedPlaylists),
+      foundLiked: computed(() => AppState.likedPlaylists.find(s => s.accountId == AppState.account.id)),
 
       async deletePlaylist() {
         const playlistId = AppState.playlist.id
@@ -294,9 +294,12 @@ export default {
         router.push({ name: 'Profile', params: { profileId: creatorId } })
       },
 
-      async likePlaylist() {
+
+      // NOTE like a playlist
+
+      async likePlaylist(playlistId) {
         try {
-          await likedPlaylistsService.likePlaylist({ playlistId: route.params.playlistId });
+          await likedPlaylistsService.likePlaylist(playlistId);
         }
         catch (error) {
           Pop.error("[SAVE PLAYLIST]", error.message);
