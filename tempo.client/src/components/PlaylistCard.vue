@@ -31,7 +31,7 @@
 
     <div v-if="account.id == playlist?.creatorId" class="col-2 d-flex justify-content-center align-items-center">
       <button @click="goToPlaylistById(playlist?.id)" class="btn">
-        <i class="mdi mdi-pencil-outline trash"></i>
+        <i class="mdi mdi-account-circle trash"></i>
       </button>
     </div>
 
