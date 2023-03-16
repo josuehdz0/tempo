@@ -6,12 +6,12 @@ class LikesService{
     async LikeUnlike(playlistId, userId) {
         const playlistsLikes = dbContext.Likes.find({creatorId: userId, playlistId: playlistId})
         if(!playlistsLikes){
-            dbContext.Likes.create({creatorId: userId, playlistId: playlistId})
-            return "liked"
+            const like = dbContext.Likes.create({creatorId: userId, playlistId: playlistId})
+            return "liked" + like
         }
         
-        dbContext.Likes.findOneAndDelete({playlistId: playlistId, creatorId: userId})
-        return "unliked"
+        const unlike = dbContext.Likes.findOneAndDelete({playlistId: playlistId, creatorId: userId})
+        return "unliked" + unlike
     }
 
 }
