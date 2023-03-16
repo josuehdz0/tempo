@@ -54,7 +54,14 @@
     </div>
     <!-- NOTE Playlists -->
     <div class="row justify-content-center">
-      <div v-for="p in playlists.slice().reverse()" :key="p.id" class="col-10 col-md-5 mt-4 cardbg">
+      <div v-if="account.id == profile?.id" v-for="p in playlists.slice().reverse()" :key="p.id"
+        class="col-10 col-md-5 mt-4 cardbg">
+
+        <!-- FIXME need to add prop and vfor to this card -->
+
+        <MyPlaylistCard :playlist="p" />
+      </div>
+      <div v-else v-for="p in playlists.slice().reverse()" :key="p.id" class="col-10 col-md-5 mt-4 cardbg">
 
         <!-- FIXME need to add prop and vfor to this card -->
 
