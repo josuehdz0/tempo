@@ -37,7 +37,7 @@
       </div>
 
       <div v-else class="col-2 d-flex justify-content-center align-items-center">
-        <button v-if="!foundSaved" @click="savePlaylist()" class="btn">
+        <button v-if="!foundSaved" @click="likePlaylist()" class="btn">
           <i class="mdi mdi-heart-outline heart"></i>
         </button>
         <button v-else="">
