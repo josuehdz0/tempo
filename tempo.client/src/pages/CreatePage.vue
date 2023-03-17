@@ -130,7 +130,6 @@ import { logger } from "../utils/Logger";
 import { api } from "../services/AxiosService";
 import { playlistsService } from "../services/PlaylistsService.js";
 import { spotifyService } from "../services/SpotifyService.js";
-import { router } from "../router.js";
 
 
 
