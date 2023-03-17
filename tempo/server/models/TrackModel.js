@@ -1,6 +1,6 @@
 export class TrackModel{
     constructor(data){
-        this.id = data.id,
+        this.id = data.id
         this.url = data.external_urls ? data.external_urls.spotify : data.url
         this.name = data.name
         this.popularity = data.popularity
@@ -9,5 +9,7 @@ export class TrackModel{
         this.artistURL = data.artists ? data.artists[0].external_urls.spotify : data.artistURL
         this.albumImg = data.album ? data.album.images[0].url : data.albumImg
         this.tempo = data.tempo || null
+        this.artistName = data.artistName
+        this.artistId = data.artistId
     }
 }
