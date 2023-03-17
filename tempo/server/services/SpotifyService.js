@@ -247,21 +247,55 @@ class SpotifyService{
                 
             })
 
-        const tracksData = req.data
+        let tracksData = req.data
+
+        let ids = ""
+        let audioFeatures = []
+        for (let i = 0; i < tracksData.tracks.length; i++) {
+        ids += tracksData.tracks[i].id + ","
+        }
+        ids = ids.slice(0, -1) // remove the last comma
+        const req2 = await spotifyApi.get('/audio-features/',{
+            params:{ids:ids},headers: {Authorization: `Bearer ${Account.spotify.access_token}`}            
+        })
+        audioFeatures = req2.data
+        for (let i = 0; i < tracksData.tracks.length; i++){
+            tracksData.tracks[i].tempo = audioFeatures.audio_features[i].tempo
+        }
 
         let totalTime = 0
         tracksData.tracks.forEach(e => totalTime += e.duration_ms)
         const tracks = {tracks: tracksData.tracks.map(e => new TrackModel(e)),
                         tracksInfo: {
                             genre: tracksData.seeds[1].id,
-                            tempo: tempo,
+                            // tempo: tempo,
                             totalRuntime: (`${Math.floor((totalTime / (1000 * 60 * 60)) % 24)}:${Math.floor((totalTime / (1000 * 60)) % 60)}:${Math.floor((totalTime / 1000) % 60)}`),
                             totalRuntime_ms: totalTime
+
+                            
                         }
                     }                    
+
+
+
+        // let ids = ""
+        // let audioFeatures = []
+        // for (let i = 0; i < tracks.tracks.length; i++) {
+        // ids += tracks.tracks[i].id + ","
+        // }
+        // ids = ids.slice(0, -1) // remove the last comma
+        // const req2 = await spotifyApi.get('/audio-features/',{
+        //     params:{ids:ids},headers: {Authorization: `Bearer ${Account.spotify.access_token}`}            
+        // })
+        // audioFeatures = req2.data
+        // for (let i = 0; i < tracks.tracks.length; i++){
+        //     tracks.tracks[i].tempo = audioFeatures.audio_features[i].tempo
+        // }
+
         return tracks
 
     }
+
 
 }
 

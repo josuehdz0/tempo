@@ -78,14 +78,15 @@ export default {
       // playlists: computed(() => AppState.playlists),
 
       async deletePlaylist() {
-        const playlistId = props.playlist.id
-        logger.log('playlist Id we will delete', playlistId)
-        const yes = await Pop.confirm('Are sure you sure you want to delete this playlist?')
-        if (!yes) {
-          return
-        }
         try {
+          const playlistId = props.playlist.id
+          logger.log('playlist Id we will delete', playlistId)
+          const yes = await Pop.confirm('Are sure you sure you want to delete this playlist?')
+          if (!yes) {
+            return
+          }
           await playlistsService.deletePlaylist(playlistId)
+          router.push({ name: 'Home' })
         } catch (error) {
           Pop.error(Error, 'Removing Playlist')
         }
