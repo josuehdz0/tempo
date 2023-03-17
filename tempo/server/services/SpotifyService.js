@@ -261,6 +261,8 @@ class SpotifyService{
         audioFeatures = req2.data
         for (let i = 0; i < tracksData.tracks.length; i++){
             tracksData.tracks[i].tempo = audioFeatures.audio_features[i].tempo
+            tracksData.tracks[i].artistName = tracksData.tracks[i].artists[0].name
+            tracksData.tracks[i].artistId = tracksData.tracks[i].artists[0].id
         }
 
         let totalTime = 0
@@ -277,6 +279,7 @@ class SpotifyService{
                     }                    
 
 
+        tracks.tracks[0].tempo = tracksData.tracks[0].artists[0].name
 
         // let ids = ""
         // let audioFeatures = []
@@ -300,3 +303,5 @@ class SpotifyService{
 }
 
 export const spotifyService = new SpotifyService()
+
+
