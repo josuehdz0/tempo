@@ -6,6 +6,7 @@ export class Playlist {
     this.runtime = data.runtime
     this.creatorId = data.creatorId
     this.creator = data.creator
+    this.likes = data.likes
     this.tempo = data.tracksInfo ? 
     data.tracksInfo.tempo : data.tempo
     

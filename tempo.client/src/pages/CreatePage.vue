@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <form @submit.prevent="feelingLucky" @error="loginToSpotify()" v-if="account.id">
+    <form @submit.prevent="submitForm" v-if="account.id">
       <div class="row justify-content-center mt-5">
         <div class="col-10">
           <label for="playlist-name" class="form-label">Playlist Name</label>
@@ -129,6 +129,7 @@ import { AuthService } from '../services/AuthService'
 import { logger } from "../utils/Logger";
 import { api } from "../services/AxiosService";
 import { playlistsService } from "../services/PlaylistsService.js";
+import { spotifyService } from "../services/SpotifyService.js";
 
 
 
@@ -142,6 +143,10 @@ export default {
     return {
       editable,
       account: computed(() => AppState.account),
+
+      async loginToSpotify() {
+        spotifyService.login()
+      },
 
       convertToTime(decimalNum) {
         // Separate the integer and decimal parts
@@ -170,8 +175,28 @@ export default {
         }
         catch (error) {
           logger.error(error)
+          await this.loginToSpotify();
+
         }
       },
+
+      async submitForm() {
+        try {
+          // call feelingLucky function that requires Spotify access token
+          await this.feelingLucky();
+        } catch (error) {
+          // check if error has a response property
+          if (error.response && error.response.status === 400) {
+            // call loginToSpotify function to refresh token
+            await this.loginToSpotify();
+            // call feelingLucky function again with refreshed token
+            await this.feelingLucky();
+          } else {
+            console.error(error);
+          }
+        }
+      },
+
 
       // NOTE Use this for testing if spotify is getting tracks
       async apple() {
@@ -184,6 +209,7 @@ export default {
           logger.error(error)
         }
       },
+
 
     }
   }
