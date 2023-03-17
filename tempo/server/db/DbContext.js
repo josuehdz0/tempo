@@ -10,7 +10,7 @@ class DbContext {
   Playlists = mongoose.model('Playlist', PlaylistSchema);
   Comments = mongoose.model('Comment', CommentSchema);
 
-  Likes = mongoose.model('Like', LikeSchema)
+  Likes = mongoose.model('Likes', LikeSchema)
 
 }
 
