@@ -5,12 +5,12 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
-   /** @type {import('./models/Account.js').Profile|null} */
-   profile: null,
+  /** @type {import('./models/Account.js').Profile|null} */
+  profile: null,
   /** @type {import('./models/Playlist.js').Playlist[]} */
   myPlaylists: [],
-  /** @type {import('./models/SavedPlaylist.js').SavedPlaylist[]} */
-  savedPlaylists: [],
+  /** @type {import('./models/LikedPlaylist.js').LikedPlaylist[]} */
+  likedPlaylists: [],
   /** @type {import('./models/Playlist.js').Playlist{}} */
   playlist: {},
   /** @type {import('./models/Playlist.js').Playlist[]} */

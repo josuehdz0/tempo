@@ -1,5 +1,5 @@
-export class SavedPlaylist {
-  constructor(data){
+export class LikedPlaylist {
+  constructor(data) {
     this.id = data.id
     this.playlistId = data.playlistId
     this.creatorId = data.creatorId
@@ -7,4 +7,4 @@ export class SavedPlaylist {
     this.playlist = data.playlist
     this.accountId = data.accountId
   }
-}``
+} ``

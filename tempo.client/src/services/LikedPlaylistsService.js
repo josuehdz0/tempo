@@ -1,13 +1,15 @@
+import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
 class LikedPlaylistsService {
 
-  async likePlaylist(playlistData){
-    const res = await api.post('api/likedPlaylists', playlistData)
+  async likePlaylist(playlistId) {
+    const res = await api.delete(`api/playlists/${playlistId}/likes`)
     logger.log("[LIKING PLAYLIST]", res.data)
+    AppState.playlists = res.data
   }
 
 }
 
-export const likePlaylistsService = new likedPlaylistsService()
+export const likedPlaylistsService = new LikedPlaylistsService()

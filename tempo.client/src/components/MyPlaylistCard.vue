@@ -30,19 +30,13 @@
 
 
     <div v-if="account.id == playlist?.creatorId" class="col-2 d-flex justify-content-center align-items-center">
-      <button @click="goToPlaylistById(playlist?.id)" class="btn">
-        <i class="mdi mdi-account-circle trash"></i>
+
+      <button @click="deletePlaylist(playlist?.id)" class="btn">
+        <i class="mdi mdi-trash-can heart"></i>
       </button>
     </div>
 
-    <div v-else class="col-2 d-flex justify-content-center align-items-center">
-      <button v-if="!foundLiked" @click="likePlaylist(playlist?.id)" class="btn">
-        <i class="mdi mdi-heart-outline heart"></i>
-      </button>
-      <button v-else="">
-        <i class="mdi mdi-heart heart"></i>
-      </button>
-    </div>
+
 
 
   </div>
@@ -77,8 +71,7 @@ export default {
       account: computed(() => AppState.account),
       // playlists: computed(() => AppState.playlists),
 
-      async deletePlaylist() {
-        const playlistId = props.playlist.id
+      async deletePlaylist(playlistId) {
         logger.log('playlist Id we will delete', playlistId)
         const yes = await Pop.confirm('Are sure you sure you want to delete this playlist?')
         if (!yes) {
@@ -101,7 +94,6 @@ export default {
       },
 
       async goToPlaylistById(playlistId) {
-        // const playlist = AppState.playlist
         logger.log(playlistId)
         router.push({ name: 'PlaylistPage', params: { playlistId: playlistId } })
       },

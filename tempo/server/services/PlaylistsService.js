@@ -64,16 +64,19 @@ class PlaylistsService {
   async getAllPlaylists() {
     const playlists = await dbContext.Playlists.find()
       .populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
+      .populate('likes')
     return playlists
   }
 
   async getPlaylistById(playlistId) {
     const playlist = await dbContext.Playlists.findById(playlistId).populate('creator', 'id spotify.display_name spotify.external_urls.spotify spotify.followers spotify.images')
+    .populate('likes')
     if (!playlist) {
       throw new BadRequest('playlist not found')
     }
     return playlist
   }
+
 }
 
 export const playlistsService = new PlaylistsService()
