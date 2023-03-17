@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Playlist } from "../models/Playlist.js"
+import { router } from "../router.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
@@ -11,21 +12,17 @@ class PlaylistsService {
     playlistForm.tracks = res.data.tracks
     playlistForm.runtime = res.data.tracksInfo.totalRuntime
     logger.log('playlistForm with tracks and runtime', playlistForm)
-
     const res2 = await api.post('/api/playlists', playlistForm)
     const newPlaylist = new Playlist(res2.data)
-
     // newPlaylist.name = playlistForm.name
-
     logger.log('newPlaylist playlistsservice line 20', newPlaylist)
     // await api.post('/api/playlists', newPlaylist)
-
-
     // logger.log(newPlaylist, 'this is the playlist object from the api POST request')
-
-
     AppState.playlists.unshift(newPlaylist)
     AppState.playlist = newPlaylist
+    logger.log('res2 data', res2.data)
+    router.push({ name: 'PlaylistPage', params: { playlistId: res2.data.id } })
+
     return
   }
 
@@ -54,7 +51,7 @@ class PlaylistsService {
     }
   }
 
-  clearPlaylists(){
+  clearPlaylists() {
     AppState.playlists = []
   }
 }

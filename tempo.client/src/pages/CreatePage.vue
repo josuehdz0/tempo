@@ -129,6 +129,7 @@ import { AuthService } from '../services/AuthService'
 import { logger } from "../utils/Logger";
 import { api } from "../services/AxiosService";
 import { playlistsService } from "../services/PlaylistsService.js";
+import { router } from "../router.js";
 
 
 
