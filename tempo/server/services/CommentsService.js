@@ -36,6 +36,18 @@ class CommentsService {
     return comment
   }
 
+  async deleteComment(commentId, userId) {
+    const comment = await dbContext.Comments.findById(commentId)
+    if(!comment){
+      throw new BadRequest("invalid comment id")
+    }
+    if(comment.creatorId != userId){
+      throw new UnAuthorized('You are not authorized to delete this comment')
+    }
+    comment.delete()
+    return ("comment deleted")
+  }
+
 }
 
 export const commentsService = new CommentsService()
