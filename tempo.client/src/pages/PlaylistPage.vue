@@ -276,14 +276,15 @@ export default {
       foundLiked: computed(() => AppState.likedPlaylists.find(s => s.accountId == AppState.account.id)),
 
       async deletePlaylist() {
-        const playlistId = AppState.playlist.id
-        logger.log('playlist Id we will delete', playlistId)
-        const yes = await Pop.confirm('Are sure you sure you want to delete this playlist?')
-        if (!yes) {
-          return
-        }
         try {
+          const playlistId = AppState.playlist.id
+          logger.log('playlist Id we will delete', playlistId)
+          const yes = await Pop.confirm('Are sure you sure you want to delete this playlist?')
+          if (!yes) {
+            return
+          }
           await playlistsService.deletePlaylist(playlistId)
+          router.push({ name: 'Home' })
         } catch (error) {
           Pop.error(Error, 'Removing Playlist')
         }
