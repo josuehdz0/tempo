@@ -8,5 +8,6 @@ export class TrackModel{
         // this.artistName = data.artists[0].external_urls.spotify
         this.artistURL = data.artists ? data.artists[0].external_urls.spotify : data.artistURL
         this.albumImg = data.album ? data.album.images[0].url : data.albumImg
+        this.tempo = data.tempo || null
     }
 }
