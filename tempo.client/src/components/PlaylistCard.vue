@@ -75,6 +75,7 @@ export default {
   setup() {
     return {
       account: computed(() => AppState.account),
+      foundLiked: computed(() => AppState.likedPlaylists.find(s => s.accountId == AppState.account.id)),
       // playlists: computed(() => AppState.playlists),
 
       async deletePlaylist() {
