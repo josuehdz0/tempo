@@ -11,5 +11,7 @@ export class TrackModel{
         this.tempo = data.tempo || null
         this.artistName = data.artistName
         this.artistId = data.artistId
+        this.artistPhoto = data.artistPhoto
+        this.artistGenres = data.artistGenres
     }
 }
