@@ -36,12 +36,13 @@
     </div>
 
     <div v-else class="col-2 d-flex justify-content-center align-items-center">
-      <button v-if="!foundLiked" @click="likePlaylist(playlist?.id)" class="btn">
-        <i class="mdi mdi-heart-outline heart"></i>
+      <button @click="likePlaylist(playlist?.id)" class="btn">
+        <i
+          :class="playlist.likes.find(e => e.creatorId == account.id) ? 'mdi mdi-heart heart' : 'mdi mdi-heart-outline  heart'"></i>
       </button>
-      <button v-else="">
+      <!-- <button v-else="">
         <i class="mdi mdi-heart heart"></i>
-      </button>
+      </button> -->
     </div>
 
 
@@ -75,6 +76,8 @@ export default {
   setup() {
     return {
       account: computed(() => AppState.account),
+      foundLiked: computed(() => AppState.likedPlaylists.find(s => s.accountId == AppState.account.id)),
+
       // playlists: computed(() => AppState.playlists),
 
       async deletePlaylist() {
@@ -93,8 +96,9 @@ export default {
       },
       async likePlaylist(playlistId) {
         try {
-          logger.log('liking playlist', playlistId)
+          // logger.log('liking playlist', playlistId)
           await likedPlaylistsService.likePlaylist(playlistId);
+
         }
         catch (error) {
           Pop.error("[SAVE PLAYLIST]", error.message);

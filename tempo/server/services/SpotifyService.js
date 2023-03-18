@@ -257,12 +257,23 @@ class SpotifyService{
         const req2 = await spotifyApi.get('/audio-features/',{
             params:{ids:ids},headers: {Authorization: `Bearer ${Account.spotify.access_token}`}            
         })
+
         audioFeatures = req2.data
+
         for (let i = 0; i < tracksData.tracks.length; i++){
             tracksData.tracks[i].tempo = audioFeatures.audio_features[i].tempo
             tracksData.tracks[i].artistName = tracksData.tracks[i].artists[0].name
             tracksData.tracks[i].artistId = tracksData.tracks[i].artists[0].id
+            
+            const artistId = tracksData.tracks[i].artistId
+            const req3 = await spotifyApi.get('/artists/'+artistId,{
+                params:{},headers: {Authorization: `Bearer ${Account.spotify.access_token}`}  
+            })
+            tracksData.tracks[i].artistPhoto = req3.data.images[0].url
+            tracksData.tracks[i].artistGenres = req3.data.genres
+            
         }
+
 
         let totalTime = 0
         tracksData.tracks.forEach(e => totalTime += e.duration_ms)
