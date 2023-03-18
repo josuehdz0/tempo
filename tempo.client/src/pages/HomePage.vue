@@ -55,6 +55,11 @@ export default {
       }
     }
 
+    // async function test(){
+    //   const testing = await api.put('api/spotify/playlists', {playlistName: 'WOOO', tracks: ['spotify:track:3esPcn43N0CytAtcY9V30C', 'spotify:track:3cE5ltZFHmBpiS77itKaOM']})
+    //   logger.log(`THE THING OOOOOO${testing.data}`)
+    // }
+
     onMounted(() => {
       getAllPlaylists();
     });

@@ -5,7 +5,6 @@ import { logger } from "../utils/Logger.js"
 import { spotifyApi } from "./AxiosService.js"
 
 class SpotifyService{
-    
     async getTracks(accountId, genre, tempo) {
         const Account = await dbContext.Account.findById(accountId)
         if(!Account){
@@ -298,6 +297,28 @@ class SpotifyService{
         return tracks
 
     }
+
+    async addPlaylist(playlistData, userId) {
+        const usersData = await dbContext.Account.findById(userId)
+        if(!usersData){
+            throw new BadRequest("user is not logged in")
+        }
+        const usersSpotifyId = usersData.spotify.id
+        const playlist = await spotifyApi.post(`/users/${usersSpotifyId}/playlists`, {name: playlistData.playlistName}, {
+            headers: {Authorization: `Bearer ${usersData.spotify.access_token}`, 'Content-Type': 'application/json'}, 
+        })
+        const playlistId = playlist.data.id
+        // playlistData.tracks.forEach(e => {
+        //     e = `spotify:track:${e},`
+        // })
+        // tracksStr = tracksStr.split('').splice(-1, 1).join('')
+        await spotifyApi.post(`/playlists/${playlistId}/tracks`, {uris: playlistData.tracks}, 
+        {
+            headers: {Authorization: `Bearer ${usersData.spotify.access_token}`, 'Content-Type': 'application/json'}, 
+        })
+        return "COMPLETED"
+    }
+    
 
 
 }
