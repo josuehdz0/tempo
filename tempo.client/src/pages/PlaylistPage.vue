@@ -10,7 +10,7 @@
 
           <div class="col-6">
             <div class="row ">
-              <!-- Loop through the tracks in the playlist -->
+              <!-- NOTE Loop through the tracks in the playlist for photos-->
               <div v-for="(track, index) in playlist?.tracks.slice(0, 4)" :key="index" class="col-6 p-0"
                 :class="playlist.tracks.length < 4 && (index === 1 || index === 3) ? 'col-12 p-0' : ''">
                 <img :src="track.albumImg" alt="" class="img-fluid smallalbumcover"
@@ -21,35 +21,56 @@
 
 
 
-          <div class="col-6 p-2">
-            <b class="">
-              {{ playlist?.name }}
+          <div class="col-6 p-2 d-flex flex-column justify-content-between">
 
-            </b>
-            <!-- <div @click="goToProfileByCreatorId()">
-              By {{ playlist?.creator?.spotify.display_name }}
-            </div> -->
-            <div>
-              Tempo: {{ playlist?.tempo }} bpm
-            </div>
-            <div>
-              Runtime: {{ convertToTime(playlist?.runtime / 60) }}
-            </div>
-
-            <div v-if="account.id == playlist?.creatorId" class="text-end ">
-              <button @click="deletePlaylist()" class="btn p-0">
-                <i class="mdi mdi-trash-can heart"></i>
-              </button>
+            <div class="row">
+              <b class="">
+                {{ playlist?.name }}
+              </b>
+              <!-- <div @click="goToProfileByCreatorId()">
+                By {{ playlist?.creator?.spotify.display_name }}
+              </div> -->
+              <div>
+                Tempo: {{ playlist?.tempo }} bpm
+              </div>
+              <div>
+                Runtime: {{ convertToTime(playlist?.runtime / 60) }}
+              </div>
             </div>
 
-            <div v-else class="text-end ">
-              <button v-if="!foundLiked" @click="likePlaylist(playlist.id)" class="btn p-0">
-                <i class="mdi mdi-heart-outline heart"></i>
-              </button>
-              <button v-else>
-                <i class="mdi mdi-heart heart"></i>
-              </button>
+            <div class="row justify-content-between ">
+
+              <div class="col-8 p-0 d-flex align-items-center ">
+                <div v-if="account.id" class="btn text-light d-flex">
+                  <div class="fs-5">
+                    Add to&nbsp;
+                  </div>
+                  <i class="mdi mdi-spotify fs-4">
+                  </i>
+                </div>
+              </div>
+
+              <div class="col-4 p-0 d-flex justify-content-center">
+
+                <div v-if="account.id == playlist?.creatorId" class="text-end ">
+                  <button @click="deletePlaylist()" class="btn p-0">
+                    <i class="mdi mdi-trash-can heart"></i>
+                  </button>
+                </div>
+
+                <div v-else class="text-end ">
+                  <button v-if="!foundLiked" @click="likePlaylist(playlist.id)" class="btn p-0">
+                    <i class="mdi mdi-heart-outline heart"></i>
+                  </button>
+                  <button v-else>
+                    <i class="mdi mdi-heart heart"></i>
+                  </button>
+                </div>
+
+              </div>
+
             </div>
+
           </div>
 
         </div>
@@ -241,9 +262,13 @@ export default {
         router.push({ name: 'Profile', params: { profileId: creatorId } })
       },
 
+      async addPlaylistToSpotify() {
+        const testing = await api.put('api/spotify/playlists', { playlistName: 'WOOO', tracks: ['spotify:track:3esPcn43N0CytAtcY9V30C', 'spotify:track:3cE5ltZFHmBpiS77itKaOM'] })
+        logger.log(`THE THING OOOOOO${testing.data}`)
+      },
+
 
       // NOTE like a playlist
-
       async likePlaylist(playlistId) {
         try {
           logger.log('liking playlist')

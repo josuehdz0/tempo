@@ -68,6 +68,11 @@
         <PlaylistCard :playlist="p" />
       </div>
     </div>
+
+    <div class="row py-3">
+      <!-- NOTE this is padding to add space between last trackcard and footer -->
+    </div>
+
   </div>
 
 
