@@ -22,13 +22,13 @@
 
 
           <div class="col-6 p-2">
-            <h4>
+            <b class="">
               {{ playlist?.name }}
 
-            </h4>
-            <div @click="goToProfileByCreatorId()">
+            </b>
+            <!-- <div @click="goToProfileByCreatorId()">
               By {{ playlist?.creator?.spotify.display_name }}
-            </div>
+            </div> -->
             <div>
               Tempo: {{ playlist?.tempo }} bpm
             </div>
@@ -66,7 +66,7 @@
     </div>
 
     <!-- NOTE Comment form will go here -->
-    <div v-if="account.id" class="row justify-content-center">
+    <!-- <div v-if="account.id" class="row justify-content-center">
       <div class="col-10 col-md-5 m-4 songcardbg">
         <div class="form-floating mt-4 mx-2">
           <textarea required class="form-control" placeholder="Leave a comment here" id="body" style="height: 100px"
@@ -86,11 +86,10 @@
           </h3>
         </button>
       </div>
-    </div>
+    </div> -->
 
     <!-- NOTE Comments will populate here -->
-    <div class="row justify-content-center ">
-
+    <!-- <div class="row justify-content-center ">
       <div class="col-10 col-md-5 mb-4">
         <div class="row text-light py-3 px-1 border-2 border-bottom">
           <div class="col-3">
@@ -169,65 +168,12 @@
 
       </div>
 
-      <!-- NOTE duplicate comments -->
-      <!-- <div class="col-10 col-md-7 mb-4">
-        <div class="row text-light py-3 px-1 border-2 border-bottom">
-          <div class="col-3">
-            picture
-          </div>
-          <div class="col-7">
-            <div class="d-flex ">
-              <div>
-                <b class="myfont">
-                  Account Name
-                </b>
-                <span class="timetext ">
-                  3h
-                </span>
-              </div>
-            </div>
 
-            <div>
-              Comment Body
-            </div>
-          </div>
-          <div class="col-2 d-flex justify-content-center align-items-center">
-            <i class="mdi mdi-heart heart"></i>
-          </div>
-        </div>
+    </div> -->
 
-      </div>
-
-      <div class="col-10 col-md-7 mb-4">
-        <div class="row text-light py-3 px-1 border-2 border-bottom">
-          <div class="col-3">
-            picture
-          </div>
-          <div class="col-7">
-            <div class="d-flex ">
-              <div>
-                <b class="myfont">
-                  Account Name
-                </b>
-                <span class="timetext ">
-                  3h
-                </span>
-              </div>
-            </div>
-
-            <div>
-              Comment Body
-            </div>
-          </div>
-          <div class="col-2 d-flex justify-content-center align-items-center">
-            <i class="mdi mdi-heart heart"></i>
-          </div>
-        </div>
-
-      </div> -->
-
+    <div class="row py-3">
+      <!-- NOTE this is padding to add space between last trackcard and footer -->
     </div>
-
 
 
   </div>
