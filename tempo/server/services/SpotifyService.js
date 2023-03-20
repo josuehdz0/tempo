@@ -213,7 +213,7 @@ class SpotifyService{
                             break;
                         case 'summer':
                             artist = '7CajNmpbOovFoOoasH2HaY';
-                            track = '5TULlxHavZxZDYzFDcZCas';
+                            track = '1l4iQsOZ5sOXZPMQLvouaB';
                             break;
                         case 'synth-pop':
                             artist = '2ycnb8Er79LoH2AsR5ldjh';
