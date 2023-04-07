@@ -59,7 +59,8 @@
                 </div>
 
                 <div v-else class="text-end ">
-                  <button v-if="!foundLiked" @click="likePlaylist(playlist.id)" class="btn p-0">
+                  <!-- NOTE add "@click="likePlaylist(playlist.id)"" to this button later -->
+                  <button v-if="!foundLiked" class="btn p-0">
                     <i class="mdi mdi-heart-outline heart"></i>
                   </button>
                   <button v-else>
