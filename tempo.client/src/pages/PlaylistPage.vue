@@ -41,7 +41,7 @@
             <div class="row justify-content-between ">
 
               <div class="col-8 p-0 d-flex align-items-center ">
-                <div v-if="account.id" class="btn text-light d-flex">
+                <div @click="addPlaylistToSpotify()" v-if="account.id" class="btn text-light d-flex">
                   <div class="fs-5">
                     Add to&nbsp;
                   </div>
@@ -213,6 +213,7 @@ import { playlistsService } from "../services/PlaylistsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { likedPlaylistsService } from "../services/LikedPlaylistsService";
+import { api } from "../services/AxiosService.js";
 
 export default {
   setup() {
@@ -262,10 +263,12 @@ export default {
         const creatorId = AppState.playlist.creatorId
         router.push({ name: 'Profile', params: { profileId: creatorId } })
       },
-
+      // NOTE Use this function to create playlist on spotify
       async addPlaylistToSpotify() {
-        const testing = await api.put('api/spotify/playlists', { playlistName: 'WOOO', tracks: ['spotify:track:3esPcn43N0CytAtcY9V30C', 'spotify:track:3cE5ltZFHmBpiS77itKaOM'] })
-        logger.log(`THE THING OOOOOO${testing.data}`)
+        const spotifyTrackArray = AppState.playlist.tracks.map((t) => "spotify:track:" + t.id)
+        logger.log(spotifyTrackArray, "right format?")
+        const testing = await api.put('api/spotify/playlists', { playlistName: `${AppState.playlist.name}`, tracks: spotifyTrackArray })
+
       },
 
 
