@@ -3,14 +3,14 @@
     <form @submit.prevent="submitForm" v-if="account.id">
       <div class="row justify-content-center mt-5">
         <div class="col-10">
-          <label for="playlist-name" class="form-label">Playlist Name</label>
+          <label for="playlist-name" class="form-label createfont">Playlist Name</label>
           <input v-model="editable.name" type="text" class="form-control" name="playlist-name" id="playlist-name"
             placeholder="Name your Playlist">
         </div>
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10">
-          <label for="genre" class="form-label">Genre</label>
+          <label for="genre" class="form-label  createfont">Genre</label>
           <select v-model="editable.genre" class="form-select" id="genre" name="genre">
             <option value="acoustic">Acoustic</option>
             <option value="alt-rock">Alt Rock</option>
@@ -71,35 +71,37 @@
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-10">
-          <label v-if="editable.tempo" for="pace" class="form-label">Pace: {{ convertToTime((editable.tempo - 250) /
+          <label v-if="editable.tempo" for="pace" class="form-label  createfont2">Pace: {{ convertToTime((editable.tempo -
+            250) /
             (-10)) }}/mile
           </label>
           <label v-else="" for="pace" class="form-label">Pace: 10'00" /mile</label>
           <div>
-            <input v-model="editable.tempo" type="range" class="pace-range" min="100" max="200" step="5" list="values">
+            <input v-model="editable.tempo" type="range" class="pace-range " min="100" max="200" step="5" list="values">
             <datalist id="values">
 
-              <option label="15">15</option>
+              <option label="15" class=" createfont2">15</option>
               <!-- <option value="110" label="14">14</option>
               <option value="120" label="13">13</option>
               <option value="130" label="12">12</option>
               <option value="140" label="11">11</option> -->
-              <option label="10">10</option>
+              <option label="10" class=" createfont2">10</option>
               <!-- <option value="160" label="9">9</option>
               <option value="170" label="8">8</option>
               <option value="180" label="7">7</option>
               <option value="190" label="6">6</option> -->
-              <option label="5">5</option>
+              <option label="5" class=" createfont2">5</option>
 
             </datalist>
           </div>
         </div>
       </div>
       <div class="row justify-content-center mt-5">
-        <div class="col-10 d-flex justify-content-between">
-          <button type="submit" class="btn btn-outline-dark">Tracks</button>
+        <div class="col-10 d-flex justify-content-center">
+          <!-- NOTE Add this button below when ready for track customization -->
+          <!-- <button type="submit" class="btn btn-outline-dark">Tracks</button> -->
           <!-- <button class="btn btn-outline-dark">Create</button> -->
-          <button class="btn btn-outline-dark">Feeling Lucky</button>
+          <button class="btn btn-outline-light btn-lg fs-3 fw-semibold">Feeling Lucky</button>
         </div>
       </div>
     </form>
@@ -228,5 +230,19 @@ datalist {
   justify-content: space-between;
   // writing-mode: vertical-lr;
   width: 75vw;
+}
+
+.createfont {
+  text-shadow: 1px 1px 5px rgba(71, 71, 71, 0.392);
+  font-weight: 600;
+  font-size: 23px;
+  color: aliceblue;
+}
+
+.createfont2 {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.291);
+  font-weight: 600;
+  font-size: 18px;
+  color: aliceblue;
 }
 </style>
