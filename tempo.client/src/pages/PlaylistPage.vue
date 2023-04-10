@@ -265,9 +265,14 @@ export default {
       },
       // NOTE Use this function to create playlist on spotify
       async addPlaylistToSpotify() {
-        const spotifyTrackArray = AppState.playlist.tracks.map((t) => "spotify:track:" + t.id)
-        logger.log(spotifyTrackArray, "right format?")
-        const testing = await api.put('api/spotify/playlists', { playlistName: `${AppState.playlist.name}`, tracks: spotifyTrackArray })
+        try {
+          const spotifyTrackArray = AppState.playlist.tracks.map((t) => "spotify:track:" + t.id)
+          logger.log(spotifyTrackArray, "right format?")
+          const testing = await api.put('api/spotify/playlists', { playlistName: `${AppState.playlist.name}`, tracks: spotifyTrackArray })
+          Pop.toast('Added to Spotify', 'success')
+        } catch (error) {
+          Pop.error(Error, 'Removing Playlist')
+        }
 
       },
 

@@ -97,7 +97,7 @@
         </div>
       </div>
       <div class="row justify-content-center mt-5">
-        <div class="col-10 d-flex justify-content-center">
+        <div class="col-10 d-flex ">
           <!-- NOTE Add this button below when ready for track customization -->
           <!-- <button type="submit" class="btn btn-outline-dark">Tracks</button> -->
           <!-- <button class="btn btn-outline-dark">Create</button> -->
@@ -132,19 +132,20 @@ import { logger } from "../utils/Logger";
 import { api } from "../services/AxiosService";
 import { playlistsService } from "../services/PlaylistsService.js";
 import { spotifyService } from "../services/SpotifyService.js";
+import { useRouter } from "vue-router";
 
 
 
 export default {
   setup() {
-
-
+    const router = useRouter()
     const editable = ref({})
     editable.value.tempo = editable?.value.tempo || 150
 
     return {
       editable,
       account: computed(() => AppState.account),
+      playlistId: computed(() => AppState.playlist.id),
 
       async loginToSpotify() {
         spotifyService.login()
@@ -173,6 +174,8 @@ export default {
         try {
           logger.log(editable.value, 'form Data')
           await playlistsService.createPlaylist(editable.value)
+          logger.log(this.playlistId, "playlist id from controller")
+          router.push({ name: 'PlaylistPage', params: { playlistId: this.playlistId } });
 
         }
         catch (error) {
@@ -194,7 +197,7 @@ export default {
             // call feelingLucky function again with refreshed token
             await this.feelingLucky();
           } else {
-            console.error(error);
+            logger.error(error);
           }
         }
       },

@@ -21,7 +21,7 @@ class PlaylistsService {
     AppState.playlists.unshift(newPlaylist)
     AppState.playlist = newPlaylist
     logger.log('res2 data', res2.data)
-    router.push({ name: 'PlaylistPage', params: { playlistId: res2.data.id } })
+    // router.push({ name: 'PlaylistPage', params: { playlistId: res2.data.id } })
 
     return
   }
