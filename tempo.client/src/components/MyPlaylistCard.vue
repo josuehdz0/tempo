@@ -32,7 +32,7 @@
     <div v-if="account.id == playlist?.creatorId" class="col-2 d-flex justify-content-center align-items-center">
 
       <button @click="deletePlaylist(playlist?.id)" class="btn">
-        <i class="mdi mdi-trash-can heart"></i>
+        <i title="delete playlist" class="mdi mdi-trash-can heart"></i>
       </button>
     </div>
 

@@ -18,7 +18,7 @@
               </div>
             </router-link>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
-              <i class="mdi mdi-logout"></i>
+              <i title="logout" class="mdi mdi-logout"></i>
               logout
             </div>
           </div>

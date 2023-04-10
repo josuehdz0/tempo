@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-1 d-flex justify-content-center align-items-center pe-4">
-        <a :href="track.url" target="_blank"><i class="mdi mdi-spotify spotify"></i></a>
+        <a :href="track.url" target="_blank"><i title="spotify" class="mdi mdi-spotify spotify"></i></a>
       </div>
     </div>
   </div>
