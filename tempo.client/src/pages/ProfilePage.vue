@@ -15,7 +15,7 @@
             </div>
             <div>
               <b>
-                Total Playlists: 0
+                Total Playlists: {{ playlists.length }}
 
               </b>
             </div>
