@@ -45,7 +45,7 @@
                   <div class="fs-5">
                     Add to&nbsp;
                   </div>
-                  <i class="mdi mdi-spotify fs-4">
+                  <i title="spotify" class="mdi mdi-spotify fs-4">
                   </i>
                 </div>
               </div>
