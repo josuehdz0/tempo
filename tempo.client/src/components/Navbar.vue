@@ -26,7 +26,7 @@
 
 
 
-        <div v-if="account.id" class="col-6 text-center my-2" aria-label="Link to Spotify">
+        <div v-if="account.id" class="col-6 text-center my-2 data-bs-toggle" aria-label="Link to Spotify">
           <SpotifyLogin />
         </div>
 
@@ -44,7 +44,8 @@
       <div class="d-none d-md-flex justify-content-end">
 
         <button class="btn">
-          <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase" data-bs-toggle="collapse"
+            data-target=".navbar-collapse">
             About
           </router-link>
         </button>
@@ -94,7 +95,7 @@ a:hover {
 }
 
 .navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
+  border-bottom: 2px solid black;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
