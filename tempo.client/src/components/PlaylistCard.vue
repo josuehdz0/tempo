@@ -35,7 +35,7 @@
       </button>
     </div>
 
-    <div v-else class="col-2 d-flex justify-content-center align-items-center">
+    <div v-else-if="account.id" class="col-2 d-flex justify-content-center align-items-center">
       <button @click="likePlaylist(playlist?.id)" class="btn">
         <i
           :class="playlist.likes.find(e => e.creatorId == account.id) ? 'mdi mdi-heart heart' : 'mdi mdi-heart-outline  heart'"></i>
@@ -43,6 +43,12 @@
       <!-- <button v-else="">
         <i class="mdi mdi-heart heart"></i>
       </button> -->
+    </div>
+
+    <div v-else class="col-2 d-flex justify-content-center align-items-center">
+      <button @click="goToPlaylistById(playlist?.id)" class="btn">
+        <i title="account" class="mdi mdi-account-circle trash"></i>
+      </button>
     </div>
 
 

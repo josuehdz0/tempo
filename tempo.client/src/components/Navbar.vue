@@ -15,7 +15,7 @@
       <!-- NOTE Navebar for mobile is here -->
       <div class="row justify-content-between d-md-none">
         <div class="col-3 d-flex align-items-center">
-          <ul class="navbar-nav  ">
+          <ul class="navbar-nav">
             <li>
               <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase">
                 About
@@ -26,7 +26,7 @@
 
 
 
-        <div v-if="account.id" class="col-6 text-center my-2 data-bs-toggle" aria-label="Link to Spotify">
+        <div v-if="account.id" class="col-6 text-center my-2" aria-label="Link to Spotify">
           <SpotifyLogin />
         </div>
 
@@ -44,8 +44,7 @@
       <div class="d-none d-md-flex justify-content-end">
 
         <button class="btn">
-          <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase" data-bs-toggle="collapse"
-            data-target=".navbar-collapse">
+          <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase">
             About
           </router-link>
         </button>
