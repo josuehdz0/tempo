@@ -17,5 +17,7 @@ export const AppState = reactive({
   playlists: [],
   /** @type {import('./models/Comment.js').Comment[]} */
   comment: [],
+  // NOTE This was changed from Haydens to Josue's Spotify dev account for deployment. Any spotify account that are interested in using app, must be added to Josue's dev account since still in developer mode. 
   client_id: 'c64a7707e8a84d889a159981f7fb4a4a',
+
 })

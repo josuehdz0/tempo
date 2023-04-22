@@ -6,6 +6,7 @@ class SpotifyService {
 
     async login() {
         const scopes = 'user-top-read playlist-modify-public'
+        // NOTE This is the live deploy site. If wanting to run locally, must change to localhost:8080...
         const redirect_uri = 'https://tempo-yn8x.onrender.com'
         let popup = window.open(`https://accounts.spotify.com/authorize?client_id=${AppState.client_id}&response_type=token&redirect_uri=${redirect_uri}&scope=${scopes}&show_dialog=true`, 'Login with Spotify', 'width=800,height=600')
         const check = await window.open('', 'Login with Spotify')
