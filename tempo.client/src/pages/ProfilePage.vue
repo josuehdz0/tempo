@@ -44,12 +44,12 @@
             My Playlists
           </h3>
         </div>
-        <div class="btn text-light filter-btn">
+        <!-- NOTE add this once like functionality works -->
+        <!-- <div class="btn text-light filter-btn">
           <h3>
             Liked Playlists
-
           </h3>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- NOTE Playlists -->
