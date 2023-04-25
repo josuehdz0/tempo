@@ -31,6 +31,7 @@
 
 
       </div>
+      <div class="row mt-4 mt-md-none"></div>
     </div>
   </div>
 </template>
