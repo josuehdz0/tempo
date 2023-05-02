@@ -7,7 +7,8 @@
     <router-view />
 
   </main>
-  <footer class="bg-light text-dark d-flex justify-content-evenly align-items-center py-4 sticky-bottom">
+  <!-- NOTE took out bg-light -->
+  <footer class=" text-dark d-flex justify-content-evenly align-items-center py-4 sticky-bottom">
 
 
     <Footer></Footer>
