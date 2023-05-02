@@ -63,6 +63,7 @@ export default {
 footer {
   display: grid;
   place-content: center;
-  height: 32px;
+  height: 70px;
+  color: transparent;
 }
 </style>

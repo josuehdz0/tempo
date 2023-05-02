@@ -200,7 +200,8 @@ export default {
 
 .navigation ul li.active a .text {
   opacity: 1;
-  transform: translateY(8px);
+  transform: translateY(10px);
+  font-size: 500;
 }
 
 .indicator {
@@ -280,12 +281,25 @@ export default {
 }
 
 .myrounded {
-  border-radius: 100px;
+  border-radius: 10px 10px 0px 0px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 425px) {
   .myrounded {
-    border-radius: 10px;
+    border-radius: 0px;
+  }
+
+  .navigation {
+    position: relative;
+    width: relative;
+    height: 70px;
+    background: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border-radius: 10px;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.409);
+
   }
 }
 </style>
