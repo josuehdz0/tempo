@@ -102,6 +102,8 @@ a:hover {
 @media screen and (min-width: 768px) {
   nav {
     height: 64px;
+    box-shadow: 0px 3px 5px 3px rgba(0, 0, 0, 0.202);
+
   }
 }
 </style>

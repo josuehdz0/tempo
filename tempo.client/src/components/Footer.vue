@@ -142,7 +142,7 @@ export default {
   justify-content: center;
   align-items: center;
   // border-radius: 10px;
-  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.409);
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.202);
 
 }
 
@@ -222,7 +222,8 @@ export default {
   height: 70px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.409);
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.202);
+
   z-index: -1;
 }
 
@@ -291,14 +292,16 @@ export default {
 
   .navigation {
     position: relative;
-    width: relative;
+    // box-sizing: border-box;
+    width: 100vw;
     height: 70px;
     background: #e9ecef;
     display: flex;
     justify-content: center;
     align-items: center;
     // border-radius: 10px;
-    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.409);
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.202);
+
 
   }
 }
