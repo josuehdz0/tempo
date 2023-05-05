@@ -6,7 +6,7 @@
           <a href="#">
             <span class="icon">
               <router-link :to="{ name: 'Home' }">
-                <i class="mdi mdi-home fs-1 text-dark"></i>
+                <i class="mdi mdi-home fs-1 "></i>
               </router-link>
             </span>
             <span class="text">Home</span>
@@ -15,13 +15,13 @@
         <li ref="listItem2" :class="{ list: true, active: activeLink === 'profile' }" @click="activateLink('profile')">
           <a v-if="account.id">
             <span class="icon">
-              <i class="mdi mdi-account fs-1 text-dark" @click="getMyProfile()"></i>
+              <i class="mdi mdi-account fs-1 " @click="getMyProfile()"></i>
             </span>
             <span class="text">Profile</span>
           </a>
           <a v-else>
             <span class="icon">
-              <i class="mdi mdi-login fs-1 text-dark" @click="login()">
+              <i class="mdi mdi-login fs-1 " @click="login()">
               </i>
             </span>
             <span class="text">Login
@@ -33,7 +33,7 @@
           <a href="#">
             <span class="icon">
               <router-link :to="{ name: 'CreatePlaylist' }">
-                <i class="mdi mdi-plus-circle fs-1 text-dark"></i>
+                <i class="mdi mdi-plus-circle fs-1"></i>
               </router-link>
             </span>
             <span class="text">Create</span>
@@ -171,6 +171,9 @@ export default {
   width: 100%;
   text-align: center;
   font-weight: 500;
+  color: rgb(32, 32, 32);
+  transition: 0.5s;
+
 }
 
 .navigation ul li a .icon {
@@ -180,11 +183,16 @@ export default {
   font-size: 1.5em;
   text-align: center;
   transition: 0.5s;
-  color: black;
+
+}
+
+.navigation ul li.active a {
+  color: #e9ecef;
 }
 
 .navigation ul li.active a .icon {
   transform: translateY(-34px);
+
 }
 
 .navigation ul li a .text {
@@ -209,7 +217,7 @@ export default {
   top: -55%;
   width: 70px;
   height: 70px;
-  background-color: rgb(161, 173, 142);
+  background-color: rgb(41, 41, 41);
   border-radius: 50%;
   border: 6px solid #e9ecef;
   // box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.409);
