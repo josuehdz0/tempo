@@ -8,7 +8,7 @@ class SpotifyService {
     async login() {
         const scopes = 'user-top-read playlist-modify-public'
         // NOTE This is the live deploy site. If wanting to run locally, must change to localhost:8080...
-        const redirect_uri = 'https://tempo-yn8x.onrender.com'
+        const redirect_uri = 'https://tempo-yn8x.onrender.com/'
         // FIXME Why does the onrender uri not work but the localhost one work??
 
         // const redirect_uri = 'http://localhost:8080/'
