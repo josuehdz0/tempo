@@ -13,10 +13,10 @@ class SpotifyService {
 
         // const redirect_uri = 'http://localhost:8080/'
 
-        let popup = window.open(`https://accounts.spotify.com/authorize?client_id=${AppState.client_id}&response_type=token&redirect_uri=${redirect_uri}&scope=${scopes}&show_dialog=true`, 'Login with Spotify', 'width=800,height=600')
+        let popup = window.location.assign(`https://accounts.spotify.com/authorize?client_id=${AppState.client_id}&response_type=token&redirect_uri=${redirect_uri}&scope=${scopes}&show_dialog=true`, 'Login with Spotify', 'width=800,height=600')
         const check = await window.open('', 'Login with Spotify')
         const intervalId = setInterval(async () => {
-            if (check.location.hash) {
+            if (window.location.hash) {
                 clearInterval(intervalId)
                 const access_token = check.location.hash.substr(1).split('&')[0].split("=")[1]
                 popup.close()
